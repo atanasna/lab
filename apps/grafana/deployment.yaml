@@ -1,45 +1,3 @@
-# ---
-# apiVersion: v1
-# kind: PersistentVolumeClaim
-# metadata:
-#   name: grafana-pvc
-# spec:
-#   accessModes:
-#     - ReadWriteOnce
-#   resources:
-#     requests:
-#       storage: 1Gi
-#
----
-apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: iscsi-pv-grafana
-spec:
-  capacity:
-    storage: 10Gi
-  accessModes:
-    - ReadWriteOnce
-  persistentVolumeReclaimPolicy: Retain
-  storageClassName: manual-iscsi
-  iscsi:
-    targetPortal: 10.19.0.30:3260
-    iqn: iqn.2025-08.lab:grafana
-    lun: 1  # First LUN
-    fsType: btrfs
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: grafana-pvc
-spec:
-  storageClassName: manual-iscsi
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 10Gi
-  volumeName: iscsi-pv-grafana
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -91,23 +49,15 @@ spec:
               cpu: 250m
               memory: 750Mi
           volumeMounts:
-            - mountPath: /var/lib/grafana
-              name: grafana-pv
+            - name: grafana-pv
+              mountPath: /var/lib/grafana
+            - name: grafana-datasources
+              mountPath: /etc/grafana/provisioning/datasources
+              readOnly: true
       volumes:
+        - name: grafana-datasources
+          configMap:
+            name: grafana-datasources
         - name: grafana-pv
           persistentVolumeClaim:
             claimName: grafana-pvc
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: grafana
-spec:
-  ports:
-    - port: 3000
-      protocol: TCP
-      targetPort: http-grafana
-  selector:
-    app: grafana
-  sessionAffinity: None
-  type: LoadBalancer

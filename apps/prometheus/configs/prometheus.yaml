@@ -1,0 +1,53 @@
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+scrape_configs:
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090']
+
+  # Air Quality monitoring for multiple locations
+  - job_name: 'air-quality'
+    scrape_interval: 300s  # 5 minutes - be respectful of API limits
+    scrape_timeout: 30s
+    
+    # Define each location as a separate target
+    static_configs:
+      - targets:
+        - 'http://api.waqi.info/feed/geo:42.666836;23.322085/?token=c0c1906175267c768826e621f93a180f973d80ca'
+        labels:
+          country: 'Bulgaria'
+          city: 'Sofia'
+          location: 'Lozenets'
+      - targets:
+        - 'http://api.waqi.info/feed/geo:42.585963;23.360019/?token=c0c1906175267c768826e621f93a180f973d80ca'
+        labels:
+          country: 'Bulgaria'
+          region: 'Sofia'
+          location: 'Bistrica'
+      - targets:
+        - 'http://api.waqi.info/feed/geo:42.589573;23.415870/?token=c0c1906175267c768826e621f93a180f973d80ca'
+        labels:
+          country: 'Bulgaria'
+          region: 'Sofia'
+          location: 'Pancharevo'
+      - targets:
+        - 'http://api.waqi.info/feed/geo:42.497072;27.470950/?token=c0c1906175267c768826e621f93a180f973d80ca'
+        labels:
+          location_name: 'Center'
+          country: 'Bulgaria'
+          region: 'Burgas'
+      
+    params:
+      module: [air_quality]
+    
+    metrics_path: /probe
+
+    relabel_configs:
+      # Use the target URL as the parameter
+      - source_labels: [__address__]
+        target_label: __param_target
+      
+      # Point all requests to the json-exporter service
+      - target_label: __address__
+        replacement: api-exporter:7979

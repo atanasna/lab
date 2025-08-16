@@ -1,0 +1,92 @@
+modules:
+  air_quality:
+    metrics:
+    # Carbon Monoxide
+    - name: air_quality_co
+      path: '{ .data.iaqi.co.v }'
+      help: Carbon Monoxide level
+      labels:
+        pollutant: 'co'
+        unit: 'ppm'
+    
+    # # Dew Point
+    # - name: air_quality_dew_point
+    #   path: '{ .data.iaqi.dew.v }'
+    #   help: Dew point temperature
+    #   labels:
+    #     city: '{ .data.city.name }'
+    #     measurement: 'dew_point'
+    #     unit: 'celsius'
+    
+    # Humidity
+    - name: air_quality_humidity
+      path: '{ .data.iaqi.h.v }'
+      help: Relative humidity percentage
+      labels:
+        measurement: 'humidity'
+        unit: 'percent'
+    
+    # Nitrogen Dioxide
+    - name: air_quality_no2
+      path: '{ .data.iaqi.no2.v }'
+      help: Nitrogen Dioxide level
+      labels:
+        pollutant: 'no2'
+        unit: 'µg/m³'
+    
+    # Pressure
+    - name: air_quality_pressure
+      path: '{ .data.iaqi.p.v }'
+      help: Atmospheric pressure
+      labels:
+        measurement: 'pressure'
+        unit: 'hPa'
+    
+    # PM10
+    - name: air_quality_pm10
+      path: '{ .data.iaqi.pm10.v }'
+      help: PM10 particulate matter
+      labels:
+        pollutant: 'pm10'
+        unit: 'µg/m³'
+    
+    # Sulfur Dioxide
+    - name: air_quality_so2
+      path: '{ .data.iaqi.so2.v }'
+      help: Sulfur Dioxide level
+      labels:
+        pollutant: 'so2'
+        unit: 'µg/m³'
+    
+    # Temperature
+    - name: air_quality_temperature
+      path: '{ .data.iaqi.t.v }'
+      help: Temperature
+      labels:
+        measurement: 'temperature'
+        unit: 'celsius'
+    
+    # # Wind Speed
+    # - name: air_quality_wind_speed
+    #   path: '{ .data.iaqi.w.v }'
+    #   help: Wind speed
+    #   labels:
+    #     city: '{ .data.city.name }'
+    #     measurement: 'wind_speed'
+    #     unit: 'm/s'
+    #
+    # # Wind Gust
+    # - name: air_quality_wind_gust
+    #   path: '{ .data.iaqi.wg.v }'
+    #   help: Wind gust speed
+    #   labels:
+    #     city: '{ .data.city.name }'
+    #     measurement: 'wind_gust'
+    #     unit: 'm/s'
+    
+    # Overall AQI for reference
+    - name: air_quality_index
+      path: '{ .data.aqi }'
+      help: Overall Air Quality Index
+      labels:
+        dominant_pollutant: '{ .data.dominentpol }'

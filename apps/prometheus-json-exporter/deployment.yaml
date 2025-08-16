@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-exporter
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: api-exporter
+  template:
+    metadata:
+      labels:
+        app: api-exporter
+    spec:
+      containers:
+      - name: api-exporter
+        image: prometheuscommunity/json-exporter:v0.6.0
+        ports:
+        - containerPort: 7979
+          name: api-exporter
+          protocol: TCP
+        args:
+        - --config.file=/config/config.yml
+        volumeMounts:
+        - name: api-exporter-config
+          mountPath: /config
+          readOnly: true
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "50m"
+          limits:
+            memory: "128Mi"
+            cpu: "100m"
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 7979
+          initialDelaySeconds: 30
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 7979
+          initialDelaySeconds: 5
+          periodSeconds: 5
+      volumes:
+      - name: api-exporter-config
+        configMap:
+          name: api-exporter-config
