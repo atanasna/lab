@@ -9,5 +9,10 @@ resources:
 configMapGenerator:
   - name: grafana-datasources
     files:
-      - datasources.yaml=configs/datasources.yaml
-
+      - datasource.yaml=configs/datasources.yaml
+  - name: grafana-dashboards-config
+    files:
+      - dashboard.yaml=configs/dashboards.yaml
+  - name: grafana-dashboards-air-quality
+    files:
+      - air_quality.json=configs/dashboards/air_quality.json
