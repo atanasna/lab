@@ -24,7 +24,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "Prometheus"
+        "uid": "lab"
       },
       "fieldConfig": {
         "defaults": {
@@ -108,7 +108,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "Prometheus"
+            "uid": "lab"
           },
           "editorMode": "builder",
           "expr": "avg_over_time(air_quality_temperature{city=~\"$city\", location=~\"$location\", generic=\"true\"}[15m])",
@@ -123,7 +123,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "Prometheus"
+        "uid": "lab"
       },
       "fieldConfig": {
         "defaults": {
@@ -207,7 +207,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "Prometheus"
+            "uid": "lab"
           },
           "editorMode": "builder",
           "expr": "avg_over_time(air_quality_humidity{city=~\"$city\", location=~\"$location\", generic=\"true\"}[15m])",
@@ -235,7 +235,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "Prometheus"
+        "uid": "lab"
       },
       "fieldConfig": {
         "defaults": {
@@ -312,7 +312,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "Prometheus"
+        "uid": "lab"
       },
       "fieldConfig": {
         "defaults": {
@@ -397,7 +397,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "Prometheus"
+            "uid": "lab"
           },
           "editorMode": "builder",
           "expr": "avg_over_time(air_quality_pm10{city=~\"$city\", location=~\"$location\", generic=\"false\"}[15m])",
@@ -412,7 +412,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "Prometheus"
+        "uid": "lab"
       },
       "fieldConfig": {
         "defaults": {
@@ -497,7 +497,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "Prometheus"
+            "uid": "lab"
           },
           "editorMode": "builder",
           "expr": "avg_over_time(air_quality_pm25{city=~\"$city\", location=~\"$location\", generic=\"false\"}[15m])",

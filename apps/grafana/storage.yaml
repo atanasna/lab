@@ -4,16 +4,16 @@ metadata:
   name: iscsi-pv-grafana
 spec:
   capacity:
-    storage: 10Gi
+    storage: 8Gi
   accessModes:
     - ReadWriteOnce
   persistentVolumeReclaimPolicy: Retain
   storageClassName: manual-iscsi
   iscsi:
     targetPortal: 10.19.0.30:3260
-    iqn: iqn.2025-08.lab:grafana
+    iqn: iqn.2025-08.lab:apps
     lun: 1  # First LUN
-    fsType: btrfs
+    fsType: ext4
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -25,6 +25,6 @@ spec:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 10Gi
+      storage: 8Gi
   volumeName: iscsi-pv-grafana
 

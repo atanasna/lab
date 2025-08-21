@@ -5,16 +5,16 @@ metadata:
   name: iscsi-pv-prometheus
 spec:
   capacity:
-    storage: 10Gi
+    storage: 32Gi
   accessModes:
     - ReadWriteOnce
   persistentVolumeReclaimPolicy: Retain
   storageClassName: manual-iscsi
   iscsi:
     targetPortal: 10.19.0.30:3260
-    iqn: iqn.2025-08.lab:prometheus
-    lun: 1  # First LUN
-    fsType: btrfs
+    iqn: iqn.2025-08.lab:apps
+    lun: 2  # First LUN
+    fsType: ext4
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -26,6 +26,6 @@ spec:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 10Gi
+      storage: 32Gi
   volumeName: iscsi-pv-prometheus
 
