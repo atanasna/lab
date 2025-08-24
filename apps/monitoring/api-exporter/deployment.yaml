@@ -4,6 +4,8 @@ metadata:
   name: api-exporter
 spec:
   replicas: 1
+  strategy:
+    type: Recreate 
   selector:
     matchLabels:
       app: api-exporter

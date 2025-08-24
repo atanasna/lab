@@ -1,10 +1,32 @@
 global:
   scrape_interval: 15s
   evaluation_interval: 15s
+
 scrape_configs:
   - job_name: 'prometheus'
     static_configs:
       - targets: ['localhost:9090']
+
+  - job_name: 'k3s'
+    kubernetes_sd_configs:
+      - role: pod
+        namespaces:
+          names:
+            - lab
+    relabel_configs:
+      # Keep only node-exporter pods
+      - source_labels: [__meta_kubernetes_pod_label_app]
+        regex: node-exporter
+        action: keep
+      # Use node name as instance label
+      - source_labels: [__meta_kubernetes_pod_node_name]
+        target_label: instance
+      # Add namespace label
+      - source_labels: [__meta_kubernetes_namespace]
+        target_label: namespace
+      # Add pod name
+      - source_labels: [__meta_kubernetes_pod_name]
+        target_label: pod
 
   # Air Quality monitoring 
   - job_name: 'air-quality'

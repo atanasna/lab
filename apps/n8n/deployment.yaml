@@ -1,0 +1,71 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: n8n
+  name: n8n
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate 
+  selector:
+    matchLabels:
+      app: n8n
+  template:
+    metadata:
+      labels:
+        app: n8n
+    spec:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        runAsGroup: 1000
+        fsGroup: 1000
+        supplementalGroups:
+          - 0
+      containers:
+        - name: n8n
+          image: docker.n8n.io/n8nio/n8n
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 5678
+              name: n8n
+              protocol: TCP
+          readinessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /robots.txt
+              port: 5678
+              scheme: HTTP
+            initialDelaySeconds: 10
+            periodSeconds: 30
+            successThreshold: 1
+            timeoutSeconds: 2
+          livenessProbe:
+            failureThreshold: 3
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            successThreshold: 1
+            tcpSocket:
+              port: 5678
+            timeoutSeconds: 1
+          env:
+            - name: TZ
+              value: "Europe/Sofia"
+            - name: GENERIC_TIMEZONE
+              value: "Europe/Sofia"
+            - name: DB_SQLITE_POOL_SIZE
+              value: "3"
+            - name: N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS
+              value: "true"
+            - name: N8N_RUNNERS_ENABLED
+              value: "true"
+            - name: N8N_SECURE_COOKIE
+              value: "false"
+          resources:
+            requests:
+              cpu: 250m
+              memory: 256Mi
+            limits:
+              memory: 1024Mi

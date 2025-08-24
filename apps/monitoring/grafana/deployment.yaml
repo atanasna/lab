@@ -6,6 +6,9 @@ metadata:
     app: grafana
   name: grafana
 spec:
+  replicas: 1
+  strategy:
+    type: Recreate 
   selector:
     matchLabels:
       app: grafana
@@ -24,7 +27,7 @@ spec:
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 3000
-              name: http-grafana
+              name: grafana
               protocol: TCP
           readinessProbe:
             failureThreshold: 3

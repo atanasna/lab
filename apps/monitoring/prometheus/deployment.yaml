@@ -5,6 +5,8 @@ metadata:
   name: prometheus
 spec:
   replicas: 1
+  strategy:
+    type: Recreate 
   selector:
     matchLabels:
       app: prometheus
@@ -15,12 +17,13 @@ spec:
     spec:
       securityContext:
         fsGroup: 65534
+      serviceAccountName: prometheus
       containers:
         - name: prometheus
           image: prom/prometheus
           ports:
             - containerPort: 9090
-              name: http-prometheus
+              name: prometheus
               protocol: TCP
           volumeMounts:
             - name: prometheus-config
