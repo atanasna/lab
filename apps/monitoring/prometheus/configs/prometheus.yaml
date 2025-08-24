@@ -28,6 +28,11 @@ scrape_configs:
       - source_labels: [__meta_kubernetes_pod_name]
         target_label: pod
 
+    metric_relabel_configs:
+      - source_labels: [__name__]
+        regex: 'node_(memory_MemAvailable_bytes|memory_MemTotal_bytes|load1|cpu_seconds_total|filesystem_size_bytes|filesystem_avail_bytes|hwmon_temp_celsius|hwmon_chip_names|scrape_collector_duration_seconds)'
+        action: keep      
+
   # Air Quality monitoring 
   - job_name: 'air-quality'
     scrape_interval: 900s  # 15 minutes - be respectful of API limits

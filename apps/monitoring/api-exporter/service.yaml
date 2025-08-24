@@ -8,4 +8,4 @@ spec:
     targetPort: api-exporter
   selector:
     app: api-exporter
-  type: LoadBalancer
+  type: ClusterIP

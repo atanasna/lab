@@ -7,12 +7,13 @@ resources:
   - service.yaml
 
 configMapGenerator:
-  - name: grafana-datasources
+  - name: grafana-datasources-config
     files:
       - datasource.yaml=configs/datasources.yaml
   - name: grafana-dashboards-config
     files:
       - dashboard.yaml=configs/dashboards.yaml
-  - name: grafana-dashboards-air-quality
+  - name: grafana-dashboards
     files:
       - air_quality.json=configs/dashboards/air_quality.json
+      - k3s_nodes.json=configs/dashboards/k3s_nodes.json

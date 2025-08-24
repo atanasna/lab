@@ -54,25 +54,25 @@ spec:
           volumeMounts:
             - name: grafana-pv
               mountPath: /var/lib/grafana
-            - name: grafana-datasources
+            - name: grafana-datasources-config
               mountPath: /etc/grafana/provisioning/datasources
               readOnly: true
             - name: grafana-dashboards-config
               mountPath: /etc/grafana/provisioning/dashboards
               readOnly: true
-            - name: grafana-dashboards-air-quality
+            - name: grafana-dashboards
               mountPath: /etc/grafana/provisioning/dashboards-json
               readOnly: true
       volumes:
-        - name: grafana-datasources
+        - name: grafana-datasources-config
           configMap:
-            name: grafana-datasources
+            name: grafana-datasources-config
         - name: grafana-dashboards-config
           configMap:
             name: grafana-dashboards-config
-        - name: grafana-dashboards-air-quality
+        - name: grafana-dashboards
           configMap:
-            name: grafana-dashboards-air-quality
+            name: grafana-dashboards
         - name: grafana-pv
           persistentVolumeClaim:
             claimName: grafana-pvc
