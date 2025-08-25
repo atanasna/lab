@@ -3,6 +3,7 @@ apiVersion: apps/v1
 kind: DaemonSet
 metadata:
   name: node-exporter
+  namespace: infra
   labels:
     app: node-exporter
 spec:

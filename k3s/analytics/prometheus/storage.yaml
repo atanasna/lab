@@ -3,6 +3,7 @@ apiVersion: v1
 kind: PersistentVolume
 metadata:
   name: iscsi-pv-prometheus
+  namespace: analytics
 spec:
   capacity:
     storage: 32Gi
@@ -20,6 +21,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: prometheus-pvc
+  namespace: analytics
 spec:
   storageClassName: manual-iscsi
   accessModes:

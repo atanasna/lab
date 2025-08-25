@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: api-exporter
+  namespace: analytics
 spec:
   replicas: 1
   strategy:
