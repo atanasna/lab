@@ -5,6 +5,7 @@ namespace: apps
 resources:
   - deployment.yaml
   - service.yaml
+  - env.yaml
 
 # configMapGenerator:
 #   - name: grafana-datasources

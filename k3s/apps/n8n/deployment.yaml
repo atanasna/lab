@@ -32,6 +32,11 @@ spec:
             - containerPort: 5678
               name: n8n
               protocol: TCP
+          envFrom:
+          - configMapRef:
+              name: n8n-env
+          - secretRef:
+              name: n8n-secret
           readinessProbe:
             failureThreshold: 3
             httpGet:
@@ -50,19 +55,6 @@ spec:
             tcpSocket:
               port: 5678
             timeoutSeconds: 1
-          env:
-            - name: TZ
-              value: "Europe/Sofia"
-            - name: GENERIC_TIMEZONE
-              value: "Europe/Sofia"
-            - name: DB_SQLITE_POOL_SIZE
-              value: "3"
-            - name: N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS
-              value: "true"
-            - name: N8N_RUNNERS_ENABLED
-              value: "true"
-            - name: N8N_SECURE_COOKIE
-              value: "false"
           resources:
             requests:
               cpu: 250m

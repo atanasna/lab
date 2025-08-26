@@ -8,3 +8,8 @@ resources:
   - env.yaml
   - service.yaml
 
+configMapGenerator:
+  - name: postgres-init
+    files:
+      - init.sql=configs/init.sql
+

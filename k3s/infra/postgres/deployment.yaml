@@ -31,6 +31,9 @@ spec:
         - name: postgres-pv
           mountPath: /var/lib/postgresql/data
           subPath: postgres
+        - name: postgres-init
+          mountPath: /docker-entrypoint-initdb.d  # Special directory
+          readOnly: true
         resources:
           requests:
             memory: "256Mi"
@@ -42,3 +45,6 @@ spec:
       - name: postgres-pv
         persistentVolumeClaim:
           claimName: postgres-pvc
+      - name: postgres-init
+        configMap:
+          name: postgres-init
