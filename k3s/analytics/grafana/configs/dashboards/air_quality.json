@@ -374,7 +374,7 @@
       "gridPos": {
         "h": 8,
         "w": 12,
-        "x": 0,
+        "x": 12,
         "y": 17
       },
       "id": 8,
@@ -406,7 +406,7 @@
           "refId": "A"
         }
       ],
-      "title": "Particle Matter(PM1.0)",
+      "title": "Particle Matter(PM10)",
       "type": "timeseries"
     },
     {
@@ -474,7 +474,7 @@
       "gridPos": {
         "h": 8,
         "w": 12,
-        "x": 12,
+        "x": 0,
         "y": 17
       },
       "id": 3,
