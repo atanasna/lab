@@ -1,4 +1,3 @@
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -8,7 +7,7 @@ metadata:
 spec:
   replicas: 1
   strategy:
-    type: Recreate 
+    type: Recreate
   selector:
     matchLabels:
       app: n8n
@@ -22,8 +21,7 @@ spec:
         runAsUser: 1000
         runAsGroup: 1000
         fsGroup: 1000
-        supplementalGroups:
-          - 0
+        supplementalGroups: [0]
       containers:
         - name: n8n
           image: docker.n8n.io/n8nio/n8n
@@ -33,10 +31,14 @@ spec:
               name: n8n
               protocol: TCP
           envFrom:
-          - configMapRef:
-              name: n8n-env
-          - secretRef:
-              name: n8n-secrets
+            - configMapRef:
+                name: n8n-env
+            - secretRef:
+                name: n8n-secrets
+          volumeMounts:
+            - name: apps-pvc
+              mountPath: /home/node/.n8n
+              subPath: n8n/data
           readinessProbe:
             failureThreshold: 3
             httpGet:
@@ -61,3 +63,7 @@ spec:
               memory: 256Mi
             limits:
               memory: 1024Mi
+      volumes:
+        - name: apps-pvc
+          persistentVolumeClaim:
+            claimName: apps-pvc

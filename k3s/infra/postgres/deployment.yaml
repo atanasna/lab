@@ -28,7 +28,7 @@ spec:
         - secretRef:
             name: postgres-secret
         volumeMounts:
-        - name: postgres-pv
+        - name: infra-pvc
           mountPath: /var/lib/postgresql/data
           subPath: postgres
         - name: postgres-init
@@ -42,9 +42,9 @@ spec:
             memory: "512Mi"
             cpu: "500m"
       volumes:
-      - name: postgres-pv
+      - name: infra-pvc
         persistentVolumeClaim:
-          claimName: postgres-pvc
+          claimName: infra-pvc
       - name: postgres-init
         configMap:
           name: postgres-init

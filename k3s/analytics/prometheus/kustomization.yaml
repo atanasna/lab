@@ -3,7 +3,7 @@ kind: Kustomization
 namespace: analytics
 
 resources:
-  - storage.yaml
+  # - storage.yaml
   - deployment.yaml
   - service.yaml
   - rbac.yaml

@@ -32,15 +32,11 @@ spec:
             name: pihole-env
         - secretRef:
             name: pihole-secrets
-      #   volumeMounts:
-      #   - name: config
-      #     mountPath: /etc/pihole
-      #   - name: dnsmasq
-      #     mountPath: /etc/dnsmasq.d
-      # volumes:
-      # - name: config
-      #   persistentVolumeClaim:
-      #     claimName: pihole-config
-      # - name: dnsmasq
-      #   persistentVolumeClaim:
-      #     claimName: pihole-dnsmasq
+        volumeMounts:
+        - name: apps-pvc
+          mountPath: /etc/pihole
+          subPath: pihole/config
+      volumes:
+      - name: apps-pvc
+        persistentVolumeClaim:
+          claimName: apps-pvc

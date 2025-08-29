@@ -3,7 +3,7 @@ kind: Kustomization
 namespace: infra
 
 resources:
-  - storage.yaml
+  # - storage.yaml
   - deployment.yaml
   - env.yaml
   - service.yaml

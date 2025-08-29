@@ -52,8 +52,9 @@ spec:
               cpu: 250m
               memory: 750Mi
           volumeMounts:
-            - name: grafana-pv
+            - name: analytics-pvc
               mountPath: /var/lib/grafana
+              subPath: grafana
             - name: grafana-datasources-config
               mountPath: /etc/grafana/provisioning/datasources
               readOnly: true
@@ -73,6 +74,6 @@ spec:
         - name: grafana-dashboards
           configMap:
             name: grafana-dashboards
-        - name: grafana-pv
+        - name: analytics-pvc
           persistentVolumeClaim:
-            claimName: grafana-pvc
+            claimName: analytics-pvc

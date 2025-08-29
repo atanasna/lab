@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: paperless
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: paperless
+  template:
+    metadata:
+      labels:
+        app: paperless
+    spec:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        runAsGroup: 1000
+        fsGroup: 1000
+        supplementalGroups: [0]
+      containers:
+        - name: paperless
+          image: ghcr.io/paperless-ngx/paperless-ngx:latest
+          ports:
+            - name: paperless
+              containerPort: 8000
+              protocol: TCP
+          envFrom:
+            - configMapRef:
+                name: paperless-env
+            - secretRef:
+                name: paperless-secrets
+          volumeMounts:
+            - name: apps-pvc
+              mountPath: /usr/src/paperless/data
+              subPath: paperless/data
+            - name: apps-pvc
+              mountPath: /usr/src/paperless/media
+              subPath: paperless/media
+            - name: apps-pvc
+              mountPath: /usr/src/paperless/export
+              subPath: paperless/export
+            - name: apps-pvc
+              mountPath: /usr/src/paperless/consume
+              subPath: paperless/consume
+      volumes:
+        - name: apps-pvc
+          persistentVolumeClaim:
+            claimName: apps-pvc
