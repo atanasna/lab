@@ -32,6 +32,12 @@ spec:
                 name: paperless-env
             - secretRef:
                 name: paperless-secrets
+          resources:
+            requests:
+              cpu: 250m
+              memory: 256Mi
+            limits:
+              memory: 1024Mi
           volumeMounts:
             - name: apps-pvc
               mountPath: /usr/src/paperless/data

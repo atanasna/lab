@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: api-exporter
-        image: prometheuscommunity/json-exporter:v0.6.0
+        image: prometheuscommunity/json-exporter:latest
         ports:
         - containerPort: 7979
           name: api-exporter
@@ -35,18 +35,18 @@ spec:
           limits:
             memory: "128Mi"
             cpu: "100m"
-        livenessProbe:
-          httpGet:
-            path: /health
-            port: 7979
-          initialDelaySeconds: 30
-          periodSeconds: 10
-        readinessProbe:
-          httpGet:
-            path: /health
-            port: 7979
-          initialDelaySeconds: 5
-          periodSeconds: 5
+        # livenessProbe:
+        #   httpGet:
+        #     path: /health
+        #     port: 7979
+        #   initialDelaySeconds: 30
+        #   periodSeconds: 10
+        # readinessProbe:
+        #   httpGet:
+        #     path: /health
+        #     port: 7979
+        #   initialDelaySeconds: 5
+        #   periodSeconds: 5
       volumes:
       - name: api-exporter-config
         configMap:
