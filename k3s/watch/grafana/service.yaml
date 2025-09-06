@@ -1,21 +1,22 @@
+---
 apiVersion: v1
 kind: Service
 metadata:
-  name: n8n
+  name: grafana
 spec:
   ports:
-    - port: 5678
+    - port: 3000
       protocol: TCP
-      targetPort: n8n
+      targetPort: grafana
   selector:
-    app: n8n
+    app: grafana
   sessionAffinity: None
   type: ClusterIP
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: n8n
+  name: grafana
   annotations:
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
     traefik.ingress.kubernetes.io/router.entrypoints: web,websecure
@@ -23,16 +24,16 @@ spec:
   ingressClassName: traefik
   tls:
   - hosts:
-    - n8n.thedrill.eu
-    secretName: n8n-tls
+    - grafana.thedrill.eu
+    secretName: grafana-tls
   rules:
-    - host: n8n.thedrill.eu
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: n8n
-                port:
-                  number: 5678
+  - host: grafana.thedrill.eu
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: grafana
+            port:
+              number: 3000

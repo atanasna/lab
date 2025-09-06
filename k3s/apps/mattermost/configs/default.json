@@ -1,0 +1,24 @@
+{
+    "ServiceSettings": {
+        "EnableCommands": true,
+        "AllowCorsFrom": "*"
+    },
+    "TeamSettings": {
+        "EnableUserCreation": true
+    },
+    "SqlSettings": {
+    },
+    "LogSettings": {
+        "EnableConsole": true
+    },
+    "NotificationLogSettings": {
+        "EnableConsole": true
+    },
+    "FileSettings": {
+        "MaxFileSize": 268435456
+    },
+    "PluginSettings": {
+        "Enable": true,
+        "EnableUploads": false
+    }
+}

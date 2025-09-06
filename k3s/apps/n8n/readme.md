@@ -1,0 +1,4 @@
+# Dependencies
+- Persistent storage
+- Postgres
+

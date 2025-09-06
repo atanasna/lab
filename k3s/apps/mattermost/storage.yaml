@@ -1,0 +1,31 @@
+# apiVersion: v1
+# kind: PersistentVolume
+# metadata:
+#   name: iscsi-pv-mattermost
+# spec:
+#   capacity:
+#     storage: 8Gi
+#   accessModes:
+#     - ReadWriteOnce
+#   persistentVolumeReclaimPolicy: Retain
+#   storageClassName: manual-iscsi
+#   iscsi:
+#     targetPortal: 10.19.0.30:3260
+#     iqn: iqn.2025-08.lab:apps
+#     lun: 4  # First LUN
+#     fsType: ext4
+# ---
+# apiVersion: v1
+# kind: PersistentVolumeClaim
+# metadata:
+#   name: mattermost-pvc
+# spec:
+#   storageClassName: manual-iscsi
+#   accessModes:
+#     - ReadWriteOnce
+#   resources:
+#     requests:
+#       storage: 8Gi
+#   volumeName: iscsi-pv-mattermost
+#
+#

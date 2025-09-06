@@ -1,0 +1,75 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: mattermost
+  name: mattermost
+spec:
+  replicas: 1  # Must be 1 for RWO storage
+  strategy:
+    type: Recreate 
+  selector:
+    matchLabels:
+      app: mattermost
+  template:
+    metadata:
+      labels:
+        app: mattermost
+    spec:
+      securityContext:
+        fsGroup: 2000
+        runAsUser: 2000
+        runAsNonRoot: true
+      containers:
+      - name: mattermost
+        image: atanasna/mattermost:10.11.2
+        ports:
+          - containerPort: 8065
+            name: mattermost
+            protocol: TCP
+        securityContext:
+          readOnlyRootFilesystem: true
+          allowPrivilegeEscalation: false
+        envFrom:
+        - configMapRef:
+            name: mattermost-env
+        - secretRef:
+            name: mattermost-secrets
+        volumeMounts:
+        - name: apps-pvc
+          mountPath: /mattermost/config
+          subPath: mattermost/config
+        - name: apps-pvc
+          mountPath: /mattermost/data
+          subPath: mattermost/data
+        - name: apps-pvc
+          mountPath: /mattermost/logs
+          subPath: mattermost/logs
+        - name: apps-pvc
+          mountPath: /mattermost/plugins
+          subPath: mattermost/plugins
+        - name: apps-pvc
+          mountPath: /mattermost/client/plugins
+          subPath: mattermost/client/plugins
+        - name: apps-pvc
+          mountPath: /mattermost/bleve-indexes
+          subPath: mattermost/bleve-indexes
+        - name: var-tmp
+          mountPath: /var/tmp
+        - name: tmp
+          mountPath: /tmp
+        resources:
+          limits:
+            cpu: 2000m
+            memory: 4Gi
+          requests:
+            cpu: 100m
+            memory: 256Mi
+      volumes:
+      - name: apps-pvc
+        persistentVolumeClaim:
+          claimName: apps-pvc
+      - name: var-tmp
+        emptyDir: {}
+      - name: tmp
+        emptyDir: {}

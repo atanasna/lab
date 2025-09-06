@@ -2,28 +2,29 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: apps-pv
+  name: watch-pv
 spec:
   capacity:
     storage: 10Gi
   accessModes:
     - ReadWriteMany  # Multiple pods can read/write
   persistentVolumeReclaimPolicy: Retain
-  storageClassName: apps
+  storageClassName: watch
   nfs:
     server: storage.local.thedrill.eu
-    path: /volume4/k8s/apps
+    path: /volume4/k8s/watch
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: apps-pvc 
-  namespace: apps
+  name: watch-pvc 
+  namespace: watch
 spec:
   accessModes:
     - ReadWriteMany
   resources:
     requests:
       storage: 10Gi
-  storageClassName: apps
-  volumeName: apps-pv
+  storageClassName: watch
+  volumeName: watch-pv
+

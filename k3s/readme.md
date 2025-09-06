@@ -1,3 +1,8 @@
+# Prepare the PIs
+<!-- `sudo apt-get install -y qemu-user-static binfmt-support` -->
+<!-- sudo update-binfmts --enable -->
+<!-- sudo systemctl restart systemd-binfmt.service -->
+
 # Prerequisites
 - iSCSi server
 

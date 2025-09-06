@@ -36,8 +36,14 @@ kind: Ingress
 metadata:
   name: pihole
   annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
     traefik.ingress.kubernetes.io/router.entrypoints: web,websecure
 spec:
+  ingressClassName: traefik
+  tls:
+  - hosts:
+    - pihole.thedrill.eu
+    secretName: pihole-tls
   rules:
   - host: pihole.thedrill.eu
     http:

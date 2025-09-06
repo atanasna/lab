@@ -1,0 +1,23 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: watch
+
+resources:
+  # - storage.yaml
+  - deployment.yaml
+  - service.yaml
+
+configMapGenerator:
+  - name: grafana-datasources-config
+    files:
+      - datasource.yaml=configs/datasources.yaml
+  - name: grafana-dashboards-config
+    files:
+      - dashboard.yaml=configs/dashboards.yaml
+  - name: grafana-dashboards-k8s
+    files:
+      - pods.json=configs/dashboards/k8s/pods.json
+      - nodes.json=configs/dashboards/k8s/nodes.json
+  - name: grafana-dashboards-root
+    files:
+      - air_quality.json=configs/dashboards/root/air_quality.json
