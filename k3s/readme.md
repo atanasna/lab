@@ -3,15 +3,15 @@
 <!-- sudo update-binfmts --enable -->
 <!-- sudo systemctl restart systemd-binfmt.service -->
 
-# Prerequisites
-- iSCSi server
 
 # Installation
+1. Export secretes `source .env`
 1. Apply namespaces `kubectl apply -f k3s/namespaces.yaml`
 1. Apply pathech
     1. Traefik set IP: `kubectl patch svc -n kube-system traefik -p '{"spec":{"loadBalancerIP":"10.7.0.70"}}' `
 1. Apply extensions
-    1. Metallb: `kubectl apply -f k3s/extensions/metallb/main_<version>.yaml -f k3s/extensions/metallb/config.yaml`
+    1. Metallb: `kubectl apply -k k3s/extensions/metallb`
+    1. CertManager: `kubectl apply -k k3s/extensions/certmanager`
 1. Apply infra 
     1. Storage `kubectl apply -f k3s/infra/storage.yaml`
     1. Redis `kubectl apply -k k3s/infra/redis`
