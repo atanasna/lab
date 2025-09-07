@@ -25,7 +25,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 1,
-  "id": 6,
+  "id": 10,
   "links": [],
   "panels": [
     {
@@ -492,7 +492,7 @@
             "properties": [
               {
                 "id": "custom.width",
-                "value": 80
+                "value": 120
               }
             ]
           }
@@ -1271,9 +1271,9 @@
             "include": {
               "names": [
                 "raidName",
-                "Value #Status",
                 "Value #DiskTotal",
-                "Value #DiskUsed"
+                "Value #DiskUsed",
+                "Value #RAID"
               ]
             }
           }
@@ -1311,6 +1311,7 @@
               "Value #DiskTotal": "Total",
               "Value #DiskUsed": "Used",
               "Value #Free": "Storage",
+              "Value #RAID": "RAID",
               "Value #Status": "RAID",
               "Value #Storage": "DiskUsed",
               "diskID": "Disk",
@@ -1851,7 +1852,7 @@
             "h": 7,
             "w": 12,
             "x": 0,
-            "y": 20
+            "y": 19
           },
           "id": 136,
           "options": {
@@ -2016,7 +2017,7 @@
             "h": 7,
             "w": 12,
             "x": 12,
-            "y": 20
+            "y": 19
           },
           "id": 32,
           "options": {
@@ -2080,7 +2081,21 @@
           ],
           "title": "System Load (minute ave.) - $instance",
           "type": "timeseries"
-        },
+        }
+      ],
+      "title": "CPU",
+      "type": "row"
+    },
+    {
+      "collapsed": true,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 19
+      },
+      "id": 156,
+      "panels": [
         {
           "datasource": {
             "type": "prometheus",
@@ -2154,7 +2169,7 @@
             "h": 7,
             "w": 12,
             "x": 0,
-            "y": 28
+            "y": 27
           },
           "id": 139,
           "options": {
@@ -2301,7 +2316,7 @@
             "h": 7,
             "w": 12,
             "x": 12,
-            "y": 28
+            "y": 27
           },
           "id": 144,
           "options": {
@@ -2490,7 +2505,7 @@
             "h": 7,
             "w": 12,
             "x": 0,
-            "y": 51
+            "y": 34
           },
           "id": 140,
           "options": {
@@ -2646,7 +2661,7 @@
             "h": 7,
             "w": 12,
             "x": 12,
-            "y": 51
+            "y": 34
           },
           "id": 147,
           "options": {
@@ -2711,19 +2726,6 @@
           "type": "timeseries"
         }
       ],
-      "title": "CPU",
-      "type": "row"
-    },
-    {
-      "collapsed": true,
-      "gridPos": {
-        "h": 1,
-        "w": 24,
-        "x": 0,
-        "y": 19
-      },
-      "id": 156,
-      "panels": [],
       "title": "RAM",
       "type": "row"
     },
@@ -2831,7 +2833,7 @@
             "h": 7,
             "w": 12,
             "x": 0,
-            "y": 21
+            "y": 129
           },
           "id": 89,
           "options": {
@@ -3031,7 +3033,7 @@
             "h": 7,
             "w": 12,
             "x": 12,
-            "y": 21
+            "y": 129
           },
           "id": 150,
           "options": {
@@ -3227,7 +3229,7 @@
             "h": 8,
             "w": 12,
             "x": 0,
-            "y": 22
+            "y": 130
           },
           "id": 113,
           "options": {
@@ -3335,7 +3337,7 @@
             "h": 8,
             "w": 12,
             "x": 12,
-            "y": 22
+            "y": 130
           },
           "id": 114,
           "options": {
@@ -3383,7 +3385,7 @@
       "type": "row"
     },
     {
-      "collapsed": false,
+      "collapsed": true,
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -3391,121 +3393,122 @@
         "y": 22
       },
       "id": 55,
-      "panels": [],
-      "title": "Exporter",
-      "type": "row"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "PA51146D38077FF99"
-      },
-      "description": "",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "barWidthFactor": 0.6,
-            "drawStyle": "line",
-            "fillOpacity": 10,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "insertNulls": false,
-            "lineInterpolation": "smooth",
-            "lineWidth": 2,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "never",
-            "spanNulls": 600000,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "links": [],
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": 0
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "s"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 7,
-        "w": 12,
-        "x": 0,
-        "y": 23
-      },
-      "id": 112,
-      "interval": "5s",
-      "options": {
-        "legend": {
-          "calcs": [
-            "min",
-            "max",
-            "lastNotNull"
-          ],
-          "displayMode": "table",
-          "placement": "right",
-          "showLegend": true
-        },
-        "tooltip": {
-          "hideZeros": false,
-          "mode": "multi",
-          "sort": "none"
-        }
-      },
-      "pluginVersion": "12.2.0-17027759091",
-      "targets": [
+      "panels": [
         {
           "datasource": {
             "type": "prometheus",
             "uid": "PA51146D38077FF99"
           },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "snmp_scrape_duration_seconds{job=~'$job',instance=~'$instance'}",
-          "format": "time_series",
-          "hide": false,
-          "instant": false,
-          "interval": "",
-          "intervalFactor": 1,
-          "legendFormat": "{{label_name}}{{job}}",
-          "range": true,
-          "refId": "A",
-          "step": 240
+          "description": "",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisBorderShow": false,
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "barWidthFactor": 0.6,
+                "drawStyle": "line",
+                "fillOpacity": 10,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "insertNulls": false,
+                "lineInterpolation": "smooth",
+                "lineWidth": 2,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "never",
+                "spanNulls": 600000,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "links": [],
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": 0
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "s"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 7,
+            "w": 12,
+            "x": 0,
+            "y": 93
+          },
+          "id": 112,
+          "interval": "5s",
+          "options": {
+            "legend": {
+              "calcs": [
+                "min",
+                "max",
+                "lastNotNull"
+              ],
+              "displayMode": "table",
+              "placement": "right",
+              "showLegend": true
+            },
+            "tooltip": {
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "none"
+            }
+          },
+          "pluginVersion": "12.2.0-17027759091",
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "PA51146D38077FF99"
+              },
+              "editorMode": "code",
+              "exemplar": false,
+              "expr": "snmp_scrape_duration_seconds{job=~'$job',instance=~'$instance'}",
+              "format": "time_series",
+              "hide": false,
+              "instant": false,
+              "interval": "",
+              "intervalFactor": 1,
+              "legendFormat": "{{label_name}}{{job}}",
+              "range": true,
+              "refId": "A",
+              "step": 240
+            }
+          ],
+          "title": "SNMP Exporter - Scrape Time - $instance",
+          "type": "timeseries"
         }
       ],
-      "title": "SNMP Exporter - Scrape Time - $instance",
-      "type": "timeseries"
+      "title": "Exporter",
+      "type": "row"
     }
   ],
   "preload": false,
@@ -3641,6 +3644,6 @@
   "timezone": "browser",
   "title": "(P) Synology-NAS",
   "uid": "RT8yFrEVz",
-  "version": 6,
+  "version": 3,
   "weekStart": "monday"
 }

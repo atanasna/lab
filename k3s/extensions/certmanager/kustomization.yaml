@@ -1,0 +1,15 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: cert-manager
+
+resources:
+  - release_1.18.2.yaml
+  - config.yaml
+
+secretGenerator:
+  - name: cloudflare-api-token
+    literals:
+      - api-token=${CLOUDFLARE_API_TOKEN}
+    options:
+      disableNameSuffixHash: true
