@@ -10,12 +10,12 @@ providers:
     allowUiUpdates: false
     options:
       path: /etc/grafana/provisioning/dashboards/root
-  - name: 'k8s'
+  - name: 'infra'
     orgId: 1
-    folder: 'K8S'
+    folder: 'Infrastructure'
     type: file
     disableDeletion: false
     updateIntervalSeconds: 30
     allowUiUpdates: false
     options:
-      path: /etc/grafana/provisioning/dashboards/k8s
+      path: /etc/grafana/provisioning/dashboards/infra

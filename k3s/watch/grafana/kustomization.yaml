@@ -14,10 +14,11 @@ configMapGenerator:
   - name: grafana-dashboards-config
     files:
       - dashboard.yaml=configs/dashboards.yaml
-  - name: grafana-dashboards-k8s
+  - name: grafana-dashboards-infra
     files:
-      - pods.json=configs/dashboards/k8s/pods.json
-      - nodes.json=configs/dashboards/k8s/nodes.json
+      - pods.json=configs/dashboards/infra/pods.json
+      - nodes.json=configs/dashboards/infra/nodes.json
+      - nas.json=configs/dashboards/infra/nas.json
   - name: grafana-dashboards-root
     files:
       - air_quality.json=configs/dashboards/root/air_quality.json

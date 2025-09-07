@@ -5,7 +5,7 @@ metadata:
 spec:
   replicas: 1
   strategy:
-    type: Recreate 
+    type: Recreate
   selector:
     matchLabels:
       app: api-exporter
@@ -15,38 +15,38 @@ spec:
         app: api-exporter
     spec:
       containers:
-      - name: api-exporter
-        image: prometheuscommunity/json-exporter:latest
-        ports:
-        - containerPort: 7979
-          name: api-exporter
-          protocol: TCP
-        args:
-        - --config.file=/config/config.yml
-        volumeMounts:
-        - name: api-exporter-config
-          mountPath: /config
-          readOnly: true
-        resources:
-          requests:
-            memory: "64Mi"
-            cpu: "50m"
-          limits:
-            memory: "128Mi"
-            cpu: "100m"
-        # livenessProbe:
-        #   httpGet:
-        #     path: /health
-        #     port: 7979
-        #   initialDelaySeconds: 30
-        #   periodSeconds: 10
-        # readinessProbe:
-        #   httpGet:
-        #     path: /health
-        #     port: 7979
-        #   initialDelaySeconds: 5
-        #   periodSeconds: 5
+        - name: api-exporter
+          image: prometheuscommunity/json-exporter:latest
+          ports:
+            - containerPort: 7979
+              name: api-exporter
+              protocol: TCP
+          args:
+            - --config.file=/config/config.yml
+          volumeMounts:
+            - name: api-exporter-config
+              mountPath: /config
+              readOnly: true
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "50m"
+            limits:
+              memory: "128Mi"
+              cpu: "100m"
+              # livenessProbe:
+              #   httpGet:
+              #     path: /health
+              #     port: 7979
+              #   initialDelaySeconds: 30
+              #   periodSeconds: 10
+              # readinessProbe:
+              #   httpGet:
+              #     path: /health
+              #     port: 7979
+              #   initialDelaySeconds: 5
+              #   periodSeconds: 5
       volumes:
-      - name: api-exporter-config
-        configMap:
-          name: api-exporter-config
+        - name: api-exporter-config
+          configMap:
+            name: api-exporter-config

@@ -59,8 +59,8 @@ spec:
             - name: grafana-dashboards-config
               mountPath: /etc/grafana/provisioning/dashboards
               readOnly: true
-            - name: grafana-dashboards-k8s
-              mountPath: /etc/grafana/provisioning/dashboards/k8s
+            - name: grafana-dashboards-infra
+              mountPath: /etc/grafana/provisioning/dashboards/infra
               readOnly: true
             - name: grafana-dashboards-root
               mountPath: /etc/grafana/provisioning/dashboards/root
@@ -75,9 +75,9 @@ spec:
         - name: grafana-dashboards-root
           configMap:
             name: grafana-dashboards-root
-        - name: grafana-dashboards-k8s
+        - name: grafana-dashboards-infra
           configMap:
-            name: grafana-dashboards-k8s
+            name: grafana-dashboards-infra
         - name: watch-pvc
           persistentVolumeClaim:
             claimName: watch-pvc

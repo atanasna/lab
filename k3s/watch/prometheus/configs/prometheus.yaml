@@ -7,6 +7,9 @@ scrape_configs:
     static_configs:
       - targets: ['localhost:9090']
 
+  #########################
+  # K3S
+  #########################
   - job_name: 'k3s-pods'
     scheme: https
     tls_config:
@@ -23,15 +26,6 @@ scrape_configs:
       regex: (.+)
       target_label: __metrics_path__
       replacement: /api/v1/nodes/${1}/proxy/metrics/cadvisor
-
-  # - job_name: 'kubernetes-pods'
-  #   kubernetes_sd_configs:
-  #   - role: pod
-  #   relabel_configs:
-  #   # Keep only pods with prometheus.io/scrape annotation
-  #   - source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_scrape]
-  #     action: keep
-  #     regex: true
 
   - job_name: 'k3s-nodes'
     kubernetes_sd_configs:
@@ -59,7 +53,9 @@ scrape_configs:
         regex: 'node_(memory_MemAvailable_bytes|memory_MemTotal_bytes|load1|cpu_seconds_total|filesystem_size_bytes|filesystem_avail_bytes|hwmon_temp_celsius|hwmon_chip_names|scrape_collector_duration_seconds)'
         action: keep      
 
-  # Air Quality monitoring 
+  #########################
+  # API Exporter
+  #########################
   - job_name: 'air-quality'
     scrape_interval: 900s  # 15 minutes - be respectful of API limits
     scrape_timeout: 30s
@@ -129,3 +125,22 @@ scrape_configs:
       # Point all requests to the json-exporter service
       - target_label: __address__
         replacement: api-exporter:7979
+
+  #########################
+  # SNMP Exporter
+  #########################
+  - job_name: 'synology-nas'
+    static_configs:
+      - targets:
+        - 10.19.0.30
+    metrics_path: /snmp
+    params:
+      auth: [public_v2]
+      module: [synology]
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+      - source_labels: [__param_target]
+        target_label: instance
+      - target_label: __address__
+        replacement: snmp-exporter.watch.svc.cluster.local:9116

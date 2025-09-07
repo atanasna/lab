@@ -23,18 +23,3 @@ spec:
           apiTokenSecretRef:
             name: cloudflare-api-token
             key: api-token
-# ---
-# apiVersion: cert-manager.io/v1
-# kind: Certificate
-# metadata:
-#   name: the-drill-eu-wildcard
-#   namespace: kube-system  # Same namespace as Traefik
-# spec:
-#   secretName: the-drill-eu-wildcard-tls
-#   issuerRef:
-#     name: letsencrypt-prod
-#     kind: ClusterIssuer
-#   commonName: "*.thedrill.eu"
-#   dnsNames:
-#   - "*.thedrill.eu"
-#   - "thedrill.eu"
