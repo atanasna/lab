@@ -748,7 +748,7 @@
           "step": 20
         }
       ],
-      "title": "Disk Reads",
+      "title": "Disk I/O Reads",
       "type": "timeseries"
     },
     {
@@ -846,7 +846,7 @@
           "refId": "write"
         }
       ],
-      "title": "Disk I/O Wrute",
+      "title": "Disk I/O Write",
       "type": "timeseries"
     }
   ],
