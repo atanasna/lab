@@ -9,7 +9,7 @@ resources:
 
 secretGenerator:
   - name: cloudflare-api-token
-    literals:
-      - api-token=${CLOUDFLARE_API_TOKEN}
+    envs:
+      - .secrets
     options:
       disableNameSuffixHash: true
