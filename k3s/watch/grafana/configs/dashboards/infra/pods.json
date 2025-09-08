@@ -846,7 +846,7 @@
           "refId": "write"
         }
       ],
-      "title": "Disk I/O Write",
+      "title": "Disk I/O Writes",
       "type": "timeseries"
     }
   ],

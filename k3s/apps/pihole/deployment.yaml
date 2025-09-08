@@ -5,7 +5,7 @@ metadata:
 spec:
   replicas: 1
   strategy:
-    type: Recreate 
+    type: Recreate
   selector:
     matchLabels:
       app: pihole
@@ -15,28 +15,33 @@ spec:
         app: pihole
     spec:
       containers:
-      - name: pihole
-        image: pihole/pihole:latest
-        ports:
-        - name: dns-tcp
-          containerPort: 53
-          protocol: TCP
-        - name: dns-udp
-          containerPort: 53
-          protocol: UDP
-        - name: web
-          containerPort: 80
-          protocol: TCP
-        envFrom:
-        - configMapRef:
-            name: pihole-env
-        - secretRef:
-            name: pihole-secrets
-        volumeMounts:
-        - name: apps-pvc
-          mountPath: /etc/pihole
-          subPath: pihole/config
+        - name: pihole
+          image: pihole/pihole:latest
+          ports:
+            - name: dns-tcp
+              containerPort: 53
+              protocol: TCP
+            - name: dns-udp
+              containerPort: 53
+              protocol: UDP
+            - name: web
+              containerPort: 80
+              protocol: TCP
+          envFrom:
+            - configMapRef:
+                name: pihole-env
+            - secretRef:
+                name: pihole-secrets
+          resources:
+            requests:
+              memory: 32Mi
+            limits:
+              memory: 256Mi
+          volumeMounts:
+            - name: apps-pvc
+              mountPath: /etc/pihole
+              subPath: pihole/config
       volumes:
-      - name: apps-pvc
-        persistentVolumeClaim:
-          claimName: apps-pvc
+        - name: apps-pvc
+          persistentVolumeClaim:
+            claimName: apps-pvc
