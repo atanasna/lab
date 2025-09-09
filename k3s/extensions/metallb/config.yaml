@@ -6,7 +6,7 @@ metadata:
 spec:
   addresses:
   - 10.7.0.70-10.7.0.70 # Given to traefik
-  - 10.7.0.254-10.7.0.254 # Given to pihole
+  - 10.7.0.254/32 #Used for TCP ports 
 
 ---
 apiVersion: metallb.io/v1beta1

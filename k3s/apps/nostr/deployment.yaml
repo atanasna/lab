@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nostr
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: nostr
+  template:
+    metadata:
+      labels:
+        app: nostr
+    spec:
+      containers:
+        - name: nostr
+          image: dockurr/strfry:latest
+          ports:
+            - name: nostr
+              containerPort: 7777
+              protocol: TCP
+          resources:
+            requests:
+              memory: 128Mi
+            limits:
+              memory: 1Gi
+          volumeMounts:
+            - name: nostr-config
+              mountPath: /etc/strfry.conf
+              subPath: strfry.conf
+            - name: apps-pvc
+              mountPath: /app/strfry-db
+              subPath: nostr/strfry-db
+      volumes:
+        - name: nostr-config
+          configMap:
+            name: nostr-config
+        - name: apps-pvc
+          persistentVolumeClaim:
+            claimName: apps-pvc
