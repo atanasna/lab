@@ -24,10 +24,10 @@ spec:
   ingressClassName: traefik
   tls:
   - hosts:
-    - vaultwarden.thedrill.eu
+    - warden.thedrill.eu
     secretName: vaultwarden-tls
   rules:
-  - host: vaultwarden.thedrill.eu
+  - host: warden.thedrill.eu
     http:
       paths:
       - path: /
