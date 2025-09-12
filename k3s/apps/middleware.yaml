@@ -1,0 +1,11 @@
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: ipwhitelist
+  namespace: apps
+spec:
+  ipWhiteList:
+    sourceRange:
+      - 192.168.0.0/16
+      - 10.0.0.0/8
+      - 127.0.0.1/32
