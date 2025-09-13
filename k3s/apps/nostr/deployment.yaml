@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: nostr
-          image: dockurr/strfry:latest
+          image: atanasna/nostr-rs-relay:0.9.0-no-jemalloc
           ports:
             - name: nostr
               containerPort: 7777
@@ -28,11 +28,11 @@ spec:
               memory: 1Gi
           volumeMounts:
             - name: nostr-config
-              mountPath: /etc/strfry.conf
-              subPath: strfry.conf
+              mountPath: /usr/src/app/config.toml
+              subPath: config.toml
             - name: apps-pvc
-              mountPath: /app/strfry-db
-              subPath: nostr/strfry-db
+              mountPath: /usr/src/app/db
+              subPath: nostr/db
       volumes:
         - name: nostr-config
           configMap:

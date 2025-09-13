@@ -7,7 +7,11 @@ resources:
   - service.yaml
 
 configMapGenerator:
+  # - name: nostr-config
+  #   files:
+  #     - strfry.conf=configs/strfry.conf
   - name: nostr-config
     files:
-      - strfry.conf=configs/strfry.conf
+      - config.toml=configs/config.toml
+
 
