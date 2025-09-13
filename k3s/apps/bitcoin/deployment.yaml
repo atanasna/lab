@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bitcoin
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: bitcoin
+  template:
+    metadata:
+      labels:
+        app: bitcoin
+    spec:
+      securityContext:
+        runAsUser: 0
+      containers:
+        - name: bitcoin
+          image: bitcoinknots/bitcoin:latest
+          args:
+            - "-printtoconsole"
+            - "-regtest=1"
+            - "-conf=/etc/bitcoin.conf"
+          volumeMounts:
+            - name: bitcoin-config
+              mountPath: /etc/bitcoin.conf
+              subPath: bitcoin.conf
+            - name: apps-pvc
+              mountPath: /home/bitcoin/.bitcoin
+              subPath: bitcoin/data
+          ports:
+            - name: btc-rpc
+              containerPort: 10001
+              protocol: TCP
+      #     resources:
+      #       requests:
+      #         memory: 128Mi
+      #       limits:
+      #         memory: 1Gi
+      #     volumeMounts:
+      #       - name: apps-pvc
+      #         mountPath: /etc/pihole
+      #         subPath: pihole/config
+      volumes:
+        - name: bitcoin-config
+          configMap:
+            name: bitcoin-config
+        - name: apps-pvc
+          persistentVolumeClaim:
+            claimName: apps-pvc
+      # volumes:
+      #   - name: apps-pvc
+      #     persistentVolumeClaim:
+      #       claimName: apps-pvc

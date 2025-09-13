@@ -42,7 +42,6 @@ spec:
             limits:
               memory: 1024Mi
           volumeMounts:
-            # - name: apps-pvc
             - name: apps-pvc
               mountPath: /home/node/.n8n
               subPath: n8n/data
