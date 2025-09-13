@@ -20,6 +20,10 @@ spec:
       containers:
         - name: prometheus
           image: prom/prometheus:latest
+          args:
+            - '--config.file=/etc/prometheus/prometheus.yml'
+            - '--storage.tsdb.retention.time=3y'
+            - '--web.enable-lifecycle'
           ports:
             - containerPort: 9090
               name: prometheus
@@ -28,7 +32,7 @@ spec:
             requests:
               memory: 256Mi 
             limits:
-              memory: 512Mi
+              memory: 1Gi
           volumeMounts:
             - name: prometheus-config
               mountPath: /etc/prometheus

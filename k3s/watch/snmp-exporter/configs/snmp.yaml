@@ -22,10 +22,10 @@ modules:
         oid: 1.3.6.1.2.1.1.1
         type: DisplayString
         help: A textual description of the entity
-      - name: sysUpTime
-        oid: 1.3.6.1.2.1.1.3
-        type: gauge
-        help: The time since the network management portion of the system was last re-initialized
+      # - name: sysUpTime
+      #   oid: 1.3.6.1.2.1.1.3
+      #   type: gauge
+      #   help: The time since the network management portion of the system was last re-initialized
       # Host Resources metrics
       - name: hrSystemUptime
         oid: 1.3.6.1.2.1.25.1.1
@@ -92,13 +92,13 @@ modules:
         indexes:
           - labelname: ifIndex
             type: gauge
-      - name: ifDescr
-        oid: 1.3.6.1.2.1.2.2.1.2
-        type: DisplayString
-        help: A textual string containing information about the interface
-        indexes:
-          - labelname: ifIndex
-            type: gauge
+      # - name: ifDescr
+      #   oid: 1.3.6.1.2.1.2.2.1.2
+      #   type: DisplayString
+      #   help: A textual string containing information about the interface
+      #   indexes:
+      #     - labelname: ifIndex
+      #       type: gauge
       - name: ifType
         oid: 1.3.6.1.2.1.2.2.1.3
         type: gauge
@@ -298,62 +298,62 @@ modules:
           - labelname: mtxrPOEInterfaceIndex
             type: gauge
       # MikroTik Neighbor Discovery
-      - name: mtxrNeighborIndex
-        oid: 1.3.6.1.4.1.14988.1.1.11.1.1.1
-        type: gauge
-        help: Neighbor index
-        indexes:
-          - labelname: mtxrNeighborIndex
-            type: gauge
-      - name: mtxrNeighborIpAddress
-        oid: 1.3.6.1.4.1.14988.1.1.11.1.1.2
-        type: IpAddress
-        help: Neighbor IP address
-        indexes:
-          - labelname: mtxrNeighborIndex
-            type: gauge
-      - name: mtxrNeighborMacAddress
-        oid: 1.3.6.1.4.1.14988.1.1.11.1.1.3
-        type: PhysAddress48
-        help: Neighbor MAC address
-        indexes:
-          - labelname: mtxrNeighborIndex
-            type: gauge
-      - name: mtxrNeighborVersion
-        oid: 1.3.6.1.4.1.14988.1.1.11.1.1.4
-        type: DisplayString
-        help: Neighbor version
-        indexes:
-          - labelname: mtxrNeighborIndex
-            type: gauge
-      - name: mtxrNeighborPlatform
-        oid: 1.3.6.1.4.1.14988.1.1.11.1.1.5
-        type: DisplayString
-        help: Neighbor platform
-        indexes:
-          - labelname: mtxrNeighborIndex
-            type: gauge
-      - name: mtxrNeighborIdentity
-        oid: 1.3.6.1.4.1.14988.1.1.11.1.1.6
-        type: DisplayString
-        help: Neighbor identity
-        indexes:
-          - labelname: mtxrNeighborIndex
-            type: gauge
-      - name: mtxrNeighborSoftwareID
-        oid: 1.3.6.1.4.1.14988.1.1.11.1.1.7
-        type: DisplayString
-        help: Neighbor software ID
-        indexes:
-          - labelname: mtxrNeighborIndex
-            type: gauge
-      - name: mtxrNeighborInterfaceID
-        oid: 1.3.6.1.4.1.14988.1.1.11.1.1.8
-        type: gauge
-        help: Neighbor interface ID
-        indexes:
-          - labelname: mtxrNeighborIndex
-            type: gauge
+      # - name: mtxrNeighborIndex
+      #   oid: 1.3.6.1.4.1.14988.1.1.11.1.1.1
+      #   type: gauge
+      #   help: Neighbor index
+      #   indexes:
+      #     - labelname: mtxrNeighborIndex
+      #       type: gauge
+      # - name: mtxrNeighborIpAddress
+      #   oid: 1.3.6.1.4.1.14988.1.1.11.1.1.2
+      #   type: IpAddress
+      #   help: Neighbor IP address
+      #   indexes:
+      #     - labelname: mtxrNeighborIndex
+      #       type: gauge
+      # - name: mtxrNeighborMacAddress
+      #   oid: 1.3.6.1.4.1.14988.1.1.11.1.1.3
+      #   type: PhysAddress48
+      #   help: Neighbor MAC address
+      #   indexes:
+      #     - labelname: mtxrNeighborIndex
+      #       type: gauge
+      # - name: mtxrNeighborVersion
+      #   oid: 1.3.6.1.4.1.14988.1.1.11.1.1.4
+      #   type: DisplayString
+      #   help: Neighbor version
+      #   indexes:
+      #     - labelname: mtxrNeighborIndex
+      #       type: gauge
+      # - name: mtxrNeighborPlatform
+      #   oid: 1.3.6.1.4.1.14988.1.1.11.1.1.5
+      #   type: DisplayString
+      #   help: Neighbor platform
+      #   indexes:
+      #     - labelname: mtxrNeighborIndex
+      #       type: gauge
+      # - name: mtxrNeighborIdentity
+      #   oid: 1.3.6.1.4.1.14988.1.1.11.1.1.6
+      #   type: DisplayString
+      #   help: Neighbor identity
+      #   indexes:
+      #     - labelname: mtxrNeighborIndex
+      #       type: gauge
+      # - name: mtxrNeighborSoftwareID
+      #   oid: 1.3.6.1.4.1.14988.1.1.11.1.1.7
+      #   type: DisplayString
+      #   help: Neighbor software ID
+      #   indexes:
+      #     - labelname: mtxrNeighborIndex
+      #       type: gauge
+      # - name: mtxrNeighborInterfaceID
+      #   oid: 1.3.6.1.4.1.14988.1.1.11.1.1.8
+      #   type: gauge
+      #   help: Neighbor interface ID
+      #   indexes:
+      #     - labelname: mtxrNeighborIndex
+      #       type: gauge
     max_repetitions: 25
   synology:
     walk:
