@@ -40,30 +40,3 @@ spec:
             port:
               number: 7777
 
-# ---
-# apiVersion: networking.k8s.io/v1
-# kind: Ingress
-# metadata:
-#   name: nostr
-#   annotations:
-#     cert-manager.io/cluster-issuer: "letsencrypt-prod"
-#     traefik.ingress.kubernetes.io/router.entrypoints: web,websecure
-# spec:
-#   ingressClassName: traefik
-#   tls:
-#   - hosts:
-#     - nostr.thedrill.eu
-#     secretName: nostr-tls
-#   rules:
-#   - host: nostr.thedrill.eu
-#     http:
-#       paths:
-#       - path: /
-#         pathType: Prefix
-#         backend:
-#           service:
-#             name: nostr-web
-#             port:
-#               number: 7777
-#
-#

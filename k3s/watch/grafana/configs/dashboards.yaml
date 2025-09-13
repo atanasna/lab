@@ -10,7 +10,7 @@ providers:
     allowUiUpdates: false
     options:
       path: /etc/grafana/provisioning/dashboards/root
-  - name: 'infra'
+  - name: 'k8s'
     orgId: 1
     folder: 'Infrastructure'
     type: file
@@ -18,4 +18,22 @@ providers:
     updateIntervalSeconds: 30
     allowUiUpdates: false
     options:
-      path: /etc/grafana/provisioning/dashboards/infra
+      path: /etc/grafana/provisioning/dashboards/infra-k8s
+  - name: 'nas'
+    orgId: 1
+    folder: 'Infrastructure'
+    type: file
+    disableDeletion: false
+    updateIntervalSeconds: 30
+    allowUiUpdates: false
+    options:
+      path: /etc/grafana/provisioning/dashboards/infra-nas
+  - name: 'mikrotiks'
+    orgId: 1
+    folder: 'Infrastructure'
+    type: file
+    disableDeletion: false
+    updateIntervalSeconds: 30
+    allowUiUpdates: false
+    options:
+      path: /etc/grafana/provisioning/dashboards/infra-mikrotiks
