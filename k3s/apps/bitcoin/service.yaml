@@ -9,13 +9,13 @@ spec:
   selector:
     app: bitcoin
   ports:
-  - name: bitcoin-regtest
-    port: 18444
-    targetPort: 18444
+  - name: bitcoin-main
+    port: 8333
+    targetPort: 8333
     protocol: TCP
   - name: bitcoin-rpc
-    port: 18443
-    targetPort: 18443
+    port: 8332
+    targetPort: 8332
     protocol: TCP
   type: LoadBalancer
 # ---

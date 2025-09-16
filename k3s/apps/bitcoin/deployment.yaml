@@ -14,46 +14,68 @@ spec:
       labels:
         app: bitcoin
     spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: bitcoin
+                    operator: In
+                    values:
+                      - yes
       securityContext:
         runAsUser: 0
       containers:
+        # - name: mempool
+        #   image: mempool/mempool:v1.0k
+        #   args:
+        #     - "-printtoconsole"
+        #     - "-conf=/etc/bitcoin.conf"
+        #   volumeMounts:
+        #     - name: ssd
+        #       mountPath: /data
+        #     - name: bitcoin-config
+        #       mountPath: /etc/bitcoin.conf
+        #       subPath: bitcoin.conf
+        #     - name: apps-pvc
+        #       mountPath: /home/bitcoin/.bitcoin
+        #       subPath: bitcoin/data
+        #   ports:
+        #     - name: bitcoin-rpc
+        #       containerPort: 8332
+        #       protocol: TCP
+        #     - name: bitcoin-main
+        #       containerPort: 8333
+        #       protocol: TCP
         - name: bitcoin
           image: bitcoinknots/bitcoin:latest
           args:
             - "-printtoconsole"
-            - "-regtest=1"
             - "-conf=/etc/bitcoin.conf"
           volumeMounts:
+            - name: ssd
+              mountPath: /data
             - name: bitcoin-config
               mountPath: /etc/bitcoin.conf
               subPath: bitcoin.conf
-            - name: apps-pvc
-              mountPath: /home/bitcoin/.bitcoin
-              subPath: bitcoin/data
+            # - name: apps-pvc
+            #   mountPath: /home/bitcoin/.bitcoin
+            #   subPath: bitcoin/data
           ports:
             - name: bitcoin-rpc
-              containerPort: 18443
+              containerPort: 8332
               protocol: TCP
-            - name: bitcoin-regtest
-              containerPort: 18444
+            - name: bitcoin-main
+              containerPort: 8333
               protocol: TCP
-      #     resources:
-      #       requests:
-      #         memory: 128Mi
-      #       limits:
-      #         memory: 1Gi
-      #     volumeMounts:
-      #       - name: apps-pvc
-      #         mountPath: /etc/pihole
-      #         subPath: pihole/config
       volumes:
+        - name: ssd
+          hostPath:
+            path: /mnt/ssd/bitcoin
+            type: Directory
         - name: bitcoin-config
           configMap:
             name: bitcoin-config
-        - name: apps-pvc
-          persistentVolumeClaim:
-            claimName: apps-pvc
-      # volumes:
-      #   - name: apps-pvc
-      #     persistentVolumeClaim:
-      #       claimName: apps-pvc
+        # - name: apps-pvc
+        #   persistentVolumeClaim:
+        #     claimName: apps-pvc
