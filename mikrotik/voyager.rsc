@@ -109,6 +109,8 @@ add action=accept chain=output
 add action=log chain=input comment="=== WireGuard ===" disabled=yes protocol=icmp
 add action=accept chain=input dst-port=13007 in-interface=external protocol=udp
 add action=accept chain=input dst-port=13231 in-interface=external protocol=udp
+add action=log chain=forward comment="=== External ===" disabled=yes protocol=icmp
+add action=accept chain=forward protocol=tcp in-interface=external dst-port=8333 
 add action=log chain=forward comment="=== Internal ===" disabled=yes protocol=icmp
 add action=accept chain=forward in-interface=!external protocol=icmp src-address-list=internal
 add action=accept chain=forward connection-state=new in-interface=!external protocol=tcp src-address-list=internal
@@ -120,5 +122,6 @@ add action=drop chain=forward connection-nat-state=!dstnat connection-state=new 
 
 /ip firewall nat
 add action=accept chain=srcnat comment=private-to-private dst-address-list=internal src-address-list=internal
+add action=dst-nat chain=dstnat to-addresses=10.7.0.254 protocol=tcp in-interface=external dst-port=8333 
 add action=masquerade chain=srcnat out-interface=external
 
