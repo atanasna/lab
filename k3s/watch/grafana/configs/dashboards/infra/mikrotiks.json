@@ -63,7 +63,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "dark-green",
+                "color": "green",
                 "value": 0
               },
               {
@@ -149,15 +149,15 @@
             "mode": "percentage",
             "steps": [
               {
-                "color": "dark-green",
+                "color": "green",
                 "value": 0
               },
               {
-                "color": "rgba(237, 129, 40, 0.89)",
+                "color": "yellow",
                 "value": 60
               },
               {
-                "color": "#d44a3a",
+                "color": "red",
                 "value": 80
               }
             ]
@@ -236,15 +236,15 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "dark-green",
+                "color": "green",
                 "value": 0
               },
               {
-                "color": "rgba(237, 129, 40, 0.89)",
+                "color": "yellow",
                 "value": 80
               },
               {
-                "color": "#d44a3a",
+                "color": "red",
                 "value": 90
               }
             ]
@@ -426,10 +426,12 @@
             "type": "prometheus",
             "uid": "PA51146D38077FF99"
           },
+          "editorMode": "code",
           "exemplar": true,
           "expr": "avg(hrProcessorLoad{instance='$instance'})",
           "interval": "",
-          "legendFormat": "Load CPU {{hrDeviceIndex}} ",
+          "legendFormat": "Load {{hrDeviceIndex}} ",
+          "range": true,
           "refId": "A"
         },
         {
@@ -437,11 +439,13 @@
             "type": "prometheus",
             "uid": "PA51146D38077FF99"
           },
+          "editorMode": "code",
           "exemplar": true,
           "expr": "(hrStorageUsed{hrStorageIndex='65536',instance='$instance'} * 100 )/(hrStorageSize{hrStorageIndex='65536',instance='$instance'})",
           "hide": false,
           "interval": "",
-          "legendFormat": "RAM usage",
+          "legendFormat": "RAM",
+          "range": true,
           "refId": "C"
         },
         {
@@ -449,11 +453,13 @@
             "type": "prometheus",
             "uid": "PA51146D38077FF99"
           },
+          "editorMode": "code",
           "exemplar": true,
           "expr": "(hrStorageUsed{hrStorageIndex='131072',instance='$instance'} * 100 )/(hrStorageSize{hrStorageIndex='131072',instance='$instance'})",
           "hide": false,
           "interval": "",
-          "legendFormat": "System disk",
+          "legendFormat": "FS",
+          "range": true,
           "refId": "D"
         }
       ],
@@ -484,7 +490,7 @@
                 "value": 0
               },
               {
-                "color": "dark-green",
+                "color": "green",
                 "value": 20
               },
               {
@@ -679,7 +685,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#299c46",
+                "color": "green",
                 "value": 0
               },
               {
@@ -687,7 +693,7 @@
                 "value": 1
               },
               {
-                "color": "#299c46",
+                "color": "green",
                 "value": 2
               },
               {
@@ -767,7 +773,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "dark-green",
+                "color": "text",
                 "value": 0
               }
             ]
@@ -835,7 +841,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#299c46",
+                "color": "text",
                 "value": 0
               }
             ]
@@ -903,7 +909,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#299c46",
+                "color": "text",
                 "value": 0
               }
             ]
@@ -972,7 +978,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#299c46",
+                "color": "text",
                 "value": 0
               }
             ]
@@ -1041,7 +1047,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#299c46",
+                "color": "text",
                 "value": 0
               }
             ]
@@ -1110,7 +1116,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#299c46",
+                "color": "green",
                 "value": 0
               },
               {
@@ -1182,7 +1188,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "#299c46",
+                "color": "green",
                 "value": 0
               },
               {
@@ -2616,12 +2622,12 @@
     ]
   },
   "time": {
-    "from": "now-3h",
+    "from": "now-7d",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "browser",
   "title": "(P) Mikrotiks",
   "uid": "LyX-A_nnk",
-  "version": 15
+  "version": 16
 }

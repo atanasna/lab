@@ -1,23 +1,23 @@
-# apiVersion: v1
-# kind: Service
-# metadata:
-#   name: pihole-dns
-#   annotations:
-#     metallb.universe.tf/loadBalancerIPs: 10.7.0.254
-#     metallb.universe.tf/allow-shared-ip: "metallb-tcp-proxy-ip"
-# spec:
-#   selector:
-#     app: pihole
-#   ports:
-#   - name: dns-tcp
-#     port: 53
-#     targetPort: 53
-#     protocol: TCP
-#   - name: dns-udp
-#     port: 53
-#     targetPort: 53
-#     protocol: UDP
-#   type: LoadBalancer
+apiVersion: v1
+kind: Service
+metadata:
+  name: bitcoin
+  annotations:
+    metallb.universe.tf/loadBalancerIPs: 10.7.0.254
+    metallb.universe.tf/allow-shared-ip: "metallb-tcp-proxy-ip"
+spec:
+  selector:
+    app: bitcoin
+  ports:
+  - name: bitcoin-regtest
+    port: 18444
+    targetPort: 18444
+    protocol: TCP
+  - name: bitcoin-rpc
+    port: 18443
+    targetPort: 18443
+    protocol: TCP
+  type: LoadBalancer
 # ---
 # apiVersion: v1
 # kind: Service

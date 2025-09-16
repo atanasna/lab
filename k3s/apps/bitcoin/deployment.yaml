@@ -31,8 +31,11 @@ spec:
               mountPath: /home/bitcoin/.bitcoin
               subPath: bitcoin/data
           ports:
-            - name: btc-rpc
-              containerPort: 10001
+            - name: bitcoin-rpc
+              containerPort: 18443
+              protocol: TCP
+            - name: bitcoin-regtest
+              containerPort: 18444
               protocol: TCP
       #     resources:
       #       requests:
