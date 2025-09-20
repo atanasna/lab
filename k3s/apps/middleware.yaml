@@ -1,3 +1,5 @@
+# This list is used to filter ips by the traefik
+# It is applied per sevice by annotating `traefik.ingress.kubernetes.io/router.middlewares`
 apiVersion: traefik.io/v1alpha1
 kind: Middleware
 metadata:

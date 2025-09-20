@@ -34,7 +34,7 @@ spec:
               - -c
               - "nslookup google.com 127.0.0.1 || dig @127.0.0.1 google.com"
             initialDelaySeconds: 60
-            periodSeconds: 30
+            periodSeconds: 10
             timeoutSeconds: 10
             failureThreshold: 3
           envFrom:

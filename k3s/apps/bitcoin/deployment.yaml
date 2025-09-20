@@ -14,39 +14,23 @@ spec:
       labels:
         app: bitcoin
     spec:
-      affinity:
-        nodeAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-            nodeSelectorTerms:
-              - matchExpressions:
-                  - key: bitcoin
-                    operator: In
-                    values:
-                      - yes
+      # affinity:
+      #   nodeAffinity:
+      #     requiredDuringSchedulingIgnoredDuringExecution:
+      #       nodeSelectorTerms:
+      #         - matchExpressions:
+      #             - key: bitcoin
+      #               operator: In
+      #               values:
+      #                 - yes
+      tolerations:
+      - key: "dedicated"
+        operator: "Equal"
+        value: "bitcoin"
+        effect: "NoSchedule"
       securityContext:
         runAsUser: 0
       containers:
-        # - name: mempool
-        #   image: mempool/mempool:v1.0k
-        #   args:
-        #     - "-printtoconsole"
-        #     - "-conf=/etc/bitcoin.conf"
-        #   volumeMounts:
-        #     - name: ssd
-        #       mountPath: /data
-        #     - name: bitcoin-config
-        #       mountPath: /etc/bitcoin.conf
-        #       subPath: bitcoin.conf
-        #     - name: apps-pvc
-        #       mountPath: /home/bitcoin/.bitcoin
-        #       subPath: bitcoin/data
-        #   ports:
-        #     - name: bitcoin-rpc
-        #       containerPort: 8332
-        #       protocol: TCP
-        #     - name: bitcoin-main
-        #       containerPort: 8333
-        #       protocol: TCP
         - name: bitcoin
           image: bitcoinknots/bitcoin:latest
           args:
@@ -54,13 +38,10 @@ spec:
             - "-conf=/etc/bitcoin.conf"
           volumeMounts:
             - name: ssd
-              mountPath: /data
+              mountPath: /home/bitcoin/.bitcoin
             - name: bitcoin-config
               mountPath: /etc/bitcoin.conf
               subPath: bitcoin.conf
-            # - name: apps-pvc
-            #   mountPath: /home/bitcoin/.bitcoin
-            #   subPath: bitcoin/data
           ports:
             - name: bitcoin-rpc
               containerPort: 8332
@@ -76,6 +57,3 @@ spec:
         - name: bitcoin-config
           configMap:
             name: bitcoin-config
-        # - name: apps-pvc
-        #   persistentVolumeClaim:
-        #     claimName: apps-pvc

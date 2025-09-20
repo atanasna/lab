@@ -16,8 +16,8 @@ kind: Namespace
 metadata:
   name: watch
 ---
-# This the main applications space
-apiversion: v1
-kind: namespace
+# This is for shared services that handle monitoring and analysis of metrics
+apiVersion: v1
+kind: Namespace
 metadata:
   name: apps

@@ -1,4 +1,3 @@
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -8,7 +7,7 @@ metadata:
 spec:
   replicas: 1
   strategy:
-    type: Recreate 
+    type: Recreate
   selector:
     matchLabels:
       app: grafana
@@ -51,6 +50,9 @@ spec:
               memory: 512Mi
             limits:
               memory: 1Gi
+          env:
+            - name: GF_USERS_DEFAULT_THEME
+              value: light
           volumeMounts:
             - name: watch-pvc
               mountPath: /var/lib/grafana
