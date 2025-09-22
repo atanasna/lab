@@ -109,12 +109,14 @@ add action=accept chain=output
 add action=log chain=input comment="=== WireGuard ===" disabled=yes protocol=icmp
 add action=accept chain=input dst-port=13007 in-interface=external protocol=udp
 add action=accept chain=input dst-port=13231 in-interface=external protocol=udp
-add action=log chain=forward comment="=== External ===" disabled=yes protocol=icmp
+add action=log chain=input comment="=== External ===" disabled=yes protocol=icmp
 add action=accept chain=forward dst-port=8333 in-interface=external protocol=tcp  
-add action=log chain=forward comment="=== Internal ===" disabled=yes protocol=icmp
+add action=log chain=input comment="=== Internal ===" disabled=yes protocol=icmp
 add action=accept chain=forward in-interface=!external protocol=icmp src-address-list=internal
 add action=accept chain=forward connection-state=new in-interface=!external protocol=tcp src-address-list=internal
 add action=accept chain=forward connection-state=new in-interface=!external protocol=udp src-address-list=internal
+add action=log chain=input comment="=== Established ===" disabled=yes protocol=icmp
+add action=accept chain=input connection-state=established,related 
 add action=fasttrack-connection chain=forward connection-state=established,related hw-offload=yes
 add action=log chain=output comment="=== DROP ===" disabled=yes protocol=icmp
 add action=drop chain=input in-interface=external

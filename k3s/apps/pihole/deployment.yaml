@@ -14,9 +14,17 @@ spec:
       labels:
         app: pihole
     spec:
+      # Make sure that there is at max 1 pod on a node
+      topologySpreadConstraints:
+      - maxSkew: 1
+        topologyKey: kubernetes.io/hostname
+        whenUnsatisfiable: DoNotSchedule
+        labelSelector:
+          matchLabels:
+            app: pihole
       containers:
         - name: pihole
-          image: pihole/pihole:latest
+          image: pihole/pihole:2025.08.0
           ports:
             - name: dns-tcp
               containerPort: 53
@@ -28,14 +36,19 @@ spec:
               containerPort: 80
               protocol: TCP
           livenessProbe:
+            tcpSocket:
+              port: 53
+            initialDelaySeconds: 30
+            periodSeconds: 10
+          readinessProbe:
             exec:
               command:
               - sh
               - -c
               - "nslookup google.com 127.0.0.1 || dig @127.0.0.1 google.com"
-            initialDelaySeconds: 60
-            periodSeconds: 10
-            timeoutSeconds: 10
+            initialDelaySeconds: 20
+            periodSeconds: 5
+            timeoutSeconds: 5
             failureThreshold: 3
           envFrom:
             - configMapRef:

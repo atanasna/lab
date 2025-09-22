@@ -1480,7 +1480,7 @@
           "refId": "A"
         }
       ],
-      "title": "Network IO Tx",
+      "title": "Network I/O Tx",
       "type": "timeseries"
     },
     {
@@ -1607,7 +1607,7 @@
           "refId": "C"
         }
       ],
-      "title": "Network IO Rx",
+      "title": "Network I/O Rx",
       "type": "timeseries"
     },
     {

@@ -14,20 +14,18 @@ spec:
       labels:
         app: bitcoin
     spec:
-      # affinity:
-      #   nodeAffinity:
-      #     requiredDuringSchedulingIgnoredDuringExecution:
-      #       nodeSelectorTerms:
-      #         - matchExpressions:
-      #             - key: bitcoin
-      #               operator: In
-      #               values:
-      #                 - yes
-      tolerations:
-      - key: "dedicated"
-        operator: "Equal"
-        value: "bitcoin"
-        effect: "NoSchedule"
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: allowed.bitcoin
+                    operator: Exists
+      # tolerations:
+      # - key: "dedicated"
+      #   operator: "Equal"
+      #   value: "bitcoin"
+      #   effect: "NoSchedule"
       securityContext:
         runAsUser: 0
       containers:

@@ -24,7 +24,7 @@ spec:
         supplementalGroups: [0]
       containers:
         - name: n8n
-          image: docker.n8n.io/n8nio/n8n:latest
+          image: docker.n8n.io/n8nio/n8n:1.112.3
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 5678

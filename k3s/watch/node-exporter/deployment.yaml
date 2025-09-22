@@ -19,7 +19,7 @@ spec:
       hostIPC: true
       containers:
       - name: node-exporter
-        image: prom/node-exporter:latest
+        image: prom/node-exporter:v1.9.1
         args:
           # Path configurations
           - '--path.procfs=/host/proc'

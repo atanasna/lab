@@ -58,9 +58,16 @@ curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="server --token=K10d58c287785a1f
 1. Apply apps 
     1. Storage `kubectl apply -f k3s/apps/storage.yaml`
     1. Storage `kubectl apply -f k3s/apps/middleware.yaml`
+    1. Label the nodes
+        - `kubectl label nodes k3s03 allowed.bitcoin=true`
+        - `kubectl label nodes k3s01 allowed.paperless=true`
     1. N8N `kubectl apply -k k3s/apps/n8n`
     1. Pihole `kubectl apply -k k3s/apps/pihole`
     1. Paperless `kubectl apply -k k3s/apps/paperless`
+    1. Warden `kubectl apply -k k3s/apps/warden`
+    1. Nostr `kubectl apply -k k3s/apps/nostr`
+    1. Mattermost `kubectl apply -k k3s/apps/mattermost`
+    1. Bitcoin `kubectl apply -k k3s/apps/bitcoin`
 
 
 
