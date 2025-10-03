@@ -5,8 +5,12 @@ metadata:
   namespace: metallb-system
 spec:
   addresses:
-  - 10.7.0.70-10.7.0.70 # Given to traefik
-  - 10.7.0.254/32 #Used for TCP ports 
+  - 10.7.0.70/32  # Traefik
+  - 10.7.0.250/32 # Not used
+  - 10.7.0.251/32 # Not used
+  - 10.7.0.252/32 # Not used
+  - 10.7.0.253/32 # Bitcoin
+  - 10.7.0.254/32 # DNS - Pihole
 
 ---
 apiVersion: metallb.io/v1beta1

@@ -4,10 +4,15 @@ metadata:
   name: pihole-dns
   annotations:
     metallb.universe.tf/loadBalancerIPs: 10.7.0.254
-    metallb.universe.tf/allow-shared-ip: "metallb-tcp-proxy-ip"
+    metallb.universe.tf/allow-shared-ip: "dns"
 spec:
   selector:
     app: pihole
+  # Makes sure that sessions are redirected to a specific pod based on clientIP
+  sessionAffinity: ClientIP
+  sessionAffinityConfig:
+    clientIP:
+      timeoutSeconds: 3600
   ports:
   - name: dns-tcp
     port: 53

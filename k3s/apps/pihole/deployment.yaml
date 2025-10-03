@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: pihole
 spec:
-  replicas: 1
+  replicas: 2
   strategy:
     type: Recreate
   selector:
@@ -15,13 +15,16 @@ spec:
         app: pihole
     spec:
       # Make sure that there is at max 1 pod on a node
-      topologySpreadConstraints:
-      - maxSkew: 1
-        topologyKey: kubernetes.io/hostname
-        whenUnsatisfiable: DoNotSchedule
-        labelSelector:
-          matchLabels:
-            app: pihole
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: app
+                operator: In
+                values:
+                - pihole
+            topologyKey: kubernetes.io/hostname
       containers:
         - name: pihole
           image: pihole/pihole:2025.08.0
@@ -38,17 +41,19 @@ spec:
           livenessProbe:
             tcpSocket:
               port: 53
-            initialDelaySeconds: 30
+            initialDelaySeconds: 20
             periodSeconds: 10
+            timeoutSeconds: 3
+            failureThreshold: 3
           readinessProbe:
             exec:
               command:
               - sh
               - -c
               - "nslookup google.com 127.0.0.1 || dig @127.0.0.1 google.com"
-            initialDelaySeconds: 20
+            initialDelaySeconds: 30
             periodSeconds: 5
-            timeoutSeconds: 5
+            timeoutSeconds: 3
             failureThreshold: 3
           envFrom:
             - configMapRef:
@@ -60,11 +65,11 @@ spec:
               memory: 128Mi
             limits:
               memory: 1Gi
-          volumeMounts:
-            - name: apps-pvc
-              mountPath: /etc/pihole
-              subPath: pihole/config
-      volumes:
-        - name: apps-pvc
-          persistentVolumeClaim:
-            claimName: apps-pvc
+          # volumeMounts:
+          #   - name: apps-pvc
+          #     mountPath: /etc/pihole
+          #     subPath: pihole/config
+      # volumes:
+      #   - name: apps-pvc
+      #     persistentVolumeClaim:
+      #       claimName: apps-pvc
