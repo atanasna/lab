@@ -17,6 +17,7 @@ configMapGenerator:
   - name: grafana-dashboards-infra-k8s
     files:
       - pods.json=configs/dashboards/infra/pods.json
+      # - nodes_old.json=configs/dashboards/infra/nodes_old.json
       - nodes.json=configs/dashboards/infra/nodes.json
   - name: grafana-dashboards-infra-nas
     files:
