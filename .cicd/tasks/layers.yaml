@@ -1,0 +1,36 @@
+version: "3"
+
+tasks:
+  all:apply:
+    desc: Deploy all Layers
+    cmds:
+      - task: data:apply
+      - task: watch:apply
+
+  data:apply:
+    desc: Deploy Data layer
+    dir: "{{.ROOT_DIR}}/k3s/data"
+    cmds:
+      - echo "Applying storage configuration"
+      - kubectl apply -f storage.yaml
+      - echo "Applying redis"
+      - kubectl apply -k ./redis 
+      - echo "Applying postgres"
+      - kubectl apply -k ./postgres 
+
+  watch:apply:
+    desc: Deploy Watch layer
+    dir: "{{.ROOT_DIR}}/k3s/watch"
+    cmds:
+      - echo "Applying storage configuration"
+      - kubectl apply -f storage.yaml
+      - echo "Applying NodeExporter"
+      - kubectl apply -k ./node-exporter 
+      - echo "Applying APIExporter"
+      - kubectl apply -k ./api-exporter 
+      - echo "Applying SNMPExporter"
+      - kubectl apply -k ./snmp-exporter 
+      - echo "Applying Prometheus"
+      - kubectl apply -k ./prometheus
+      - echo "Applying Grafana"
+      - kubectl apply -k ./grafana

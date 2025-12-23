@@ -1,0 +1,7 @@
+version: "3"
+
+tasks:
+  apply:
+    desc: Apply Kubernetes namespaces
+    cmds:
+      - kubectl apply -f k3s/namespaces.yaml

@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: homeassistant
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: homeassistant
+  template:
+    metadata:
+      labels:
+        app: homeassistant
+    spec:
+      containers:
+        - name: homeassistant
+          image: homeassistant/home-assistant:latest
+          ports:
+            - name: homeassistant
+              containerPort: 8123
+              protocol: TCP
+          envFrom:
+            - configMapRef:
+                name: homeassistant-env
+          volumeMounts:
+            - name: apps-pvc
+              mountPath: /config
+              subPath: homeassistant/config
+            - name: homeassistant-config
+              mountPath: /config/configuration.yaml
+              subPath: configuration.yaml
+      #   volumeMounts:
+      #   - name: apps-pvc
+      #     mountPath: /data
+      #     subPath: homeassistant/data
+      volumes:
+        - name: homeassistant-config
+          configMap:
+            name: homeassistant-config
+        - name: apps-pvc
+          persistentVolumeClaim:
+            claimName: apps-pvc

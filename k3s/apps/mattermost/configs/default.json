@@ -1,24 +1,34 @@
 {
-    "ServiceSettings": {
-        "EnableCommands": true,
-        "AllowCorsFrom": "*"
+  "ServiceSettings": {
+    "EnableCommands": true,
+    "AllowCorsFrom": "*"
+  },
+  "TeamSettings": {
+    "EnableUserCreation": true,
+    "EnableOpenServer": true
+  },
+  "SqlSettings": {},
+  "LogSettings": {
+    "EnableConsole": true
+  },
+  "NotificationLogSettings": {
+    "EnableConsole": true
+  },
+  "PluginSettings": {
+    "Enable": true,
+    "EnableUploads": true,
+    "Plugins": {
+      "com.mattermost.calls": {
+        "defaultenabled": true
+      }
     },
-    "TeamSettings": {
-        "EnableUserCreation": true
-    },
-    "SqlSettings": {
-    },
-    "LogSettings": {
-        "EnableConsole": true
-    },
-    "NotificationLogSettings": {
-        "EnableConsole": true
-    },
-    "FileSettings": {
-        "MaxFileSize": 268435456
-    },
-    "PluginSettings": {
-        "Enable": true,
-        "EnableUploads": false
+    "PluginStates": {
+      "com.mattermost.calls": {
+        "Enable": true
+      }
     }
+  },
+  "FileSettings": {
+    "MaxFileSize": 268435456
+  }
 }

@@ -1,0 +1,6 @@
+version: "3"
+
+includes:
+  namespaces: ./.cicd/tasks/namespaces.yaml
+  system: ./.cicd/tasks/system.yaml
+  layers: ./.cicd/tasks/layers.yaml

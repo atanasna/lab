@@ -1,0 +1,32 @@
+version: "3"
+
+tasks:
+  all:apply:
+    desc: Deploy all system controllers
+    cmds:
+      - task: metallb:apply
+      - task: certmanager:apply
+
+  metallb:apply:
+    desc: Deploy MetalLB
+    dir: "{{.ROOT_DIR}}/k3s/system/metallb"
+    vars:
+      WAIT_TIMER: 10
+    cmds:
+      - kubectl apply -k .
+      - echo "Waiting {{.WAIT_TIMER}}s for main resources to be ready..."
+      - sleep {{.WAIT_TIMER}}
+      - kubectl apply -f config.yaml
+      - echo "MetalLB deployment complete!"
+
+  certmanager:apply:
+    desc: Deploy CertManager
+    dir: "{{.ROOT_DIR}}/k3s/system/certmanager"
+    vars:
+      WAIT_TIMER: 180
+    cmds:
+      - kubectl apply -k .
+      - echo "Waiting {{.WAIT_TIMER}}s for main resources to be ready..."
+      - sleep {{.WAIT_TIMER}}
+      - kubectl apply -f config.yaml
+      - echo "CertManager deployment complete!"

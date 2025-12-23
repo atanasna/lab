@@ -2,21 +2,21 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: vaultwarden
+  name: homeassistant
 spec:
   selector:
-    app: vaultwarden
+    app: homeassistant
   ports:
-  - name: vaultwarden
-    port: 8033
-    targetPort: 80
+  - name: homeassistant
+    port: 8123
+    targetPort: 8123
     protocol: TCP
   type: ClusterIP
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: vaultwarden
+  name: homeassistant
   annotations:
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
     traefik.ingress.kubernetes.io/router.entrypoints: web,websecure
@@ -25,18 +25,18 @@ spec:
   ingressClassName: traefik
   tls:
   - hosts:
-    - warden.thedrill.eu
-    secretName: vaultwarden-tls
+    - homeassistant.thedrill.eu
+    secretName: homeassistant-tls
   rules:
-  - host: warden.thedrill.eu
+  - host: homeassistant.thedrill.eu
     http:
       paths:
       - path: /
         pathType: Prefix
         backend:
           service:
-            name: vaultwarden
+            name: homeassistant
             port:
-              number: 8033
+              number: 8123
 
 
