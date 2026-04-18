@@ -3,7 +3,6 @@ kind: Kustomization
 namespace: watch
 
 resources:
-  # - storage.yaml
   - deployment.yaml
   - service.yaml
   - rbac.yaml
@@ -11,4 +10,4 @@ resources:
 configMapGenerator:
   - name: prometheus-config
     files:
-      - prometheus.yml=configs/prometheus.yaml
+      - prometheus.yaml=configs/prometheus.yaml

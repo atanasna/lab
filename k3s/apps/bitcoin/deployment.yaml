@@ -30,7 +30,15 @@ spec:
         runAsUser: 0
       containers:
         - name: bitcoin
-          image: bitcoinknots/bitcoin:latest
+          # image: bitcoinknots/bitcoin:latest
+          image: bitcoinknots/bitcoin:29.2.knots20251110-bip110-v0.1
+          resources:
+            requests:
+              memory: "1Gi"
+              cpu: "1000m"
+            limits:
+              memory: "4Gi"
+              cpu: "4000m"
           args:
             - "-printtoconsole"
             - "-conf=/etc/bitcoin.conf"
