@@ -1,13 +1,13 @@
 version: "3"
 
 tasks:
-  all:apply:
-    desc: Deploy all system controllers
+  all:
+    desc: Deploy SYSTEM controllers
     cmds:
       - task: metallb:apply
       - task: certmanager:apply
 
-  metallb:apply:
+  metallb:
     desc: Deploy MetalLB
     dir: "{{.ROOT_DIR}}/k3s/system/metallb"
     vars:
@@ -19,7 +19,7 @@ tasks:
       - kubectl apply -f config.yaml
       - echo "MetalLB deployment complete!"
 
-  certmanager:apply:
+  certmanager:
     desc: Deploy CertManager
     dir: "{{.ROOT_DIR}}/k3s/system/certmanager"
     vars:

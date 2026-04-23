@@ -11,3 +11,4 @@ configMapGenerator:
   - name: prometheus-config
     files:
       - prometheus.yaml=configs/prometheus.yaml
+      - rules.yaml=configs/rules.yaml

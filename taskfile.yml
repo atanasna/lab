@@ -1,0 +1,7 @@
+version: "3"
+
+includes:
+  namespaces: ./.ci/tasks/namespaces.yaml
+  system: ./.ci/tasks/system.yaml
+  watch: ./.ci/tasks/watch.yaml
+  data: ./.ci/tasks/data.yaml

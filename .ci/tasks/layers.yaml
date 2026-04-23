@@ -1,0 +1,20 @@
+version: "3"
+
+tasks:
+  all:
+    desc: Deploy all Layers
+    cmds:
+      - task: data:apply
+      - task: watch:apply
+
+  data:
+    desc: Deploy Data layer
+    dir: "{{.ROOT_DIR}}/k3s/data"
+    cmds:
+      - echo "Applying storage configuration"
+      - kubectl apply -f storage.yaml
+      - echo "Applying redis"
+      - kubectl apply -k ./redis 
+      - echo "Applying postgres"
+      - kubectl apply -k ./postgres 
+

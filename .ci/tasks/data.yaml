@@ -1,0 +1,53 @@
+version: "3"
+
+vars:
+  WATCH_DIR: "{{.ROOT_DIR}}/k3s/data"
+
+tasks:
+  _generic:
+    internal: true
+    silent: true
+    dir: "{{.WATCH_DIR}}/{{.SERVICE}}"
+    cmds:
+      - echo "------------------------------"
+      - echo "Applying {{.SERVICE}}"
+      - echo "------------------------------"
+      - kubectl apply -k .
+
+  all:
+    desc: Deploy DATA layer
+    silent: true
+    cmds:
+      - task: storage
+      - echo ""
+      - task: redis
+      - echo ""
+      - task: postgres
+
+  storage:
+    dir: "{{.WATCH_DIR}}"
+    silent: true
+    cmds:
+      - echo "------------------------------"
+      - echo "Applying storage configuration"
+      - echo "------------------------------"
+      - kubectl apply -f storage.yaml
+
+  redis:
+    vars:
+      SERVICE: redis
+    desc: Deploy {{.SERVICE}}
+    cmds:
+      - task: _generic
+        vars:
+          SERVICE: "{{.SERVICE}}"
+
+  postgres:
+    vars:
+      SERVICE: postgres
+    desc: Deploy {{.SERVICE}}
+    cmds:
+      - task: _generic
+        vars:
+          SERVICE: "{{.SERVICE}}"
+

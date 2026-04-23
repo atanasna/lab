@@ -1,0 +1,115 @@
+version: "3"
+
+vars:
+  WATCH_DIR: "{{.ROOT_DIR}}/k3s/watch"
+
+tasks:
+  _generic:
+    internal: true
+    silent: true
+    dir: "{{.WATCH_DIR}}/{{.SERVICE}}"
+    cmds:
+      - echo "------------------------------"
+      - echo "Applying {{.SERVICE}}"
+      - echo "------------------------------"
+      - kubectl apply -k .
+
+  all:
+    desc: Deploy WATCH layer
+    silent: true
+    cmds:
+      - task: storage
+      - echo ""
+      - task: exporter-api
+      - echo ""
+      - task: exporter-snmp
+      - echo ""
+      - task: exporter-node
+      - echo ""
+      - task: grafana
+      - echo ""
+      - task: prometheus
+      - echo ""
+      - task: alertmanager
+
+  storage:
+    dir: "{{.WATCH_DIR}}"
+    silent: true
+    cmds:
+      - echo "------------------------------"
+      - echo "Applying storage configuration"
+      - echo "------------------------------"
+      - kubectl apply -f storage.yaml
+
+  grafana:
+    vars:
+      SERVICE: grafana
+    desc: Deploy {{.SERVICE}}
+    cmds:
+      - task: _generic
+        vars:
+          SERVICE: "{{.SERVICE}}"
+
+  prometheus:
+    vars:
+      SERVICE: prometheus
+    desc: Deploy {{.SERVICE}}
+    cmds:
+      - task: _generic
+        vars:
+          SERVICE: "{{.SERVICE}}"
+
+  alertmanager:
+    vars:
+      SERVICE: alertmanager
+    desc: Deploy {{.SERVICE}}
+    cmds:
+      - task: _generic
+        vars:
+          SERVICE: "{{.SERVICE}}"
+
+  exporter-node:
+    vars:
+      SERVICE: exporter-node
+    desc: Deploy {{.SERVICE}}
+    cmds:
+      - task: _generic
+        vars:
+          SERVICE: "{{.SERVICE}}"
+
+  exporter-api:
+    vars:
+      SERVICE: exporter-api
+    desc: Deploy {{.SERVICE}}
+    cmds:
+      - task: _generic
+        vars:
+          SERVICE: "{{.SERVICE}}"
+           
+  exporter-snmp:
+    vars:
+      SERVICE: exporter-snmp
+    desc: Deploy {{.SERVICE}}
+    cmds:
+      - task: _generic
+        vars:
+          SERVICE: "{{.SERVICE}}"
+
+    # desc: Deploy Watch layer
+    # dir: "{{.ROOT_DIR}}/k3s/watch"
+    # cmds:
+    #   - echo "Applying storage configuration"
+    #   - kubectl apply -f storage.yaml
+    #   - echo "Applying NodeExporter"
+    #   - kubectl apply -k ./node-exporter 
+    #   - echo "Applying APIExporter"
+    #   - kubectl apply -k ./api-exporter 
+    #   - echo "Applying SNMPExporter"
+    #   - kubectl apply -k ./snmp-exporter 
+    #   - echo "Applying Alertmanager"
+    #   - kubectl apply -k ./alertmanager
+    #   - echo "Applying Prometheus"
+    #   - kubectl apply -k ./prometheus
+    #   - echo "Applying Grafana"
+    #   - kubectl apply -k ./grafana
+    #
