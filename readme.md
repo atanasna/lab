@@ -48,13 +48,13 @@ curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="server --token=K10d58c287785a1f
     1. Storage `kubectl apply -f k3s/data/storage.yaml`
     1. Redis `kubectl apply -k k3s/data/redis`
     1. Postgres `kubectl apply -k k3s/data/postgres`
-1. Apply watch 
-    1. Storage `kubectl apply -f k3s/watch/storage.yaml`
-    1. NodeExporter `kubectl apply -k k3s/watch/node-exporter`
-    1. APIExporter `kubectl apply -k k3s/watch/api-exporter`
-    1. SNMPExporter `kubectl apply -k k3s/watch/snmp-exporter`
-    1. Prometheus `kubectl apply -k k3s/watch/prometheus`
-    1. Grafana `kubectl apply -k k3s/watch/grafana`
+1. Apply observe
+    1. Storage `kubectl apply -f k3s/observe/storage.yaml`
+    1. NodeExporter `kubectl apply -k k3s/observe/exporter-node`
+    1. APIExporter `kubectl apply -k k3s/observe/exporter-api`
+    1. SNMPExporter `kubectl apply -k k3s/observe/exporter-snmp`
+    1. Prometheus `kubectl apply -k k3s/observe/prometheus`
+    1. Grafana `kubectl apply -k k3s/observe/grafana`
 1. Apply apps 
     1. Storage `kubectl apply -f k3s/apps/storage.yaml`
     1. Storage `kubectl apply -f k3s/apps/middleware.yaml`
@@ -68,6 +68,4 @@ curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="server --token=K10d58c287785a1f
     1. Nostr `kubectl apply -k k3s/apps/nostr`
     1. Mattermost `kubectl apply -k k3s/apps/mattermost`
     1. Bitcoin `kubectl apply -k k3s/apps/bitcoin`
-
-
 

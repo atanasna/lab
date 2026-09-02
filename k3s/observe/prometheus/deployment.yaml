@@ -37,7 +37,7 @@ spec:
           volumeMounts:
             - name: prometheus-config
               mountPath: /etc/prometheus
-            - name: watch-pvc
+            - name: observe-pvc
               mountPath: /prometheus
               subPath: prometheus
           livenessProbe:
@@ -58,6 +58,6 @@ spec:
         - name: prometheus-config
           configMap:
             name: prometheus-config
-        - name: watch-pvc
+        - name: observe-pvc
           persistentVolumeClaim:
-            claimName: watch-pvc
+            claimName: observe-pvc

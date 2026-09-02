@@ -5,7 +5,7 @@ tasks:
     desc: Deploy all Layers
     cmds:
       - task: data:apply
-      - task: watch:apply
+      - task: observe:all
 
   data:
     desc: Deploy Data layer
@@ -17,4 +17,3 @@ tasks:
       - kubectl apply -k ./redis 
       - echo "Applying postgres"
       - kubectl apply -k ./postgres 
-

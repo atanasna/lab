@@ -924,12 +924,12 @@
           "text": [
             "data",
             "apps",
-            "watch"
+            "observe"
           ],
           "value": [
             "data",
             "apps",
-            "watch"
+            "observe"
           ]
         },
         "definition": "label_values(namespace)",

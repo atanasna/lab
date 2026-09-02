@@ -54,7 +54,7 @@ spec:
             - name: GF_USERS_DEFAULT_THEME
               value: light
           volumeMounts:
-            - name: watch-pvc
+            - name: observe-pvc
               mountPath: /var/lib/grafana
               subPath: grafana
             - name: grafana-datasources-config
@@ -94,6 +94,6 @@ spec:
         - name: grafana-dashboards-infra-mikrotiks
           configMap:
             name: grafana-dashboards-infra-mikrotiks
-        - name: watch-pvc
+        - name: observe-pvc
           persistentVolumeClaim:
-            claimName: watch-pvc
+            claimName: observe-pvc

@@ -4,19 +4,13 @@ kind: Namespace
 metadata:
   name: data
 ---
-# This is for shared services that handle communication between apps
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: signal
----
 # This is for shared services that handle monitoring and analysis of metrics
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: watch
+  name: observe
 ---
-# This is for shared services that handle monitoring and analysis of metrics
+# This is for application workloads
 apiVersion: v1
 kind: Namespace
 metadata:

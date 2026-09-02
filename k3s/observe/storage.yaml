@@ -2,29 +2,29 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: watch-pv
+  name: observe-pv
 spec:
   capacity:
     storage: 10Gi
   accessModes:
     - ReadWriteMany  # Multiple pods can read/write
   persistentVolumeReclaimPolicy: Retain
-  storageClassName: watch
+  storageClassName: observe
   nfs:
     server: storage.local.thedrill.eu
+    # Keep the existing directory during the namespace cutover.
     path: /volume4/k8s/watch
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: watch-pvc 
-  namespace: watch
+  name: observe-pvc
+  namespace: observe
 spec:
   accessModes:
     - ReadWriteMany
   resources:
     requests:
       storage: 10Gi
-  storageClassName: watch
-  volumeName: watch-pv
-
+  storageClassName: observe
+  volumeName: observe-pv

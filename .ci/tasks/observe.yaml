@@ -1,13 +1,13 @@
 version: "3"
 
 vars:
-  WATCH_DIR: "{{.ROOT_DIR}}/k3s/watch"
+  OBSERVE_DIR: "{{.ROOT_DIR}}/k3s/observe"
 
 tasks:
   _generic:
     internal: true
     silent: true
-    dir: "{{.WATCH_DIR}}/{{.SERVICE}}"
+    dir: "{{.OBSERVE_DIR}}/{{.SERVICE}}"
     cmds:
       - echo "------------------------------"
       - echo "Applying {{.SERVICE}}"
@@ -15,7 +15,7 @@ tasks:
       - kubectl apply -k .
 
   all:
-    desc: Deploy WATCH layer
+    desc: Deploy observe layer
     silent: true
     cmds:
       - task: storage
@@ -33,7 +33,7 @@ tasks:
       - task: alertmanager
 
   storage:
-    dir: "{{.WATCH_DIR}}"
+    dir: "{{.OBSERVE_DIR}}"
     silent: true
     cmds:
       - echo "------------------------------"
@@ -95,8 +95,8 @@ tasks:
         vars:
           SERVICE: "{{.SERVICE}}"
 
-    # desc: Deploy Watch layer
-    # dir: "{{.ROOT_DIR}}/k3s/watch"
+    # desc: Deploy observe layer
+    # dir: "{{.ROOT_DIR}}/k3s/observe"
     # cmds:
     #   - echo "Applying storage configuration"
     #   - kubectl apply -f storage.yaml
