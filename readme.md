@@ -53,6 +53,7 @@ curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="server --token=K10d58c287785a1f
     1. NodeExporter `kubectl apply -k k3s/observe/exporter-node`
     1. APIExporter `kubectl apply -k k3s/observe/exporter-api`
     1. SNMPExporter `kubectl apply -k k3s/observe/exporter-snmp`
+    1. VictoriaLogs `kubectl apply -k k3s/observe/victorialogs`
     1. Prometheus `kubectl apply -k k3s/observe/prometheus`
     1. Grafana `kubectl apply -k k3s/observe/grafana`
 1. Apply apps 
@@ -68,4 +69,3 @@ curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="server --token=K10d58c287785a1f
     1. Nostr `kubectl apply -k k3s/apps/nostr`
     1. Mattermost `kubectl apply -k k3s/apps/mattermost`
     1. Bitcoin `kubectl apply -k k3s/apps/bitcoin`
-

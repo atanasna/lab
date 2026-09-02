@@ -26,6 +26,8 @@ tasks:
       - echo ""
       - task: exporter-node
       - echo ""
+      - task: victorialogs
+      - echo ""
       - task: grafana
       - echo ""
       - task: prometheus
@@ -62,6 +64,15 @@ tasks:
   alertmanager:
     vars:
       SERVICE: alertmanager
+    desc: Deploy {{.SERVICE}}
+    cmds:
+      - task: _generic
+        vars:
+          SERVICE: "{{.SERVICE}}"
+
+  victorialogs:
+    vars:
+      SERVICE: victorialogs
     desc: Deploy {{.SERVICE}}
     cmds:
       - task: _generic
