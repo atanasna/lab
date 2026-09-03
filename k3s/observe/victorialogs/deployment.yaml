@@ -20,7 +20,7 @@ spec:
         fsGroup: 65534
       containers:
         - name: victorialogs
-          image: victoriametrics/victoria-logs:v1.52.0
+          image: victoriametrics/victoria-logs:latest
           args:
             - -storageDataPath=/victoria-logs-data
             - -retentionPeriod=7d
