@@ -17,6 +17,7 @@ spec:
       containers:
         - name: vlagent
           image: victoriametrics/vlagent:latest
+          imagePullPolicy: Always
           args:
             - -kubernetesCollector
             - -kubernetesCollector.excludeFilter=kubernetes.pod_name:=%{HOSTNAME}

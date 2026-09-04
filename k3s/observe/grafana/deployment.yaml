@@ -25,7 +25,7 @@ spec:
       containers:
         - name: grafana
           image: grafana/grafana:latest
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: Always
           ports:
             - containerPort: 3000
               name: grafana
@@ -53,6 +53,8 @@ spec:
           env:
             - name: GF_USERS_DEFAULT_THEME
               value: light
+            - name: GF_PLUGINS_PREINSTALL_SYNC
+              value: victoriametrics-metrics-datasource,victoriametrics-logs-datasource
           volumeMounts:
             - name: observe-pvc
               mountPath: /var/lib/grafana

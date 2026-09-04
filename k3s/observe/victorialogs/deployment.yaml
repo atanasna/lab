@@ -21,6 +21,7 @@ spec:
       containers:
         - name: victorialogs
           image: victoriametrics/victoria-logs:latest
+          imagePullPolicy: Always
           args:
             - -storageDataPath=/victoria-logs-data
             - -retentionPeriod=7d
