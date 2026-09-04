@@ -24,10 +24,10 @@ spec:
   ingressClassName: traefik
   tls:
   - hosts:
-    - alertmanager.thedrill.eu
+    - alerts.thedrill.eu
     secretName: alertmanager-tls
   rules:
-  - host: alertmanager.thedrill.eu
+  - host: alerts.thedrill.eu
     http:
       paths:
       - path: /

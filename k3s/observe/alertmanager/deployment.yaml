@@ -22,7 +22,7 @@ spec:
           args:
             - '--config.file=/etc/alertmanager/alertmanager.yaml'
             - '--storage.path=/alertmanager'
-            - '--web.external-url=https://alertmanager.thedrill.eu'
+            - '--web.external-url=https://alerts.thedrill.eu'
           ports:
             - containerPort: 9093
               name: alertmanager
