@@ -1,0 +1,12 @@
+groups:
+  - name: node-memory
+    interval: 30s
+    rules:
+      - alert: HighNodeMemoryUsage
+        expr: (1 - (node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes)) * 100 > 20
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High memory usage on {{ $labels.instance }}"
+          description: "Memory usage on {{ $labels.instance }} has been above 20% for 5 minutes (current: {{ $value | printf \"%.1f\" }}%)."

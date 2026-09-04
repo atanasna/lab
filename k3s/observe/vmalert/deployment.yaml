@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vmalert
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: vmalert
+  template:
+    metadata:
+      labels:
+        app: vmalert
+    spec:
+      containers:
+        - name: vmalert
+          image: victoriametrics/vmalert:latest
+          imagePullPolicy: Always
+          args:
+            - -rule=/etc/vmalert/node-memory-alert.yaml
+            - -datasource.url=http://victoriametrics:8428
+            - -notifier.url=http://alertmanager:9093
+            - -remoteRead.url=http://victoriametrics:8428
+            - -remoteWrite.url=http://victoriametrics:8428
+          ports:
+            - name: http
+              containerPort: 8880
+              protocol: TCP
+          resources:
+            requests:
+              memory: 64Mi
+            limits:
+              memory: 256Mi
+          volumeMounts:
+            - name: vmalert-rules
+              mountPath: /etc/vmalert
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: http
+            initialDelaySeconds: 30
+            periodSeconds: 30
+            timeoutSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: http
+            initialDelaySeconds: 10
+            periodSeconds: 30
+            timeoutSeconds: 10
+      volumes:
+        - name: vmalert-rules
+          configMap:
+            name: vmalert-rules

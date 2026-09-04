@@ -35,6 +35,8 @@ tasks:
       - task: prometheus
       - echo ""
       - task: alertmanager
+      - echo ""
+      - task: vmalert
 
   storage:
     dir: "{{.OBSERVE_DIR}}"
@@ -75,6 +77,15 @@ tasks:
   alertmanager:
     vars:
       SERVICE: alertmanager
+    desc: Deploy {{.SERVICE}}
+    cmds:
+      - task: _generic
+        vars:
+          SERVICE: "{{.SERVICE}}"
+
+  vmalert:
+    vars:
+      SERVICE: vmalert
     desc: Deploy {{.SERVICE}}
     cmds:
       - task: _generic
