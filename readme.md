@@ -55,6 +55,7 @@ curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="server --token=K10d58c287785a1f
     1. SNMPExporter `kubectl apply -k k3s/observe/exporter-snmp`
     1. VictoriaLogs `kubectl apply -k k3s/observe/victorialogs`
     1. Prometheus `kubectl apply -k k3s/observe/prometheus`
+    1. VictoriaMetrics `kubectl apply -k k3s/observe/victoriametrics`
     1. Grafana `kubectl apply -k k3s/observe/grafana`
 1. Apply apps 
     1. Storage `kubectl apply -f k3s/apps/storage.yaml`

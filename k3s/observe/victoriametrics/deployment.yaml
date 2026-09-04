@@ -1,0 +1,63 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: victoriametrics
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: victoriametrics
+  template:
+    metadata:
+      labels:
+        app: victoriametrics
+    spec:
+      securityContext:
+        fsGroup: 65534
+      serviceAccountName: victoriametrics
+      containers:
+        - name: victoriametrics
+          image: victoriametrics/victoria-metrics:latest
+          imagePullPolicy: Always
+          args:
+            - -promscrape.config=/etc/victoriametrics/prometheus.yaml
+            - -storageDataPath=/victoriametrics
+            - -retentionPeriod=3y
+          ports:
+            - name: http
+              containerPort: 8428
+              protocol: TCP
+          resources:
+            requests:
+              memory: 256Mi
+            limits:
+              memory: 1Gi
+          volumeMounts:
+            - name: victoriametrics-config
+              mountPath: /etc/victoriametrics
+            - name: observe-pvc
+              mountPath: /victoriametrics
+              subPath: victoriametrics
+          livenessProbe:
+            httpGet:
+              path: /-/healthy
+              port: http
+            initialDelaySeconds: 60
+            periodSeconds: 30
+            timeoutSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /-/ready
+              port: http
+            initialDelaySeconds: 10
+            periodSeconds: 30
+            timeoutSeconds: 10
+      volumes:
+        - name: victoriametrics-config
+          configMap:
+            name: victoriametrics-config
+        - name: observe-pvc
+          persistentVolumeClaim:
+            claimName: observe-pvc

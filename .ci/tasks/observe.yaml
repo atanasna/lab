@@ -28,6 +28,8 @@ tasks:
       - echo ""
       - task: victorialogs
       - echo ""
+      - task: victoriametrics
+      - echo ""
       - task: grafana
       - echo ""
       - task: prometheus
@@ -55,6 +57,15 @@ tasks:
   prometheus:
     vars:
       SERVICE: prometheus
+    desc: Deploy {{.SERVICE}}
+    cmds:
+      - task: _generic
+        vars:
+          SERVICE: "{{.SERVICE}}"
+
+  victoriametrics:
+    vars:
+      SERVICE: victoriametrics
     desc: Deploy {{.SERVICE}}
     cmds:
       - task: _generic

@@ -1,11 +1,34 @@
 apiVersion: 1
 
+# deleteDatasources:
+#   - name: VictoriaLogs
+#     orgId: 1
+#   - name: victoriametrics
+#     orgId: 1
+
 datasources:
   - name: lab
     type: prometheus
     access: proxy
     url: http://prometheus:9090
     isDefault: true
+    editable: false
+    jsonData:
+      timeInterval: "60s"
+      queryTimeout: "60s"
+      httpMethod: POST
+  - name: vlogs
+    uid: victorialogs
+    type: victoriametrics-logs-datasource
+    access: proxy
+    url: http://victorialogs:9428
+    editable: false
+    jsonData:
+      maxLines: 1000
+  - name: vmetrics
+    type: victoriametrics-metrics-datasource
+    access: proxy
+    url: http://victoriametrics:8428
     editable: false
     jsonData:
       timeInterval: "60s"
