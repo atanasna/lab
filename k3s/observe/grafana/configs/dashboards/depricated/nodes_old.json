@@ -46,8 +46,8 @@
   "panels": [
     {
       "datasource": {
-        "type": "prometheus",
-        "uid": "lab"
+        "type": "victoriametrics-metrics-datasource",
+        "uid": "vmetrics"
       },
       "description": "Overall CPU busy percentage (averaged across all cores)",
       "fieldConfig": {
@@ -132,8 +132,8 @@
     },
     {
       "datasource": {
-        "type": "prometheus",
-        "uid": "lab"
+        "type": "victoriametrics-metrics-datasource",
+        "uid": "vmetrics"
       },
       "description": "System load  over all CPU cores together",
       "fieldConfig": {
@@ -218,8 +218,8 @@
     },
     {
       "datasource": {
-        "type": "prometheus",
-        "uid": "lab"
+        "type": "victoriametrics-metrics-datasource",
+        "uid": "vmetrics"
       },
       "description": "Real RAM usage excluding cache and reclaimable memory",
       "fieldConfig": {
@@ -294,8 +294,8 @@
     },
     {
       "datasource": {
-        "type": "prometheus",
-        "uid": "lab"
+        "type": "victoriametrics-metrics-datasource",
+        "uid": "vmetrics"
       },
       "description": "Used Root FS",
       "fieldConfig": {
@@ -379,8 +379,8 @@
     },
     {
       "datasource": {
-        "type": "prometheus",
-        "uid": "lab"
+        "type": "victoriametrics-metrics-datasource",
+        "uid": "vmetrics"
       },
       "description": "",
       "fieldConfig": {
@@ -454,8 +454,8 @@
     },
     {
       "datasource": {
-        "type": "prometheus",
-        "uid": "PA51146D38077FF99"
+        "type": "victoriametrics-metrics-datasource",
+        "uid": "vmetrics"
       },
       "fieldConfig": {
         "defaults": {
@@ -523,8 +523,8 @@
     },
     {
       "datasource": {
-        "type": "prometheus",
-        "uid": "lab"
+        "type": "victoriametrics-metrics-datasource",
+        "uid": "vmetrics"
       },
       "description": "",
       "fieldConfig": {
@@ -610,8 +610,8 @@
     },
     {
       "datasource": {
-        "type": "prometheus",
-        "uid": "lab"
+        "type": "victoriametrics-metrics-datasource",
+        "uid": "vmetrics"
       },
       "description": "",
       "fieldConfig": {
@@ -701,8 +701,8 @@
       "panels": [
         {
           "datasource": {
-            "type": "prometheus",
-            "uid": "lab"
+            "type": "victoriametrics-metrics-datasource",
+            "uid": "vmetrics"
           },
           "description": "CPU time usage split by state, normalized across all CPU cores",
           "fieldConfig": {
@@ -1037,8 +1037,8 @@
         },
         {
           "datasource": {
-            "type": "prometheus",
-            "uid": "lab"
+            "type": "victoriametrics-metrics-datasource",
+            "uid": "vmetrics"
           },
           "description": "System load average over 1, 5, and 15 minutes. Reflects the number of active or waiting processes. Values above CPU core count may indicate overload",
           "fieldConfig": {
@@ -1212,8 +1212,8 @@
       "panels": [
         {
           "datasource": {
-            "type": "prometheus",
-            "uid": "lab"
+            "type": "victoriametrics-metrics-datasource",
+            "uid": "vmetrics"
           },
           "description": "RAM and swap usage overview, including caches",
           "fieldConfig": {
@@ -1415,8 +1415,8 @@
       "panels": [
         {
           "datasource": {
-            "type": "prometheus",
-            "uid": "lab"
+            "type": "victoriametrics-metrics-datasource",
+            "uid": "vmetrics"
           },
           "description": "Percentage of filesystem space used for each mounted device",
           "fieldConfig": {
@@ -1512,8 +1512,8 @@
         },
         {
           "datasource": {
-            "type": "prometheus",
-            "uid": "lab"
+            "type": "victoriametrics-metrics-datasource",
+            "uid": "vmetrics"
           },
           "description": "Disk usage (used = total - available) per mountpoint",
           "fieldConfig": {
@@ -1612,8 +1612,8 @@
         },
         {
           "datasource": {
-            "type": "prometheus",
-            "uid": "lab"
+            "type": "victoriametrics-metrics-datasource",
+            "uid": "vmetrics"
           },
           "description": "Amount of available disk space per mounted filesystem, excluding rootfs. Based on block availability to non-root users",
           "fieldConfig": {
@@ -1750,8 +1750,8 @@
       "panels": [
         {
           "datasource": {
-            "type": "prometheus",
-            "uid": "lab"
+            "type": "victoriametrics-metrics-datasource",
+            "uid": "vmetrics"
           },
           "description": "Monitors hardware sensor temperatures and critical thresholds as exposed by Linux hwmon. Includes CPU, GPU, and motherboard sensors where available",
           "fieldConfig": {
@@ -1933,8 +1933,8 @@
     },
     {
       "datasource": {
-        "type": "prometheus",
-        "uid": "lab"
+        "type": "victoriametrics-metrics-datasource",
+        "uid": "vmetrics"
       },
       "description": "Duration of each individual collector executed during a Node Exporter scrape. Useful for identifying slow or failing collectors",
       "fieldConfig": {
@@ -2063,8 +2063,8 @@
           "value": "k3s01"
         },
         "datasource": {
-          "type": "prometheus",
-          "uid": "PA51146D38077FF99"
+          "type": "victoriametrics-metrics-datasource",
+          "uid": "vmetrics"
         },
         "definition": "label_values(node_hwmon_temp_celsius,instance)",
         "includeAll": false,

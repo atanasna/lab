@@ -1,11 +1,5 @@
 apiVersion: 1
 
-# deleteDatasources:
-#   - name: VictoriaLogs
-#     orgId: 1
-#   - name: victoriametrics
-#     orgId: 1
-
 datasources:
   - name: lab
     type: prometheus
@@ -26,6 +20,7 @@ datasources:
     jsonData:
       maxLines: 1000
   - name: vmetrics
+    uid: vmetrics
     type: victoriametrics-metrics-datasource
     access: proxy
     url: http://victoriametrics:8428

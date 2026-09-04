@@ -43,8 +43,8 @@
   "panels": [
     {
       "datasource": {
-        "type": "prometheus",
-        "uid": "lab"
+        "type": "victoriametrics-metrics-datasource",
+        "uid": "vmetrics"
       },
       "fieldConfig": {
         "defaults": {
@@ -104,8 +104,8 @@
       "targets": [
         {
           "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_GRAFANACLOUD-SHIZUN-PROM}"
+            "type": "victoriametrics-metrics-datasource",
+            "uid": "vmetrics"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -125,8 +125,8 @@
     },
     {
       "datasource": {
-        "type": "prometheus",
-        "uid": "lab"
+        "type": "victoriametrics-metrics-datasource",
+        "uid": "vmetrics"
       },
       "fieldConfig": {
         "defaults": {
@@ -186,8 +186,8 @@
       "targets": [
         {
           "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_GRAFANACLOUD-SHIZUN-PROM}"
+            "type": "victoriametrics-metrics-datasource",
+            "uid": "vmetrics"
           },
           "editorMode": "code",
           "exemplar": true,
@@ -207,8 +207,8 @@
     },
     {
       "datasource": {
-        "type": "prometheus",
-        "uid": "lab"
+        "type": "victoriametrics-metrics-datasource",
+        "uid": "vmetrics"
       },
       "fieldConfig": {
         "defaults": {
@@ -268,8 +268,8 @@
       "targets": [
         {
           "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_GRAFANACLOUD-SHIZUN-PROM}"
+            "type": "victoriametrics-metrics-datasource",
+            "uid": "vmetrics"
           },
           "editorMode": "code",
           "exemplar": true,
@@ -289,8 +289,8 @@
     },
     {
       "datasource": {
-        "type": "prometheus",
-        "uid": "lab"
+        "type": "victoriametrics-metrics-datasource",
+        "uid": "vmetrics"
       },
       "fieldConfig": {
         "defaults": {
@@ -350,8 +350,8 @@
       "targets": [
         {
           "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_GRAFANACLOUD-SHIZUN-PROM}"
+            "type": "victoriametrics-metrics-datasource",
+            "uid": "vmetrics"
           },
           "editorMode": "code",
           "exemplar": true,
@@ -371,8 +371,8 @@
     },
     {
       "datasource": {
-        "type": "prometheus",
-        "uid": "lab"
+        "type": "victoriametrics-metrics-datasource",
+        "uid": "vmetrics"
       },
       "fieldConfig": {
         "defaults": {
@@ -432,8 +432,8 @@
       "targets": [
         {
           "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_GRAFANACLOUD-SHIZUN-PROM}"
+            "type": "victoriametrics-metrics-datasource",
+            "uid": "vmetrics"
           },
           "editorMode": "code",
           "exemplar": true,
@@ -453,8 +453,8 @@
     },
     {
       "datasource": {
-        "type": "prometheus",
-        "uid": "lab"
+        "type": "victoriametrics-metrics-datasource",
+        "uid": "vmetrics"
       },
       "fieldConfig": {
         "defaults": {
@@ -534,8 +534,8 @@
       "targets": [
         {
           "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_GRAFANACLOUD-SHIZUN-PROM}"
+            "type": "victoriametrics-metrics-datasource",
+            "uid": "vmetrics"
           },
           "editorMode": "code",
           "exemplar": true,
@@ -554,8 +554,8 @@
     },
     {
       "datasource": {
-        "type": "prometheus",
-        "uid": "lab"
+        "type": "victoriametrics-metrics-datasource",
+        "uid": "vmetrics"
       },
       "fieldConfig": {
         "defaults": {
@@ -633,8 +633,8 @@
       "targets": [
         {
           "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_GRAFANACLOUD-SHIZUN-PROM}"
+            "type": "victoriametrics-metrics-datasource",
+            "uid": "vmetrics"
           },
           "editorMode": "code",
           "exemplar": true,
@@ -654,8 +654,8 @@
     },
     {
       "datasource": {
-        "type": "prometheus",
-        "uid": "lab"
+        "type": "victoriametrics-metrics-datasource",
+        "uid": "vmetrics"
       },
       "fieldConfig": {
         "defaults": {
@@ -733,8 +733,8 @@
       "targets": [
         {
           "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_GRAFANACLOUD-SHIZUN-PROM}"
+            "type": "victoriametrics-metrics-datasource",
+            "uid": "vmetrics"
           },
           "editorMode": "code",
           "exemplar": true,
@@ -753,8 +753,8 @@
     },
     {
       "datasource": {
-        "type": "prometheus",
-        "uid": "lab"
+        "type": "victoriametrics-metrics-datasource",
+        "uid": "vmetrics"
       },
       "fieldConfig": {
         "defaults": {
@@ -832,8 +832,8 @@
       "targets": [
         {
           "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_GRAFANACLOUD-SHIZUN-PROM}"
+            "type": "victoriametrics-metrics-datasource",
+            "uid": "vmetrics"
           },
           "editorMode": "code",
           "exemplar": true,
@@ -871,8 +871,8 @@
           ]
         },
         "datasource": {
-          "type": "prometheus",
-          "uid": "lab"
+          "type": "victoriametrics-metrics-datasource",
+          "uid": "vmetrics"
         },
         "definition": "label_values(container_memory_usage_bytes{image!=\"\"}, job)",
         "description": "",
@@ -899,8 +899,8 @@
           ]
         },
         "datasource": {
-          "type": "prometheus",
-          "uid": "lab"
+          "type": "victoriametrics-metrics-datasource",
+          "uid": "vmetrics"
         },
         "definition": "label_values(container_memory_usage_bytes{job=~\"$job\"},instance)",
         "description": "",
@@ -955,8 +955,8 @@
           ]
         },
         "datasource": {
-          "type": "prometheus",
-          "uid": "lab"
+          "type": "victoriametrics-metrics-datasource",
+          "uid": "vmetrics"
         },
         "definition": "label_values(container_memory_usage_bytes{job=~\"$job\", instance=~\"$node\", namespace=~\"$namespace\"},container)",
         "includeAll": true,

@@ -43,8 +43,8 @@
     },
     {
       "datasource": {
-        "type": "prometheus",
-        "uid": "PA51146D38077FF99"
+        "type": "victoriametrics-metrics-datasource",
+        "uid": "vmetrics"
       },
       "description": "",
       "fieldConfig": {
@@ -121,8 +121,8 @@
       "targets": [
         {
           "datasource": {
-            "type": "prometheus",
-            "uid": "PA51146D38077FF99"
+            "type": "victoriametrics-metrics-datasource",
+            "uid": "vmetrics"
           },
           "editorMode": "code",
           "expr": "100 - ssCpuIdle{job=~'$job',instance=~'$instance'}",
@@ -139,8 +139,8 @@
     },
     {
       "datasource": {
-        "type": "prometheus",
-        "uid": "PA51146D38077FF99"
+        "type": "victoriametrics-metrics-datasource",
+        "uid": "vmetrics"
       },
       "description": "",
       "fieldConfig": {
@@ -217,8 +217,8 @@
       "targets": [
         {
           "datasource": {
-            "type": "prometheus",
-            "uid": "PA51146D38077FF99"
+            "type": "victoriametrics-metrics-datasource",
+            "uid": "vmetrics"
           },
           "editorMode": "code",
           "expr": "temperature{job=~'$job',instance=~'$instance'}",
@@ -235,8 +235,8 @@
     },
     {
       "datasource": {
-        "type": "prometheus",
-        "uid": "PA51146D38077FF99"
+        "type": "victoriametrics-metrics-datasource",
+        "uid": "vmetrics"
       },
       "description": "",
       "fieldConfig": {
@@ -304,8 +304,8 @@
       "targets": [
         {
           "datasource": {
-            "type": "prometheus",
-            "uid": "PA51146D38077FF99"
+            "type": "victoriametrics-metrics-datasource",
+            "uid": "vmetrics"
           },
           "editorMode": "code",
           "expr": "(100 / memTotalReal{job=~'$job',instance=~'$instance'}) * (memTotalReal{job=~'$job',instance=~'$instance'} - memAvailReal{job=~'$job',instance=~'$instance'} - memCached{job=~'$job',instance=~'$instance'} - memBuffer{job=~'$job',instance=~'$instance'})",
@@ -322,8 +322,8 @@
     },
     {
       "datasource": {
-        "type": "prometheus",
-        "uid": "PA51146D38077FF99"
+        "type": "victoriametrics-metrics-datasource",
+        "uid": "vmetrics"
       },
       "description": "",
       "fieldConfig": {
@@ -400,8 +400,8 @@
       "targets": [
         {
           "datasource": {
-            "type": "prometheus",
-            "uid": "PA51146D38077FF99"
+            "type": "victoriametrics-metrics-datasource",
+            "uid": "vmetrics"
           },
           "editorMode": "code",
           "expr": "(memTotalSwap{job=~'$job',instance=~'$instance'} - memAvailSwap{job=~'$job',instance=~'$instance'}) / memTotalSwap{job=~'$job',instance=~'$instance'} * 100",
@@ -416,8 +416,8 @@
     },
     {
       "datasource": {
-        "type": "prometheus",
-        "uid": "PA51146D38077FF99"
+        "type": "victoriametrics-metrics-datasource",
+        "uid": "vmetrics"
       },
       "description": "",
       "fieldConfig": {
@@ -522,8 +522,8 @@
       "targets": [
         {
           "datasource": {
-            "type": "prometheus",
-            "uid": "PA51146D38077FF99"
+            "type": "victoriametrics-metrics-datasource",
+            "uid": "vmetrics"
           },
           "editorMode": "code",
           "exemplar": true,
@@ -537,8 +537,8 @@
         },
         {
           "datasource": {
-            "type": "prometheus",
-            "uid": "PA51146D38077FF99"
+            "type": "victoriametrics-metrics-datasource",
+            "uid": "vmetrics"
           },
           "editorMode": "code",
           "exemplar": true,
@@ -551,8 +551,8 @@
         },
         {
           "datasource": {
-            "type": "prometheus",
-            "uid": "PA51146D38077FF99"
+            "type": "victoriametrics-metrics-datasource",
+            "uid": "vmetrics"
           },
           "editorMode": "code",
           "exemplar": true,
@@ -565,8 +565,8 @@
         },
         {
           "datasource": {
-            "type": "prometheus",
-            "uid": "PA51146D38077FF99"
+            "type": "victoriametrics-metrics-datasource",
+            "uid": "vmetrics"
           },
           "editorMode": "code",
           "exemplar": true,
@@ -658,8 +658,8 @@
     },
     {
       "datasource": {
-        "type": "prometheus",
-        "uid": "PA51146D38077FF99"
+        "type": "victoriametrics-metrics-datasource",
+        "uid": "vmetrics"
       },
       "fieldConfig": {
         "defaults": {
@@ -841,8 +841,8 @@
       "targets": [
         {
           "datasource": {
-            "type": "prometheus",
-            "uid": "PA51146D38077FF99"
+            "type": "victoriametrics-metrics-datasource",
+            "uid": "vmetrics"
           },
           "editorMode": "code",
           "exemplar": true,
@@ -855,8 +855,8 @@
         },
         {
           "datasource": {
-            "type": "prometheus",
-            "uid": "PA51146D38077FF99"
+            "type": "victoriametrics-metrics-datasource",
+            "uid": "vmetrics"
           },
           "editorMode": "code",
           "exemplar": true,
@@ -870,8 +870,8 @@
         },
         {
           "datasource": {
-            "type": "prometheus",
-            "uid": "PA51146D38077FF99"
+            "type": "victoriametrics-metrics-datasource",
+            "uid": "vmetrics"
           },
           "editorMode": "code",
           "exemplar": true,
@@ -931,8 +931,8 @@
     },
     {
       "datasource": {
-        "type": "prometheus",
-        "uid": "PA51146D38077FF99"
+        "type": "victoriametrics-metrics-datasource",
+        "uid": "vmetrics"
       },
       "fieldConfig": {
         "defaults": {
@@ -1250,8 +1250,8 @@
       "targets": [
         {
           "datasource": {
-            "type": "prometheus",
-            "uid": "PA51146D38077FF99"
+            "type": "victoriametrics-metrics-datasource",
+            "uid": "vmetrics"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -1265,8 +1265,8 @@
         },
         {
           "datasource": {
-            "type": "prometheus",
-            "uid": "PA51146D38077FF99"
+            "type": "victoriametrics-metrics-datasource",
+            "uid": "vmetrics"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -1280,8 +1280,8 @@
         },
         {
           "datasource": {
-            "type": "prometheus",
-            "uid": "PA51146D38077FF99"
+            "type": "victoriametrics-metrics-datasource",
+            "uid": "vmetrics"
           },
           "editorMode": "code",
           "exemplar": true,
@@ -1378,8 +1378,8 @@
     },
     {
       "datasource": {
-        "type": "prometheus",
-        "uid": "PA51146D38077FF99"
+        "type": "victoriametrics-metrics-datasource",
+        "uid": "vmetrics"
       },
       "fieldConfig": {
         "defaults": {
@@ -1627,8 +1627,8 @@
       "targets": [
         {
           "datasource": {
-            "type": "prometheus",
-            "uid": "PA51146D38077FF99"
+            "type": "victoriametrics-metrics-datasource",
+            "uid": "vmetrics"
           },
           "editorMode": "code",
           "exemplar": true,
@@ -1641,8 +1641,8 @@
         },
         {
           "datasource": {
-            "type": "prometheus",
-            "uid": "PA51146D38077FF99"
+            "type": "victoriametrics-metrics-datasource",
+            "uid": "vmetrics"
           },
           "editorMode": "code",
           "exemplar": true,
@@ -1655,8 +1655,8 @@
         },
         {
           "datasource": {
-            "type": "prometheus",
-            "uid": "PA51146D38077FF99"
+            "type": "victoriametrics-metrics-datasource",
+            "uid": "vmetrics"
           },
           "editorMode": "code",
           "exemplar": true,
@@ -1669,8 +1669,8 @@
         },
         {
           "datasource": {
-            "type": "prometheus",
-            "uid": "PA51146D38077FF99"
+            "type": "victoriametrics-metrics-datasource",
+            "uid": "vmetrics"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -1684,8 +1684,8 @@
         },
         {
           "datasource": {
-            "type": "prometheus",
-            "uid": "PA51146D38077FF99"
+            "type": "victoriametrics-metrics-datasource",
+            "uid": "vmetrics"
           },
           "editorMode": "code",
           "expr": "disk",
@@ -1750,8 +1750,8 @@
     },
     {
       "datasource": {
-        "type": "prometheus",
-        "uid": "PA51146D38077FF99"
+        "type": "victoriametrics-metrics-datasource",
+        "uid": "vmetrics"
       },
       "description": "",
       "fieldConfig": {
@@ -1804,8 +1804,8 @@
       "targets": [
         {
           "datasource": {
-            "type": "prometheus",
-            "uid": "PA51146D38077FF99"
+            "type": "victoriametrics-metrics-datasource",
+            "uid": "vmetrics"
           },
           "editorMode": "code",
           "exemplar": true,
@@ -1833,8 +1833,8 @@
       "panels": [
         {
           "datasource": {
-            "type": "prometheus",
-            "uid": "PA51146D38077FF99"
+            "type": "victoriametrics-metrics-datasource",
+            "uid": "vmetrics"
           },
           "description": "",
           "fieldConfig": {
@@ -1928,8 +1928,8 @@
           "targets": [
             {
               "datasource": {
-                "type": "prometheus",
-                "uid": "PA51146D38077FF99"
+                "type": "victoriametrics-metrics-datasource",
+                "uid": "vmetrics"
               },
               "editorMode": "code",
               "expr": "ssCpuUser{job=~'$job',instance=~'$instance'}",
@@ -1942,8 +1942,8 @@
             },
             {
               "datasource": {
-                "type": "prometheus",
-                "uid": "PA51146D38077FF99"
+                "type": "victoriametrics-metrics-datasource",
+                "uid": "vmetrics"
               },
               "editorMode": "code",
               "expr": "ssCpuSystem{job=~'$job',instance=~'$instance'}",
@@ -1954,8 +1954,8 @@
             },
             {
               "datasource": {
-                "type": "prometheus",
-                "uid": "PA51146D38077FF99"
+                "type": "victoriametrics-metrics-datasource",
+                "uid": "vmetrics"
               },
               "editorMode": "code",
               "expr": "100 - ssCpuIdle{job=~'$job',instance=~'$instance'} - ssCpuUser{job=~'$job',instance=~'$instance'} - ssCpuSystem{job=~'$job',instance=~'$instance'}",
@@ -1970,8 +1970,8 @@
         },
         {
           "datasource": {
-            "type": "prometheus",
-            "uid": "PA51146D38077FF99"
+            "type": "victoriametrics-metrics-datasource",
+            "uid": "vmetrics"
           },
           "fieldConfig": {
             "defaults": {
@@ -2093,8 +2093,8 @@
           "targets": [
             {
               "datasource": {
-                "type": "prometheus",
-                "uid": "PA51146D38077FF99"
+                "type": "victoriametrics-metrics-datasource",
+                "uid": "vmetrics"
               },
               "editorMode": "code",
               "expr": "laLoadInt{job=~'$job',instance=~'$instance', laNames=\"Load-1\"} / 100",
@@ -2107,8 +2107,8 @@
             },
             {
               "datasource": {
-                "type": "prometheus",
-                "uid": "PA51146D38077FF99"
+                "type": "victoriametrics-metrics-datasource",
+                "uid": "vmetrics"
               },
               "editorMode": "code",
               "expr": "laLoadInt{job=~'$job',instance=~'$instance', laNames=\"Load-5\"} / 100",
@@ -2120,8 +2120,8 @@
             },
             {
               "datasource": {
-                "type": "prometheus",
-                "uid": "PA51146D38077FF99"
+                "type": "victoriametrics-metrics-datasource",
+                "uid": "vmetrics"
               },
               "editorMode": "code",
               "expr": "laLoadInt{job=~'$job',instance=~'$instance', laNames=\"Load-15\"} / 100",
@@ -2150,8 +2150,8 @@
       "panels": [
         {
           "datasource": {
-            "type": "prometheus",
-            "uid": "PA51146D38077FF99"
+            "type": "victoriametrics-metrics-datasource",
+            "uid": "vmetrics"
           },
           "description": "",
           "fieldConfig": {
@@ -2245,8 +2245,8 @@
           "targets": [
             {
               "datasource": {
-                "type": "prometheus",
-                "uid": "PA51146D38077FF99"
+                "type": "victoriametrics-metrics-datasource",
+                "uid": "vmetrics"
               },
               "editorMode": "code",
               "expr": "(100 / memTotalReal{job=~'$job',instance=~'$instance'}) * (memTotalReal{job=~'$job',instance=~'$instance'} - memAvailReal{job=~'$job',instance=~'$instance'} - memCached{job=~'$job',instance=~'$instance'} - memBuffer{job=~'$job',instance=~'$instance'})",
@@ -2264,8 +2264,8 @@
         },
         {
           "datasource": {
-            "type": "prometheus",
-            "uid": "PA51146D38077FF99"
+            "type": "victoriametrics-metrics-datasource",
+            "uid": "vmetrics"
           },
           "description": "",
           "fieldConfig": {
@@ -2392,8 +2392,8 @@
           "targets": [
             {
               "datasource": {
-                "type": "prometheus",
-                "uid": "PA51146D38077FF99"
+                "type": "victoriametrics-metrics-datasource",
+                "uid": "vmetrics"
               },
               "editorMode": "code",
               "exemplar": true,
@@ -2406,8 +2406,8 @@
             },
             {
               "datasource": {
-                "type": "prometheus",
-                "uid": "PA51146D38077FF99"
+                "type": "victoriametrics-metrics-datasource",
+                "uid": "vmetrics"
               },
               "editorMode": "code",
               "expr": "memTotalReal{job=~'$job',instance=~'$instance'} - (memShared{job=~'$job',instance=~'$instance'} + memCached{job=~'$job',instance=~'$instance'} + memBuffer{job=~'$job',instance=~'$instance'} + memAvailReal{job=~'$job',instance=~'$instance'})",
@@ -2419,8 +2419,8 @@
             },
             {
               "datasource": {
-                "type": "prometheus",
-                "uid": "PA51146D38077FF99"
+                "type": "victoriametrics-metrics-datasource",
+                "uid": "vmetrics"
               },
               "editorMode": "code",
               "expr": "memBuffer{job=~'$job',instance=~'$instance'}",
@@ -2432,8 +2432,8 @@
             },
             {
               "datasource": {
-                "type": "prometheus",
-                "uid": "PA51146D38077FF99"
+                "type": "victoriametrics-metrics-datasource",
+                "uid": "vmetrics"
               },
               "editorMode": "code",
               "expr": "memCached{job=~'$job',instance=~'$instance'}",
@@ -2445,8 +2445,8 @@
             },
             {
               "datasource": {
-                "type": "prometheus",
-                "uid": "PA51146D38077FF99"
+                "type": "victoriametrics-metrics-datasource",
+                "uid": "vmetrics"
               },
               "editorMode": "code",
               "expr": "memShared{job=~'$job',instance=~'$instance'}",
@@ -2458,8 +2458,8 @@
             },
             {
               "datasource": {
-                "type": "prometheus",
-                "uid": "PA51146D38077FF99"
+                "type": "victoriametrics-metrics-datasource",
+                "uid": "vmetrics"
               },
               "editorMode": "code",
               "exemplar": true,
@@ -2476,8 +2476,8 @@
         },
         {
           "datasource": {
-            "type": "prometheus",
-            "uid": "PA51146D38077FF99"
+            "type": "victoriametrics-metrics-datasource",
+            "uid": "vmetrics"
           },
           "description": "",
           "fieldConfig": {
@@ -2581,8 +2581,8 @@
           "targets": [
             {
               "datasource": {
-                "type": "prometheus",
-                "uid": "PA51146D38077FF99"
+                "type": "victoriametrics-metrics-datasource",
+                "uid": "vmetrics"
               },
               "editorMode": "code",
               "expr": "(memTotalSwap{job=~'$job',instance=~'$instance'} - memAvailSwap{job=~'$job',instance=~'$instance'}) / memTotalSwap{job=~'$job',instance=~'$instance'} * 100",
@@ -2599,8 +2599,8 @@
         },
         {
           "datasource": {
-            "type": "prometheus",
-            "uid": "PA51146D38077FF99"
+            "type": "victoriametrics-metrics-datasource",
+            "uid": "vmetrics"
           },
           "description": "",
           "fieldConfig": {
@@ -2737,8 +2737,8 @@
           "targets": [
             {
               "datasource": {
-                "type": "prometheus",
-                "uid": "PA51146D38077FF99"
+                "type": "victoriametrics-metrics-datasource",
+                "uid": "vmetrics"
               },
               "editorMode": "code",
               "expr": "memTotalSwap{job=~'$job',instance=~'$instance'}",
@@ -2749,8 +2749,8 @@
             },
             {
               "datasource": {
-                "type": "prometheus",
-                "uid": "PA51146D38077FF99"
+                "type": "victoriametrics-metrics-datasource",
+                "uid": "vmetrics"
               },
               "editorMode": "code",
               "expr": "(memTotalSwap{job=~'$job',instance=~'$instance'} - memAvailSwap{job=~'$job',instance=~'$instance'})",
@@ -2763,8 +2763,8 @@
             },
             {
               "datasource": {
-                "type": "prometheus",
-                "uid": "PA51146D38077FF99"
+                "type": "victoriametrics-metrics-datasource",
+                "uid": "vmetrics"
               },
               "editorMode": "code",
               "expr": "memAvailSwap{job=~'$job',instance=~'$instance'}",
@@ -2793,8 +2793,8 @@
       "panels": [
         {
           "datasource": {
-            "type": "prometheus",
-            "uid": "PA51146D38077FF99"
+            "type": "victoriametrics-metrics-datasource",
+            "uid": "vmetrics"
           },
           "description": "",
           "fieldConfig": {
@@ -2909,8 +2909,8 @@
           "targets": [
             {
               "datasource": {
-                "type": "prometheus",
-                "uid": "PA51146D38077FF99"
+                "type": "victoriametrics-metrics-datasource",
+                "uid": "vmetrics"
               },
               "editorMode": "code",
               "expr": "100-(100/raidTotalSize{job=~'$job',instance=~'$instance',raidName=\"Volume 1\"}*raidFreeSize{job=~'$job',instance=~'$instance',raidName=\"Volume 1\"})",
@@ -2924,8 +2924,8 @@
             },
             {
               "datasource": {
-                "type": "prometheus",
-                "uid": "PA51146D38077FF99"
+                "type": "victoriametrics-metrics-datasource",
+                "uid": "vmetrics"
               },
               "editorMode": "code",
               "expr": "100-(100/raidTotalSize{job=~'$job',instance=~'$instance',raidName=\"Volume 2\"}*raidFreeSize{job=~'$job',instance=~'$instance',raidName=\"Volume 2\"})",
@@ -2939,8 +2939,8 @@
             },
             {
               "datasource": {
-                "type": "prometheus",
-                "uid": "PA51146D38077FF99"
+                "type": "victoriametrics-metrics-datasource",
+                "uid": "vmetrics"
               },
               "editorMode": "code",
               "expr": "100-(100/raidTotalSize{job=~'$job',instance=~'$instance',raidName=\"Volume 3\"}*raidFreeSize{job=~'$job',instance=~'$instance',raidName=\"Volume 3\"})",
@@ -2954,8 +2954,8 @@
             },
             {
               "datasource": {
-                "type": "prometheus",
-                "uid": "PA51146D38077FF99"
+                "type": "victoriametrics-metrics-datasource",
+                "uid": "vmetrics"
               },
               "editorMode": "code",
               "expr": "100-(100/raidTotalSize{job=~'$job',instance=~'$instance',raidName=\"Volume 4\"}*raidFreeSize{job=~'$job',instance=~'$instance',raidName=\"Volume 4\"})",
@@ -2969,8 +2969,8 @@
             },
             {
               "datasource": {
-                "type": "prometheus",
-                "uid": "PA51146D38077FF99"
+                "type": "victoriametrics-metrics-datasource",
+                "uid": "vmetrics"
               },
               "editorMode": "code",
               "expr": "100-(100/raidTotalSize{job=~'$job',instance=~'$instance',raidName=\"Volume 5\"}*raidFreeSize{job=~'$job',instance=~'$instance',raidName=\"Volume 5\"})",
@@ -2984,8 +2984,8 @@
             },
             {
               "datasource": {
-                "type": "prometheus",
-                "uid": "PA51146D38077FF99"
+                "type": "victoriametrics-metrics-datasource",
+                "uid": "vmetrics"
               },
               "editorMode": "code",
               "expr": "100-(100/raidTotalSize{job=~'$job',instance=~'$instance',raidName=\"Volume 6\"}*raidFreeSize{job=~'$job',instance=~'$instance',raidName=\"Volume 6\"})",
@@ -3003,8 +3003,8 @@
         },
         {
           "datasource": {
-            "type": "prometheus",
-            "uid": "PA51146D38077FF99"
+            "type": "victoriametrics-metrics-datasource",
+            "uid": "vmetrics"
           },
           "description": "",
           "fieldConfig": {
@@ -3109,8 +3109,8 @@
           "targets": [
             {
               "datasource": {
-                "type": "prometheus",
-                "uid": "PA51146D38077FF99"
+                "type": "victoriametrics-metrics-datasource",
+                "uid": "vmetrics"
               },
               "editorMode": "code",
               "expr": "raidTotalSize{job=~'$job',instance=~'$instance',raidName=\"Volume 1\"} - raidFreeSize{job=~'$job',instance=~'$instance',raidName=\"Volume 1\"}",
@@ -3124,8 +3124,8 @@
             },
             {
               "datasource": {
-                "type": "prometheus",
-                "uid": "PA51146D38077FF99"
+                "type": "victoriametrics-metrics-datasource",
+                "uid": "vmetrics"
               },
               "editorMode": "code",
               "expr": "raidTotalSize{job=~'$job',instance=~'$instance',raidName=\"Volume 2\"} - raidFreeSize{job=~'$job',instance=~'$instance',raidName=\"Volume 2\"}",
@@ -3139,8 +3139,8 @@
             },
             {
               "datasource": {
-                "type": "prometheus",
-                "uid": "PA51146D38077FF99"
+                "type": "victoriametrics-metrics-datasource",
+                "uid": "vmetrics"
               },
               "editorMode": "code",
               "expr": "raidTotalSize{job=~'$job',instance=~'$instance',raidName=\"Volume 3\"} - raidFreeSize{job=~'$job',instance=~'$instance',raidName=\"Volume 3\"}",
@@ -3154,8 +3154,8 @@
             },
             {
               "datasource": {
-                "type": "prometheus",
-                "uid": "PA51146D38077FF99"
+                "type": "victoriametrics-metrics-datasource",
+                "uid": "vmetrics"
               },
               "editorMode": "code",
               "expr": "raidTotalSize{job=~'$job',instance=~'$instance',raidName=\"Volume 4\"} - raidFreeSize{job=~'$job',instance=~'$instance',raidName=\"Volume 4\"}",
@@ -3169,8 +3169,8 @@
             },
             {
               "datasource": {
-                "type": "prometheus",
-                "uid": "PA51146D38077FF99"
+                "type": "victoriametrics-metrics-datasource",
+                "uid": "vmetrics"
               },
               "editorMode": "code",
               "expr": "raidTotalSize{job=~'$job',instance=~'$instance',raidName=\"Volume 5\"} - raidFreeSize{job=~'$job',instance=~'$instance',raidName=\"Volume 5\"}",
@@ -3184,8 +3184,8 @@
             },
             {
               "datasource": {
-                "type": "prometheus",
-                "uid": "PA51146D38077FF99"
+                "type": "victoriametrics-metrics-datasource",
+                "uid": "vmetrics"
               },
               "editorMode": "code",
               "expr": "raidTotalSize{job=~'$job',instance=~'$instance',raidName=\"Volume 6\"} - raidFreeSize{job=~'$job',instance=~'$instance',raidName=\"Volume 6\"}",
@@ -3217,8 +3217,8 @@
       "panels": [
         {
           "datasource": {
-            "type": "prometheus",
-            "uid": "PA51146D38077FF99"
+            "type": "victoriametrics-metrics-datasource",
+            "uid": "vmetrics"
           },
           "description": "",
           "fieldConfig": {
@@ -3305,8 +3305,8 @@
           "targets": [
             {
               "datasource": {
-                "type": "prometheus",
-                "uid": "PA51146D38077FF99"
+                "type": "victoriametrics-metrics-datasource",
+                "uid": "vmetrics"
               },
               "editorMode": "code",
               "exemplar": true,
@@ -3325,8 +3325,8 @@
         },
         {
           "datasource": {
-            "type": "prometheus",
-            "uid": "PA51146D38077FF99"
+            "type": "victoriametrics-metrics-datasource",
+            "uid": "vmetrics"
           },
           "description": "",
           "fieldConfig": {
@@ -3413,8 +3413,8 @@
           "targets": [
             {
               "datasource": {
-                "type": "prometheus",
-                "uid": "PA51146D38077FF99"
+                "type": "victoriametrics-metrics-datasource",
+                "uid": "vmetrics"
               },
               "editorMode": "code",
               "exemplar": true,
@@ -3448,8 +3448,8 @@
       "panels": [
         {
           "datasource": {
-            "type": "prometheus",
-            "uid": "PA51146D38077FF99"
+            "type": "victoriametrics-metrics-datasource",
+            "uid": "vmetrics"
           },
           "description": "",
           "fieldConfig": {
@@ -3538,8 +3538,8 @@
           "targets": [
             {
               "datasource": {
-                "type": "prometheus",
-                "uid": "PA51146D38077FF99"
+                "type": "victoriametrics-metrics-datasource",
+                "uid": "vmetrics"
               },
               "editorMode": "code",
               "exemplar": false,
@@ -3593,8 +3593,8 @@
           "value": "storage.local.thedrill.eu"
         },
         "datasource": {
-          "type": "prometheus",
-          "uid": "PA51146D38077FF99"
+          "type": "victoriametrics-metrics-datasource",
+          "uid": "vmetrics"
         },
         "definition": "label_values(modelName, instance)",
         "includeAll": false,
@@ -3615,8 +3615,8 @@
           "value": "synology-nas"
         },
         "datasource": {
-          "type": "prometheus",
-          "uid": "PA51146D38077FF99"
+          "type": "victoriametrics-metrics-datasource",
+          "uid": "vmetrics"
         },
         "definition": "label_values(modelName, job)",
         "includeAll": false,
@@ -3657,8 +3657,8 @@
           ]
         },
         "datasource": {
-          "type": "prometheus",
-          "uid": "PA51146D38077FF99"
+          "type": "victoriametrics-metrics-datasource",
+          "uid": "vmetrics"
         },
         "definition": "label_values(ifName{job=~'$job',instance=~'$instance'},ifName)",
         "hide": 2,

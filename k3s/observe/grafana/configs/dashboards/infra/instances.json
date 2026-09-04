@@ -46,8 +46,8 @@
   "panels": [
     {
       "datasource": {
-        "type": "prometheus",
-        "uid": "PA51146D38077FF99"
+        "type": "victoriametrics-metrics-datasource",
+        "uid": "vmetrics"
       },
       "fieldConfig": {
         "defaults": {
@@ -102,8 +102,8 @@
       "targets": [
         {
           "datasource": {
-            "type": "prometheus",
-            "uid": "PA51146D38077FF99"
+            "type": "victoriametrics-metrics-datasource",
+            "uid": "vmetrics"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -186,8 +186,8 @@
     },
     {
       "datasource": {
-        "type": "prometheus",
-        "uid": "PA51146D38077FF99"
+        "type": "victoriametrics-metrics-datasource",
+        "uid": "vmetrics"
       },
       "fieldConfig": {
         "defaults": {
@@ -442,8 +442,8 @@
       "targets": [
         {
           "datasource": {
-            "type": "prometheus",
-            "uid": "PA51146D38077FF99"
+            "type": "victoriametrics-metrics-datasource",
+            "uid": "vmetrics"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -468,8 +468,8 @@
         },
         {
           "datasource": {
-            "type": "prometheus",
-            "uid": "PA51146D38077FF99"
+            "type": "victoriametrics-metrics-datasource",
+            "uid": "vmetrics"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -483,8 +483,8 @@
         },
         {
           "datasource": {
-            "type": "prometheus",
-            "uid": "PA51146D38077FF99"
+            "type": "victoriametrics-metrics-datasource",
+            "uid": "vmetrics"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -498,8 +498,8 @@
         },
         {
           "datasource": {
-            "type": "prometheus",
-            "uid": "PA51146D38077FF99"
+            "type": "victoriametrics-metrics-datasource",
+            "uid": "vmetrics"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -594,8 +594,8 @@
     },
     {
       "datasource": {
-        "type": "prometheus",
-        "uid": "PA51146D38077FF99"
+        "type": "victoriametrics-metrics-datasource",
+        "uid": "vmetrics"
       },
       "fieldConfig": {
         "defaults": {
@@ -757,8 +757,8 @@
       "targets": [
         {
           "datasource": {
-            "type": "prometheus",
-            "uid": "PA51146D38077FF99"
+            "type": "victoriametrics-metrics-datasource",
+            "uid": "vmetrics"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -772,8 +772,8 @@
         },
         {
           "datasource": {
-            "type": "prometheus",
-            "uid": "PA51146D38077FF99"
+            "type": "victoriametrics-metrics-datasource",
+            "uid": "vmetrics"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -787,8 +787,8 @@
         },
         {
           "datasource": {
-            "type": "prometheus",
-            "uid": "PA51146D38077FF99"
+            "type": "victoriametrics-metrics-datasource",
+            "uid": "vmetrics"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -879,8 +879,8 @@
     },
     {
       "datasource": {
-        "type": "prometheus",
-        "uid": "PA51146D38077FF99"
+        "type": "victoriametrics-metrics-datasource",
+        "uid": "vmetrics"
       },
       "fieldConfig": {
         "defaults": {
@@ -1039,8 +1039,8 @@
       "targets": [
         {
           "datasource": {
-            "type": "prometheus",
-            "uid": "PA51146D38077FF99"
+            "type": "victoriametrics-metrics-datasource",
+            "uid": "vmetrics"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -1054,8 +1054,8 @@
         },
         {
           "datasource": {
-            "type": "prometheus",
-            "uid": "PA51146D38077FF99"
+            "type": "victoriametrics-metrics-datasource",
+            "uid": "vmetrics"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -1069,8 +1069,8 @@
         },
         {
           "datasource": {
-            "type": "prometheus",
-            "uid": "PA51146D38077FF99"
+            "type": "victoriametrics-metrics-datasource",
+            "uid": "vmetrics"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -1149,8 +1149,8 @@
     },
     {
       "datasource": {
-        "type": "prometheus",
-        "uid": "PA51146D38077FF99"
+        "type": "victoriametrics-metrics-datasource",
+        "uid": "vmetrics"
       },
       "fieldConfig": {
         "defaults": {
@@ -1230,8 +1230,8 @@
       "panels": [
         {
           "datasource": {
-            "type": "prometheus",
-            "uid": "lab"
+            "type": "victoriametrics-metrics-datasource",
+            "uid": "vmetrics"
           },
           "description": "System load average over 1, 5, and 15 minutes. Reflects the number of active or waiting processes. Values above CPU core count may indicate overload",
           "fieldConfig": {
@@ -1405,8 +1405,8 @@
         },
         {
           "datasource": {
-            "type": "prometheus",
-            "uid": "lab"
+            "type": "victoriametrics-metrics-datasource",
+            "uid": "vmetrics"
           },
           "description": "System - Processes executing in kernel mode <br>\nUser - Processes executing in user mode <br>\nIOwait - Waiting for I/O to complete <br>\nNice - Niced processes executing in user mode <br>\nSteal - Time spent in other operating systems when in a VE <br>\nIrq - Servicing interrupts\n\n",
           "fieldConfig": {
@@ -1712,8 +1712,8 @@
             },
             {
               "datasource": {
-                "type": "prometheus",
-                "uid": "PA51146D38077FF99"
+                "type": "victoriametrics-metrics-datasource",
+                "uid": "vmetrics"
               },
               "editorMode": "code",
               "expr": "sum(irate(node_cpu_seconds_total{mode=\"system\",instance=\"$node\",job=\"$job\"}[$__rate_interval])) / scalar(count(count(node_cpu_seconds_total{instance=\"$node\",job=\"$job\"}) by (cpu)))",
@@ -1728,8 +1728,8 @@
             },
             {
               "datasource": {
-                "type": "prometheus",
-                "uid": "PA51146D38077FF99"
+                "type": "victoriametrics-metrics-datasource",
+                "uid": "vmetrics"
               },
               "editorMode": "code",
               "expr": "sum(irate(node_cpu_seconds_total{mode=\"steal\",instance=\"$node\",job=\"$job\"}[$__rate_interval])) / scalar(count(count(node_cpu_seconds_total{instance=\"$node\",job=\"$job\"}) by (cpu)))",
@@ -1741,8 +1741,8 @@
             },
             {
               "datasource": {
-                "type": "prometheus",
-                "uid": "PA51146D38077FF99"
+                "type": "victoriametrics-metrics-datasource",
+                "uid": "vmetrics"
               },
               "editorMode": "code",
               "expr": "sum(irate(node_cpu_seconds_total{mode=\"user\",instance=\"$node\",job=\"$job\"}[$__rate_interval])) / scalar(count(count(node_cpu_seconds_total{instance=\"$node\",job=\"$job\"}) by (cpu)))",
@@ -1772,8 +1772,8 @@
       "panels": [
         {
           "datasource": {
-            "type": "prometheus",
-            "uid": "lab"
+            "type": "victoriametrics-metrics-datasource",
+            "uid": "vmetrics"
           },
           "description": "RAM and swap usage overview, including caches",
           "fieldConfig": {
@@ -1947,8 +1947,8 @@
       "panels": [
         {
           "datasource": {
-            "type": "prometheus",
-            "uid": "lab"
+            "type": "victoriametrics-metrics-datasource",
+            "uid": "vmetrics"
           },
           "description": "Percentage of filesystem space used for each mounted device",
           "fieldConfig": {
@@ -2044,8 +2044,8 @@
             },
             {
               "datasource": {
-                "type": "prometheus",
-                "uid": "PA51146D38077FF99"
+                "type": "victoriametrics-metrics-datasource",
+                "uid": "vmetrics"
               },
               "editorMode": "code",
               "expr": "node_filesystem_size_bytes{instance=\"$node\", job=\"$job\", device!~\"rootfs\"}",
@@ -2061,8 +2061,8 @@
         },
         {
           "datasource": {
-            "type": "prometheus",
-            "uid": "lab"
+            "type": "victoriametrics-metrics-datasource",
+            "uid": "vmetrics"
           },
           "description": "Percentage of filesystem space used for each mounted device",
           "fieldConfig": {
@@ -2175,8 +2175,8 @@
       "panels": [
         {
           "datasource": {
-            "type": "prometheus",
-            "uid": "lab"
+            "type": "victoriametrics-metrics-datasource",
+            "uid": "vmetrics"
           },
           "description": "Monitors hardware sensor temperatures and critical thresholds as exposed by Linux hwmon. Includes CPU, GPU, and motherboard sensors where available",
           "fieldConfig": {
@@ -2314,8 +2314,8 @@
       "panels": [
         {
           "datasource": {
-            "type": "prometheus",
-            "uid": "lab"
+            "type": "victoriametrics-metrics-datasource",
+            "uid": "vmetrics"
           },
           "description": "Duration of each individual collector executed during a Node Exporter scrape. Useful for identifying slow or failing collectors",
           "fieldConfig": {
@@ -2450,8 +2450,8 @@
           "value": "$__all"
         },
         "datasource": {
-          "type": "prometheus",
-          "uid": "PA51146D38077FF99"
+          "type": "victoriametrics-metrics-datasource",
+          "uid": "vmetrics"
         },
         "definition": "label_values(node_hwmon_temp_celsius,instance)",
         "includeAll": true,
