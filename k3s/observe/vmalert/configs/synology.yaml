@@ -1,0 +1,54 @@
+groups:
+  - name: synology
+    interval: 30s
+    rules:
+      - alert: synology-disk-status-not-ok
+        expr: diskStatus{job="synology-nas"} != 1
+        for: 5m
+        labels:
+          severity: critical
+          namespace: infra
+          domain: nas
+        annotations:
+          summary: "Synology disk status is not OK on {{ $labels.instance }}"
+          description: "{{ $labels.diskID }} reports disk status {{ $value }} for 5 minutes."
+      - alert: synology-disk-health-status-not-ok
+        expr: diskHealthStatus{job="synology-nas"} != 1
+        for: 5m
+        labels:
+          severity: critical
+          namespace: infra
+          domain: nas
+        annotations:
+          summary: "Synology disk health is not OK on {{ $labels.instance }}"
+          description: "{{ $labels.diskID }} reports disk health status {{ $value }} for 5 minutes."
+      - alert: synology-volume-raid-status-not-ok
+        expr: raidStatus{job="synology-nas", raidName=~"Volume.*"} != 1
+        for: 5m
+        labels:
+          severity: critical
+          namespace: infra
+          domain: nas
+        annotations:
+          summary: "Synology RAID status is not OK on {{ $labels.instance }}"
+          description: "{{ $labels.raidName }} reports RAID status {{ $value }} for 5 minutes."
+      - alert: synology-system-temperature-high
+        expr: temperature{job="synology-nas"} > 50
+        for: 5m
+        labels:
+          severity: warning
+          namespace: infra
+          domain: nas
+        annotations:
+          summary: "High Synology system temperature on {{ $labels.instance }}"
+          description: "System temperature has been above 50 C for 5 minutes (current: {{ $value | printf \"%.1f\" }} C)."
+      - alert: synology-system-temperature-critical
+        expr: temperature{job="synology-nas"} > 60
+        for: 5m
+        labels:
+          severity: critical
+          namespace: infra
+          domain: nas
+        annotations:
+          summary: "Critical Synology system temperature on {{ $labels.instance }}"
+          description: "System temperature has been above 60 C for 5 minutes (current: {{ $value | printf \"%.1f\" }} C)."

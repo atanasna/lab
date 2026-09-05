@@ -33,6 +33,15 @@ datasources:
       timeInterval: "60s"
       queryTimeout: "60s"
       httpMethod: POST
+  - name: vmalert API
+    uid: vmalert-api
+    type: yesoreyeram-infinity-datasource
+    access: proxy
+    url: http://vmalert:8880
+    editable: false
+    jsonData:
+      allowedHosts:
+        - http://vmalert:8880
   # - name: Alertmanager
   #   uid: alertmanager
   #   type: alertmanager

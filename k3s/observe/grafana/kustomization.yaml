@@ -32,3 +32,4 @@ configMapGenerator:
   - name: grafana-dashboards-root
     files:
       - air_quality.json=configs/dashboards/root/air_quality.json
+      - alerts.json=configs/dashboards/root/alerts.json

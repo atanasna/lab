@@ -4,8 +4,10 @@ namespace: observe
 
 resources:
   - deployment.yaml
+  - service.yaml
 
 configMapGenerator:
   - name: vmalert-rules
     files:
-      - node-memory-alert.yaml=configs/node-memory-alert.yaml
+      - k8s.yaml=configs/k8s.yaml
+      - synology.yaml=configs/synology.yaml

@@ -17,7 +17,7 @@ spec:
           image: victoriametrics/vmalert:latest
           imagePullPolicy: Always
           args:
-            - -rule=/etc/vmalert/node-memory-alert.yaml
+            - -rule=/etc/vmalert/*.yaml
             - -datasource.url=http://victoriametrics:8428
             - -notifier.url=http://alertmanager:9093
             - -remoteRead.url=http://victoriametrics:8428

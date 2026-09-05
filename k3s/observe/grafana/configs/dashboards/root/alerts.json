@@ -1,0 +1,615 @@
+{
+  "annotations": {
+    "list": []
+  },
+  "editable": false,
+  "panels": [
+    {
+      "datasource": {
+        "type": "victoriametrics-metrics-datasource",
+        "uid": "vmetrics"
+      },
+      "description": "Alert state over the selected time range. Gaps mean inactive; repeated colored segments expose flapping.",
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [
+            {
+              "options": {
+                "1": {
+                  "color": "white",
+                  "index": 0,
+                "text": ""
+                },
+                "2": {
+                "color": "red",
+                "index": 1,
+                "text": ""
+              },
+              "3": {
+                "color": "orange",
+                "index": 2,
+                "text": ""
+              },
+              "4": {
+                "color": "blue",
+                "index": 3,
+                "text": ""
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "noValue": "inactive"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 24,
+        "x": 0,
+        "y": 5
+      },
+      "options": {
+        "alignValue": "center",
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        },
+        "mergeValues": true,
+        "rowHeight": 0.9,
+        "showValue": "never",
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "victoriametrics-metrics-datasource",
+            "uid": "vmetrics"
+          },
+          "editorMode": "code",
+          "expr": "max without (alertstate) ((ALERTS{alertstate=\"firing\", severity=\"critical\", namespace=~\"${namespace:regex}\", domain=~\"${domain:regex}\", severity=~\"${severity:regex}\"} * 2) or (ALERTS{alertstate=\"firing\", severity=\"warning\", namespace=~\"${namespace:regex}\", domain=~\"${domain:regex}\", severity=~\"${severity:regex}\"} * 3) or (ALERTS{alertstate=\"firing\", severity=\"info\", namespace=~\"${namespace:regex}\", domain=~\"${domain:regex}\", severity=~\"${severity:regex}\"} * 4) or ALERTS{alertstate=\"pending\", namespace=~\"${namespace:regex}\", domain=~\"${domain:regex}\", severity=~\"${severity:regex}\"})",
+          "legendFormat": "{{alertname}}: {{instance}}",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Alert State History",
+      "type": "state-timeline"
+    },
+    {
+      "datasource": {
+        "type": "victoriametrics-metrics-datasource",
+        "uid": "vmetrics"
+      },
+      "description": "Firing alert instances over the selected time range, stacked by severity.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": true,
+            "axisColorMode": "text",
+            "axisLabel": "Firing alerts",
+            "axisPlacement": "auto",
+            "drawStyle": "line",
+            "fillOpacity": 70,
+            "lineInterpolation": "stepAfter",
+            "lineWidth": 1,
+            "showPoints": "never",
+            "stacking": {
+              "group": "A",
+              "mode": "normal"
+            }
+          },
+          "min": 0,
+          "unit": "short"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "critical"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "red",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "warning"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "orange",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "info"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "blue",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 12,
+        "x": 0,
+        "y": 0
+      },
+      "options": {
+        "legend": {
+          "calcs": [
+            "lastNotNull",
+            "max"
+          ],
+          "displayMode": "table",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "victoriametrics-metrics-datasource",
+            "uid": "vmetrics"
+          },
+          "editorMode": "code",
+          "expr": "sum by (severity) (ALERTS{alertstate=\"firing\", namespace=~\"${namespace:regex}\", domain=~\"${domain:regex}\", severity=~\"${severity:regex}\"})",
+          "legendFormat": "{{severity}}",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Firing Alerts by Severity",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "victoriametrics-metrics-datasource",
+        "uid": "vmetrics"
+      },
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 12,
+        "x": 12,
+        "y": 0
+      },
+      "options": {
+        "baidu": {
+          "callback": "bmapReady",
+          "key": ""
+        },
+        "editor": {
+          "format": "auto"
+        },
+        "editorMode": "code",
+        "followTheme": true,
+        "gaode": {
+          "key": "",
+          "plugin": "AMap.Scale,AMap.ToolBar"
+        },
+        "getOption": "const hierarchy = {};\n\ncontext.panel.data.series.forEach((frame) => {\n  const valueField = frame.fields.find((field) => field.type === 'number');\n  if (!valueField) {\n    return;\n  }\n\n  const labels = valueField.labels || {};\n  const values = valueField.values.buffer || valueField.values;\n  const value = Number(values[values.length - 1] || 0);\n  if (!value) {\n    return;\n  }\n\n  const namespace = labels.namespace || 'unlabeled';\n  const domain = labels.domain || 'unlabeled';\n  hierarchy[namespace] ||= {};\n  hierarchy[namespace][domain] = (hierarchy[namespace][domain] || 0) + value;\n});\n\nconst data = Object.entries(hierarchy)\n  .sort(([left], [right]) => left.localeCompare(right))\n  .map(([namespace, domains]) => ({\n    name: namespace,\n    children: Object.entries(domains)\n      .sort(([left], [right]) => left.localeCompare(right))\n      .map(([domain, value]) => ({ name: domain, value }))\n  }));\n\nreturn {\n  tooltip: {\n    formatter: (params) => `${params.treePathInfo.slice(1).map((item) => item.name).join(' / ')}<br/><strong>${params.value}</strong> firing alerts`\n  },\n  series: [{\n    type: 'sunburst',\n    data,\n    radius: [0, '92%'],\n    sort: 'desc',\n    minAngle: 5,\n    label: { rotate: 'tangential' },\n    emphasis: { focus: 'ancestor' },\n    itemStyle: { borderWidth: 2 }\n  }]\n};",
+        "google": {
+          "callback": "gmapReady",
+          "key": ""
+        },
+        "map": "none",
+        "renderer": "canvas",
+        "themeEditor": {
+          "config": "{}",
+          "name": "default"
+        },
+        "visualEditor": {
+          "code": "return { dataset: context.editor.dataset, series: context.editor.series };",
+          "dataset": [],
+          "series": []
+        }
+      },
+      "pluginVersion": "7.2.5",
+      "targets": [
+        {
+          "datasource": {
+            "type": "victoriametrics-metrics-datasource",
+            "uid": "vmetrics"
+          },
+          "editorMode": "code",
+          "expr": "count by (namespace, domain) (ALERTS{alertstate=\"firing\", namespace=~\"${namespace:regex}\", domain=~\"${domain:regex}\", severity=~\"${severity:regex}\"})",
+          "instant": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Firing Alerts by Namespace and Domain",
+      "type": "volkovlabs-echarts-panel"
+    },
+    {
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "vmalert-api"
+      },
+      "description": "Active alerts evaluated by vmalert.",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "inspect": false
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Severity"
+            },
+            "properties": [
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "critical": {
+                        "color": "red",
+                        "index": 0,
+                        "text": "critical"
+                      },
+                      "info": {
+                        "color": "blue",
+                        "index": 2,
+                        "text": "info"
+                      },
+                      "warning": {
+                        "color": "orange",
+                        "index": 1,
+                        "text": "warning"
+                      }
+                    },
+                    "type": "value"
+                  }
+                ]
+              },
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-background"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Alert"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "auto"
+                }
+              },
+              {
+                "id": "custom.tooltip",
+                "value": {
+                  "field": "Summary",
+                  "placement": "right"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Summary"
+            },
+            "properties": [
+              {
+                "id": "custom.hidden",
+                "value": true
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Active since"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "dateTimeFromNow"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 10,
+        "w": 24,
+        "x": 0,
+        "y": 12
+      },
+      "options": {
+        "cellHeight": "sm",
+        "showHeader": true,
+        "sortBy": [
+          {
+            "desc": false,
+            "displayName": "Alert"
+          }
+        ]
+      },
+      "pluginVersion": "12.0.0",
+      "targets": [
+        {
+          "format": "table",
+          "refId": "A",
+          "source": "url",
+          "type": "uql",
+          "uql": "parse-json\n| jsonata \"data.alerts[(labels.severity = '${severity:raw}' or '${severity:raw}' = '.*') and (labels.namespace = '${namespace:raw}' or '${namespace:raw}' = '.*') and (labels.domain = '${domain:raw}' or '${domain:raw}' = '.*')].{'Alert': labels.namespace & ':' & labels.domain & ':' & labels.alertname, 'Instance': labels.instance, 'Severity': labels.severity, 'Current value': value, 'Active since': activeAt, 'Summary': annotations.summary}\"\n| extend \"Active since\"=todatetime(\"Active since\")",
+          "url": "http://vmalert:8880/api/v1/alerts",
+          "url_options": {
+            "method": "GET",
+            "params": [],
+            "headers": []
+          }
+        }
+      ],
+      "title": "Active Alerts",
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "vmalert-api"
+      },
+      "description": "All alerting rules evaluated by vmalert, including inactive rules.",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "inspect": false
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "State"
+            },
+            "properties": [
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "firing": {
+                        "color": "red",
+                        "index": 0,
+                        "text": "firing"
+                      },
+                      "inactive": {
+                        "color": "gray",
+                        "index": 2,
+                        "text": "inactive"
+                      },
+                      "pending": {
+                        "color": "orange",
+                        "index": 1,
+                        "text": "pending"
+                      }
+                    },
+                    "type": "value"
+                  }
+                ]
+              },
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-background"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Severity"
+            },
+            "properties": [
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "critical": {
+                        "color": "red",
+                        "index": 0,
+                        "text": "critical"
+                      },
+                      "info": {
+                        "color": "blue",
+                        "index": 2,
+                        "text": "info"
+                      },
+                      "warning": {
+                        "color": "orange",
+                        "index": 1,
+                        "text": "warning"
+                      }
+                    },
+                    "type": "value"
+                  }
+                ]
+              },
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-background"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "For"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "s"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Expression"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 360
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 24,
+        "x": 0,
+        "y": 22
+      },
+      "options": {
+        "cellHeight": "sm",
+        "showHeader": true,
+        "sortBy": [
+          {
+            "desc": false,
+            "displayName": "Rule"
+          }
+        ]
+      },
+      "targets": [
+        {
+          "format": "table",
+          "refId": "A",
+          "source": "url",
+          "type": "uql",
+          "uql": "parse-json\n| jsonata \"data.groups.rules[type = 'alerting' and (labels.severity = '${severity:raw}' or '${severity:raw}' = '.*') and (labels.namespace = '${namespace:raw}' or '${namespace:raw}' = '.*') and (labels.domain = '${domain:raw}' or '${domain:raw}' = '.*')].{'Rule': name, 'State': state, 'Severity': labels.severity, 'For': duration, 'Summary': annotations.summary, 'Expression': query}\"",
+          "url": "http://vmalert:8880/api/v1/rules",
+          "url_options": {
+            "method": "GET",
+            "params": [],
+            "headers": []
+          }
+        }
+      ],
+      "title": "All Alert Rules",
+      "type": "table"
+    }
+  ],
+  "refresh": "30s",
+  "schemaVersion": 41,
+  "tags": [
+    "alertmanager"
+  ],
+  "templating": {
+    "list": [
+      {
+        "allValue": ".*",
+        "current": {
+          "selected": true,
+          "text": "All",
+          "value": "$__all"
+        },
+        "includeAll": true,
+        "label": "Severity",
+        "multi": false,
+        "name": "severity",
+        "options": [],
+        "query": "critical,warning,info",
+        "type": "custom"
+      },
+      {
+        "allValue": ".*",
+        "current": {
+          "selected": true,
+          "text": "All",
+          "value": "$__all"
+        },
+        "includeAll": true,
+        "label": "Namespace",
+        "multi": false,
+        "name": "namespace",
+        "options": [],
+        "query": "infra",
+        "type": "custom"
+      },
+      {
+        "allValue": ".*",
+        "current": {
+          "selected": true,
+          "text": "All",
+          "value": "$__all"
+        },
+        "includeAll": true,
+        "label": "Domain",
+        "multi": false,
+        "name": "domain",
+        "options": [],
+        "query": "k8s,nas",
+        "type": "custom"
+      }
+    ]
+  },
+  "time": {
+    "from": "now-6h",
+    "to": "now"
+  },
+  "timezone": "browser",
+  "title": "Alerts",
+  "uid": "alertmanager-overview",
+  "version": 1
+}
