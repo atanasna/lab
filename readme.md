@@ -47,16 +47,19 @@ curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="server --token=K10d58c287785a1f
 1. Apply data 
     1. Storage `kubectl apply -f k3s/data/storage.yaml`
     1. Redis `kubectl apply -k k3s/data/redis`
-    1. Postgres `kubectl apply -k k3s/data/postgres`
+     1. Postgres `kubectl apply -k k3s/data/postgres`
+     1. Mosquitto: create the credentials first, then `kubectl apply -k k3s/data/mosquitto` ([setup and Shelly configuration](k3s/data/mosquitto/readme.md))
 1. Apply observe
     1. Storage `kubectl apply -f k3s/observe/storage.yaml`
     1. NodeExporter `kubectl apply -k k3s/observe/exporter-node`
-    1. APIExporter `kubectl apply -k k3s/observe/exporter-api`
+     1. APIExporter `kubectl apply -k k3s/observe/exporter-api`
+     1. MQTTExporter: [create subscriber credentials](k3s/observe/exporter-mqtt/readme.md), then `kubectl apply -k k3s/observe/exporter-mqtt`
     1. SNMPExporter `kubectl apply -k k3s/observe/exporter-snmp`
     1. VictoriaLogs `kubectl apply -k k3s/observe/victorialogs`
-    1. Prometheus `kubectl apply -k k3s/observe/prometheus`
     1. VictoriaMetrics `kubectl apply -k k3s/observe/victoriametrics`
+    1. VMAgent: wait for VictoriaMetrics to roll out, then `kubectl apply -k k3s/observe/vmagent` ([cutover and verification](k3s/observe/vmagent/readme.md))
     1. Grafana `kubectl apply -k k3s/observe/grafana`
+    1. Existing clusters: [remove the retired Prometheus deployment](k3s/observe/readme.md#remove-the-retired-prometheus-deployment).
 1. Apply apps 
     1. Storage `kubectl apply -f k3s/apps/storage.yaml`
     1. Storage `kubectl apply -f k3s/apps/middleware.yaml`

@@ -23,6 +23,8 @@ tasks:
       - task: redis
       - echo ""
       - task: postgres
+      - echo ""
+      - task: mosquitto
 
   storage:
     dir: "{{.WATCH_DIR}}"
@@ -51,3 +53,11 @@ tasks:
         vars:
           SERVICE: "{{.SERVICE}}"
 
+  mosquitto:
+    vars:
+      SERVICE: mosquitto
+    desc: Deploy {{.SERVICE}} (requires local .secrets/passwords file)
+    cmds:
+      - task: _generic
+        vars:
+          SERVICE: "{{.SERVICE}}"

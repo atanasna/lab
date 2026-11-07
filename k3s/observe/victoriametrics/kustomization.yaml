@@ -5,9 +5,3 @@ namespace: observe
 resources:
   - deployment.yaml
   - service.yaml
-  - rbac.yaml
-
-configMapGenerator:
-  - name: victoriametrics-config
-    files:
-      - prometheus.yaml=configs/prometheus.yaml

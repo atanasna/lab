@@ -2430,14 +2430,14 @@
     "list": [
       {
         "current": {
-          "text": "lab",
-          "value": "PA51146D38077FF99"
+          "text": "vmetrics",
+          "value": "vmetrics"
         },
         "includeAll": false,
         "label": "Datasource",
         "name": "DS_PROMETHEUS",
         "options": [],
-        "query": "prometheus",
+        "query": "victoriametrics-metrics-datasource",
         "refresh": 1,
         "regex": "",
         "type": "datasource"

@@ -5,10 +5,13 @@ namespace: observe
 resources:
   - deployment.yaml
   - service.yaml
-  - rbac.yaml
 
 configMapGenerator:
-  - name: prometheus-config
+  - name: mqtt-exporter-config
     files:
-      - prometheus.yaml=configs/prometheus.yaml
-      - rules.yaml=configs/rules.yaml
+      - telegraf.conf=configs/telegraf.conf
+
+secretGenerator:
+  - name: mqtt-exporter-auth
+    envs:
+      - .secrets/mqtt.env

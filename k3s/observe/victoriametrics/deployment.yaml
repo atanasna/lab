@@ -16,13 +16,12 @@ spec:
     spec:
       securityContext:
         fsGroup: 65534
-      serviceAccountName: victoriametrics
+      automountServiceAccountToken: false
       containers:
         - name: victoriametrics
           image: victoriametrics/victoria-metrics:latest
           imagePullPolicy: Always
           args:
-            - -promscrape.config=/etc/victoriametrics/prometheus.yaml
             - -storageDataPath=/victoriametrics
             - -retentionPeriod=3y
           ports:
@@ -35,8 +34,6 @@ spec:
             limits:
               memory: 1Gi
           volumeMounts:
-            - name: victoriametrics-config
-              mountPath: /etc/victoriametrics
             - name: observe-pvc
               mountPath: /victoriametrics
               subPath: victoriametrics
@@ -55,9 +52,6 @@ spec:
             periodSeconds: 30
             timeoutSeconds: 10
       volumes:
-        - name: victoriametrics-config
-          configMap:
-            name: victoriametrics-config
         - name: observe-pvc
           persistentVolumeClaim:
             claimName: observe-pvc

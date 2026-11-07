@@ -6,7 +6,7 @@ metadata:
 spec:
   addresses:
   - 10.7.0.70/32  # Traefik
-  - 10.7.0.250/32 # Not used
+  - 10.7.0.250/32 # MQTT - Mosquitto
   - 10.7.0.251/32 # Not used
   - 10.7.0.252/32 # Not used
   - 10.7.0.253/32 # Bitcoin

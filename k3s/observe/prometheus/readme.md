@@ -1,2 +1,0 @@
-# Dependencies
-- Persistent storage

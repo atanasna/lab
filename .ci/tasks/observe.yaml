@@ -22,6 +22,8 @@ tasks:
       - echo ""
       - task: exporter-api
       - echo ""
+      - task: exporter-mqtt
+      - echo ""
       - task: exporter-snmp
       - echo ""
       - task: exporter-node
@@ -31,10 +33,11 @@ tasks:
       - task: victorialogs
       - echo ""
       - task: victoriametrics
+      - kubectl -n observe rollout status deployment/victoriametrics --timeout=180s
+      - echo ""
+      - task: vmagent
       - echo ""
       - task: grafana
-      - echo ""
-      - task: prometheus
       - echo ""
       - task: ntfy
       - echo ""
@@ -60,18 +63,18 @@ tasks:
         vars:
           SERVICE: "{{.SERVICE}}"
 
-  prometheus:
+  victoriametrics:
     vars:
-      SERVICE: prometheus
+      SERVICE: victoriametrics
     desc: Deploy {{.SERVICE}}
     cmds:
       - task: _generic
         vars:
           SERVICE: "{{.SERVICE}}"
 
-  victoriametrics:
+  vmagent:
     vars:
-      SERVICE: victoriametrics
+      SERVICE: vmagent
     desc: Deploy {{.SERVICE}}
     cmds:
       - task: _generic
@@ -140,6 +143,15 @@ tasks:
       - task: _generic
         vars:
           SERVICE: "{{.SERVICE}}"
+
+  exporter-mqtt:
+    vars:
+      SERVICE: exporter-mqtt
+    desc: Deploy {{.SERVICE}} (requires local .secrets/mqtt.env)
+    cmds:
+      - task: _generic
+        vars:
+          SERVICE: "{{.SERVICE}}"
            
   exporter-snmp:
     vars:
@@ -163,8 +175,6 @@ tasks:
     #   - kubectl apply -k ./snmp-exporter 
     #   - echo "Applying Alertmanager"
     #   - kubectl apply -k ./alertmanager
-    #   - echo "Applying Prometheus"
-    #   - kubectl apply -k ./prometheus
     #   - echo "Applying Grafana"
     #   - kubectl apply -k ./grafana
     #
