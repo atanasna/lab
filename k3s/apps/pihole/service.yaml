@@ -3,7 +3,7 @@ kind: Service
 metadata:
   name: pihole-dns
   annotations:
-    metallb.universe.tf/loadBalancerIPs: 10.7.0.254
+    metallb.universe.tf/loadBalancerIPs: 10.7.0.11
     metallb.universe.tf/allow-shared-ip: "dns"
 spec:
   selector:

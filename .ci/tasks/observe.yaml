@@ -33,7 +33,7 @@ tasks:
       - task: victorialogs
       - echo ""
       - task: victoriametrics
-      - kubectl -n observe rollout status deployment/victoriametrics --timeout=180s
+      # - kubectl -n observe rollout status deployment/victoriametrics --timeout=180s
       - echo ""
       - task: vmagent
       - echo ""

@@ -2606,12 +2606,12 @@
           "type": "victoriametrics-metrics-datasource",
           "uid": "vmetrics"
         },
-        "definition": "label_values(mtxrInterfaceStatsIndex,instance)",
+        "definition": "label_values(ifAlias,instance)",
         "includeAll": false,
         "name": "instance",
         "options": [],
         "query": {
-          "query": "label_values(mtxrInterfaceStatsIndex,instance)",
+          "query": "label_values(ifAlias,instance)",
           "refId": "PrometheusVariableQueryEditor-VariableQuery"
         },
         "refresh": 1,
