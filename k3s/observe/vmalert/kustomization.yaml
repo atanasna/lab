@@ -9,5 +9,6 @@ resources:
 configMapGenerator:
   - name: vmalert-rules
     files:
-      - k8s.yaml=configs/k8s.yaml
+      - nodes.yaml=configs/k8s/nodes.yaml
+      - pods.yaml=configs/k8s/pods.yaml
       - synology.yaml=configs/synology.yaml

@@ -2,6 +2,14 @@ groups:
   - name: k8s
     interval: 30s
     rules:
+      ### Node Down
+      - record: alert_rule_target
+        expr: 0 * up{job="k3s-nodes"} + 1
+        labels:
+          alertname: node-down
+          severity: critical
+          namespace: infra
+          domain: k8s
       - alert: node-down
         expr: up{job="k3s-nodes"} == 0
         for: 5m
@@ -12,6 +20,15 @@ groups:
         annotations:
           summary: "Node {{ $labels.instance }} is down"
           description: "The node exporter target for {{ $labels.instance }} has been unreachable for 5 minutes."
+
+      ### Node Temperature(High)
+      - record: alert_rule_target
+        expr: 0 * max by (instance) (node_hwmon_temp_celsius{job="k3s-nodes"}) + 1
+        labels:
+          alertname: node-temperature-high
+          severity: warning
+          namespace: infra
+          domain: k8s
       - alert: node-temperature-high
         expr: max by (instance) (node_hwmon_temp_celsius{job="k3s-nodes"}) > 60
         for: 5m
@@ -22,6 +39,15 @@ groups:
         annotations:
           summary: "High node temperature on {{ $labels.instance }}"
           description: "The hottest temperature sensor on {{ $labels.instance }} has been above 60 C for 5 minutes (current: {{ $value | printf \"%.1f\" }} C)."
+
+      ### Node Temperature(Critical)
+      - record: alert_rule_target
+        expr: 0 * max by (instance) (node_hwmon_temp_celsius{job="k3s-nodes"}) + 1
+        labels:
+          alertname: node-temperature-critical
+          severity: critical
+          namespace: infra
+          domain: k8s
       - alert: node-temperature-critical
         expr: max by (instance) (node_hwmon_temp_celsius{job="k3s-nodes"}) > 70
         for: 5m
@@ -32,6 +58,15 @@ groups:
         annotations:
           summary: "Critical node temperature on {{ $labels.instance }}"
           description: "The hottest temperature sensor on {{ $labels.instance }} has been above 70 C for 5 minutes (current: {{ $value | printf \"%.1f\" }} C)."
+
+      ### Node Root FS(High)
+      - record: alert_rule_target
+        expr: 0 * (100 * (1 - (node_filesystem_avail_bytes{job="k3s-nodes", mountpoint="/", fstype!="rootfs"} / node_filesystem_size_bytes{job="k3s-nodes", mountpoint="/", fstype!="rootfs"}))) + 1
+        labels:
+          alertname: node-root-filesystem-high
+          severity: warning
+          namespace: infra
+          domain: k8s
       - alert: node-root-filesystem-high
         expr: 100 * (1 - (node_filesystem_avail_bytes{job="k3s-nodes", mountpoint="/", fstype!="rootfs"} / node_filesystem_size_bytes{job="k3s-nodes", mountpoint="/", fstype!="rootfs"})) > 80
         for: 5m
@@ -42,6 +77,15 @@ groups:
         annotations:
           summary: "High root filesystem usage on {{ $labels.instance }}"
           description: "Root filesystem usage on {{ $labels.instance }} has been above 80% for 5 minutes (current: {{ $value | printf \"%.1f\" }}%)."
+
+      ### Node Root FS(Critical)
+      - record: alert_rule_target
+        expr: 0 * (100 * (1 - (node_filesystem_avail_bytes{job="k3s-nodes", mountpoint="/", fstype!="rootfs"} / node_filesystem_size_bytes{job="k3s-nodes", mountpoint="/", fstype!="rootfs"}))) + 1
+        labels:
+          alertname: node-root-filesystem-critical
+          severity: critical
+          namespace: infra
+          domain: k8s
       - alert: node-root-filesystem-critical
         expr: 100 * (1 - (node_filesystem_avail_bytes{job="k3s-nodes", mountpoint="/", fstype!="rootfs"} / node_filesystem_size_bytes{job="k3s-nodes", mountpoint="/", fstype!="rootfs"})) > 90
         for: 5m

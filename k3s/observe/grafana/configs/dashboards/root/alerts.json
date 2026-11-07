@@ -2,38 +2,246 @@
   "annotations": {
     "list": []
   },
-  "editable": false,
+  "editable": true,
   "panels": [
     {
       "datasource": {
         "type": "victoriametrics-metrics-datasource",
         "uid": "vmetrics"
       },
-      "description": "Alert state over the selected time range. Gaps mean inactive; repeated colored segments expose flapping.",
+      "description": "Current number of firing critical alerts.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "red",
+            "mode": "fixed"
+          },
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 2,
+        "x": 0,
+        "y": 0
+      },
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "value",
+        "wideLayout": true
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "victoriametrics-metrics-datasource",
+            "uid": "vmetrics"
+          },
+          "editorMode": "code",
+          "expr": "sum(ALERTS{alertstate=\"firing\", severity=\"critical\", namespace=~\"${namespace:regex}\", domain=~\"${domain:regex}\", severity=~\"${severity:regex}\"}) or vector(0)",
+          "instant": true,
+          "refId": "A"
+        }
+      ],
+      "title": "",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "victoriametrics-metrics-datasource",
+        "uid": "vmetrics"
+      },
+      "description": "Monitored alert instances currently within threshold. Pending and firing instances are excluded.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "green",
+            "mode": "fixed"
+          },
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 2,
+        "x": 0,
+        "y": 9
+      },
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "value",
+        "wideLayout": true
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "victoriametrics-metrics-datasource",
+            "uid": "vmetrics"
+          },
+          "editorMode": "code",
+          "expr": "sum(alert_rule_target{namespace=~\"${namespace:regex}\", domain=~\"${domain:regex}\", severity=~\"${severity:regex}\"}) - (sum(max without (alertstate, alertgroup) (ALERTS{alertstate=~\"pending|firing\", namespace=~\"${namespace:regex}\", domain=~\"${domain:regex}\", severity=~\"${severity:regex}\"})) or vector(0))",
+          "instant": true,
+          "refId": "A"
+        }
+      ],
+      "title": "",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "victoriametrics-metrics-datasource",
+        "uid": "vmetrics"
+      },
+      "description": "Current number of firing warning alerts.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "orange",
+            "mode": "fixed"
+          },
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 2,
+        "x": 0,
+        "y": 3
+      },
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "value",
+        "wideLayout": true
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "victoriametrics-metrics-datasource",
+            "uid": "vmetrics"
+          },
+          "editorMode": "code",
+          "expr": "sum(ALERTS{alertstate=\"firing\", severity=\"warning\", namespace=~\"${namespace:regex}\", domain=~\"${domain:regex}\", severity=~\"${severity:regex}\"}) or vector(0)",
+          "instant": true,
+          "refId": "A"
+        }
+      ],
+      "title": "",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "victoriametrics-metrics-datasource",
+        "uid": "vmetrics"
+      },
+      "description": "Current number of firing informational alerts.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "blue",
+            "mode": "fixed"
+          },
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 2,
+        "x": 0,
+        "y": 6
+      },
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "value",
+        "wideLayout": true
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "victoriametrics-metrics-datasource",
+            "uid": "vmetrics"
+          },
+          "editorMode": "code",
+          "expr": "sum(ALERTS{alertstate=\"firing\", severity=\"info\", namespace=~\"${namespace:regex}\", domain=~\"${domain:regex}\", severity=~\"${severity:regex}\"}) or vector(0)",
+          "instant": true,
+          "refId": "A"
+        }
+      ],
+      "title": "",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "victoriametrics-metrics-datasource",
+        "uid": "vmetrics"
+      },
+      "description": "Alert instances that were pending or firing over the selected time range. White is pending; severity colors are firing.",
       "fieldConfig": {
         "defaults": {
           "mappings": [
             {
               "options": {
-                "1": {
-                  "color": "white",
-                  "index": 0,
-                "text": ""
-                },
                 "2": {
-                "color": "red",
-                "index": 1,
-                "text": ""
-              },
-              "3": {
-                "color": "orange",
-                "index": 2,
-                "text": ""
-              },
-              "4": {
-                "color": "blue",
-                "index": 3,
-                "text": ""
+                  "color": "red",
+                  "index": 1,
+                  "text": ""
+                },
+                "3": {
+                  "color": "orange",
+                  "index": 2,
+                  "text": ""
+                },
+                "4": {
+                  "color": "blue",
+                  "index": 3,
+                  "text": ""
+                },
+                "5": {
+                  "color": "white",
+                  "index": 4,
+                  "text": ""
                 }
               },
               "type": "value"
@@ -47,7 +255,7 @@
         "h": 7,
         "w": 24,
         "x": 0,
-        "y": 5
+        "y": 12
       },
       "options": {
         "alignValue": "center",
@@ -62,8 +270,25 @@
         "tooltip": {
           "mode": "single",
           "sort": "none"
+        },
+        "editor": {
+          "format": "auto"
+        },
+        "editorMode": "code",
+        "followTheme": true,
+        "getOption": "const states = { 1: { color: '#ffffff', name: 'pending' }, 2: { color: '#e02f44', name: 'critical' }, 3: { color: '#ff9830', name: 'warning' }, 4: { color: '#5794f2', name: 'info' } };\nconst rows = [];\nconst rowByAlert = new Map();\nconst segments = new Map();\n\ncontext.panel.data.series.forEach((frame) => {\n  const timeField = frame.fields.find((field) => field.type === 'time');\n  const valueField = frame.fields.find((field) => field.type === 'number');\n  if (!timeField || !valueField) {\n    return;\n  }\n\n  const labels = valueField.labels || {};\n  const alert = `${labels.alertname || valueField.name}: ${labels.instance || 'unlabeled'}`;\n  let row = rowByAlert.get(alert);\n  if (row === undefined) {\n    row = rows.length;\n    rowByAlert.set(alert, row);\n    rows.push(alert);\n  }\n\n  const times = timeField.values.buffer || timeField.values;\n  const values = valueField.values.buffer || valueField.values;\n  for (let index = 0; index < values.length; index += 1) {\n    const state = Number(values[index]);\n    if (values[index] == null || !states[state]) {\n      continue;\n    }\n\n    const start = new Date(times[index]).getTime();\n    const next = index + 1 < times.length ? new Date(times[index + 1]).getTime() : start + 60000;\n    const key = `${alert}:${start}`;\n    const existing = segments.get(key);\n    if (!existing || state > existing[3]) {\n      segments.set(key, [start, Math.max(next, start + 1), row, state]);\n    }\n  }\n});\n\nconst data = Array.from(segments.values()).sort((left, right) => left[2] - right[2] || left[0] - right[0]);\nconst visibleRows = Math.min(6, Math.max(rows.length, 1));\nconst zoomEnd = (visibleRows / Math.max(rows.length, 1)) * 100;\nconst chart = context.panel.chart;\nif (chart) {\n  chart.__alertTimelineRows = rows.length;\n  if (!chart.__alertTimelineWheelHandler) {\n    chart.__alertTimelineWheelHandler = (event) => {\n      const dataZoom = chart.getOption().dataZoom?.[0];\n      const rowCount = Math.max(chart.__alertTimelineRows || 1, 1);\n      const span = (dataZoom?.end ?? 100) - (dataZoom?.start ?? 0);\n      const maxStart = Math.max(100 - span, 0);\n      const step = 100 / rowCount;\n      const start = Math.min(Math.max((dataZoom?.start ?? 0) + Math.sign(event.deltaY) * step, 0), maxStart);\n      chart.dispatchAction({ type: 'dataZoom', dataZoomIndex: 0, start, end: start + span });\n      event.preventDefault();\n      event.stopPropagation();\n    };\n    chart.getDom().addEventListener('wheel', chart.__alertTimelineWheelHandler, { passive: false });\n  }\n}\n\nreturn {\n  grid: { left: 360, right: 38, top: 12, bottom: 34 },\n  tooltip: {\n    trigger: 'item',\n    formatter: (params) => {\n      const [start, end, row, state] = params.data;\n      return `<strong>${rows[row]}</strong><br/>${states[state].name}<br/>${new Date(start).toLocaleString()} - ${new Date(end).toLocaleString()}`;\n    }\n  },\n  xAxis: { type: 'time', boundaryGap: false },\n  yAxis: {\n    type: 'category',\n    inverse: true,\n    data: rows,\n    axisLabel: { margin: 12, interval: 0 }\n  },\n  dataZoom: [\n    { type: 'slider', yAxisIndex: 0, orient: 'vertical', right: 4, width: 12, start: 0, end: zoomEnd, zoomLock: true }\n  ],\n  series: [{\n    type: 'custom',\n    renderItem: (params, api) => {\n      const start = api.coord([api.value(0), api.value(2)]);\n      const end = api.coord([api.value(1), api.value(2)]);\n      const height = Math.max(api.size([0, 1])[1] * 0.68, 5);\n      return {\n        type: 'rect',\n        shape: { x: start[0], y: start[1] - height / 2, width: Math.max(end[0] - start[0], 1), height },\n        style: { fill: states[api.value(3)].color }\n      };\n    },\n    encode: { x: [0, 1], y: 2 },\n    data\n  }]\n};",
+        "renderer": "canvas",
+        "themeEditor": {
+          "config": "{}",
+          "name": "default"
+        },
+        "visualEditor": {
+          "code": "return { dataset: context.editor.dataset, series: context.editor.series };",
+          "dataset": [],
+          "series": []
         }
       },
+      "pluginVersion": "12.0.0",
       "targets": [
         {
           "datasource": {
@@ -71,7 +296,7 @@
             "uid": "vmetrics"
           },
           "editorMode": "code",
-          "expr": "max without (alertstate) ((ALERTS{alertstate=\"firing\", severity=\"critical\", namespace=~\"${namespace:regex}\", domain=~\"${domain:regex}\", severity=~\"${severity:regex}\"} * 2) or (ALERTS{alertstate=\"firing\", severity=\"warning\", namespace=~\"${namespace:regex}\", domain=~\"${domain:regex}\", severity=~\"${severity:regex}\"} * 3) or (ALERTS{alertstate=\"firing\", severity=\"info\", namespace=~\"${namespace:regex}\", domain=~\"${domain:regex}\", severity=~\"${severity:regex}\"} * 4) or ALERTS{alertstate=\"pending\", namespace=~\"${namespace:regex}\", domain=~\"${domain:regex}\", severity=~\"${severity:regex}\"})",
+          "expr": "label_join(max without (alertstate, alertgroup) ((ALERTS{alertstate=\"pending\", namespace=~\"${namespace:regex}\", domain=~\"${domain:regex}\", severity=~\"${severity:regex}\"} * 5) or (ALERTS{alertstate=\"firing\", severity=\"critical\", namespace=~\"${namespace:regex}\", domain=~\"${domain:regex}\", severity=~\"${severity:regex}\"} * 2) or (ALERTS{alertstate=\"firing\", severity=\"warning\", namespace=~\"${namespace:regex}\", domain=~\"${domain:regex}\", severity=~\"${severity:regex}\"} * 3) or (ALERTS{alertstate=\"firing\", severity=\"info\", namespace=~\"${namespace:regex}\", domain=~\"${domain:regex}\", severity=~\"${severity:regex}\"} * 4)), \"alertname\", \" \", \"alertname\", \"diskID\", \"raidName\", \"kubernetes_namespace\", \"pod\", \"deployment\")",
           "legendFormat": "{{alertname}}: {{instance}}",
           "range": true,
           "refId": "A"
@@ -85,7 +310,7 @@
         "type": "victoriametrics-metrics-datasource",
         "uid": "vmetrics"
       },
-      "description": "Firing alert instances over the selected time range, stacked by severity.",
+      "description": "Pending and firing alert instances over the selected time range, stacked by state.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -94,7 +319,7 @@
           "custom": {
             "axisCenteredZero": true,
             "axisColorMode": "text",
-            "axisLabel": "Firing alerts",
+            "axisLabel": "Alert instances",
             "axisPlacement": "auto",
             "drawStyle": "line",
             "fillOpacity": 70,
@@ -110,6 +335,21 @@
           "unit": "short"
         },
         "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "pending"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "white",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
           {
             "matcher": {
               "id": "byName",
@@ -158,18 +398,15 @@
         ]
       },
       "gridPos": {
-        "h": 5,
-        "w": 12,
-        "x": 0,
+        "h": 12,
+        "w": 14,
+        "x": 2,
         "y": 0
       },
       "options": {
         "legend": {
-          "calcs": [
-            "lastNotNull",
-            "max"
-          ],
-          "displayMode": "table",
+          "calcs": [],
+          "displayMode": "list",
           "placement": "bottom",
           "showLegend": true
         },
@@ -185,13 +422,13 @@
             "uid": "vmetrics"
           },
           "editorMode": "code",
-          "expr": "sum by (severity) (ALERTS{alertstate=\"firing\", namespace=~\"${namespace:regex}\", domain=~\"${domain:regex}\", severity=~\"${severity:regex}\"})",
+          "expr": "label_replace(sum(ALERTS{alertstate=\"pending\", namespace=~\"${namespace:regex}\", domain=~\"${domain:regex}\", severity=~\"${severity:regex}\"}), \"severity\", \"pending\", \"\", \"\") or sum by (severity) (ALERTS{alertstate=\"firing\", namespace=~\"${namespace:regex}\", domain=~\"${domain:regex}\", severity=~\"${severity:regex}\"}) or label_replace(vector(0), \"severity\", \"pending\", \"\", \"\") or label_replace(vector(0), \"severity\", \"critical\", \"\", \"\") or label_replace(vector(0), \"severity\", \"warning\", \"\", \"\") or label_replace(vector(0), \"severity\", \"info\", \"\", \"\")",
           "legendFormat": "{{severity}}",
           "range": true,
           "refId": "A"
         }
       ],
-      "title": "Firing Alerts by Severity",
+      "title": "Active Alerts",
       "type": "timeseries"
     },
     {
@@ -199,14 +436,15 @@
         "type": "victoriametrics-metrics-datasource",
         "uid": "vmetrics"
       },
+      "description": "Monitored alert instances by namespace and domain. Slice color reflects the most severe current state; hover for the state breakdown.",
       "fieldConfig": {
         "defaults": {},
         "overrides": []
       },
       "gridPos": {
-        "h": 5,
-        "w": 12,
-        "x": 12,
+        "h": 12,
+        "w": 8,
+        "x": 16,
         "y": 0
       },
       "options": {
@@ -223,7 +461,7 @@
           "key": "",
           "plugin": "AMap.Scale,AMap.ToolBar"
         },
-        "getOption": "const hierarchy = {};\n\ncontext.panel.data.series.forEach((frame) => {\n  const valueField = frame.fields.find((field) => field.type === 'number');\n  if (!valueField) {\n    return;\n  }\n\n  const labels = valueField.labels || {};\n  const values = valueField.values.buffer || valueField.values;\n  const value = Number(values[values.length - 1] || 0);\n  if (!value) {\n    return;\n  }\n\n  const namespace = labels.namespace || 'unlabeled';\n  const domain = labels.domain || 'unlabeled';\n  hierarchy[namespace] ||= {};\n  hierarchy[namespace][domain] = (hierarchy[namespace][domain] || 0) + value;\n});\n\nconst data = Object.entries(hierarchy)\n  .sort(([left], [right]) => left.localeCompare(right))\n  .map(([namespace, domains]) => ({\n    name: namespace,\n    children: Object.entries(domains)\n      .sort(([left], [right]) => left.localeCompare(right))\n      .map(([domain, value]) => ({ name: domain, value }))\n  }));\n\nreturn {\n  tooltip: {\n    formatter: (params) => `${params.treePathInfo.slice(1).map((item) => item.name).join(' / ')}<br/><strong>${params.value}</strong> firing alerts`\n  },\n  series: [{\n    type: 'sunburst',\n    data,\n    radius: [0, '92%'],\n    sort: 'desc',\n    minAngle: 5,\n    label: { rotate: 'tangential' },\n    emphasis: { focus: 'ancestor' },\n    itemStyle: { borderWidth: 2 }\n  }]\n};",
+        "getOption": "const S={ok:['Healthy','#73bf69'],info:['Info','#5794f2'],pending:['Pending','#d8dde3'],warning:['Warning','#ff9830'],critical:['Critical','#e02f44']},H={},T={};context.panel.data.series.forEach(f=>{const q=f.fields.find(x=>x.type==='number'),l=q?.labels||{},v=Number((q?.values.buffer||q?.values||[]).at(-1)||0);if(!v)return;const n=l.namespace||'unlabeled',d=l.domain||'unlabeled',s=l.state||'unknown';H[n]||={};H[n][d]||={};H[n][d][s]=(H[n][d][s]||0)+v;T[s]=(T[s]||0)+v});const D=Object.entries(H).map(([n,ds],i)=>({name:n,itemStyle:{color:['#526b82','#60788d','#47677a','#65758b'][i%4]},children:Object.entries(ds).map(([d,ss])=>({name:d,itemStyle:{color:'#40566d'},children:Object.entries(ss).map(([s,v])=>({name:S[s]?.[0]||s,value:v,itemStyle:{color:S[s]?.[1]||'#8e8e8e'}}))}))})),L=Object.entries(T).map(([s,v])=>({name:S[s]?.[0]||s,value:v}));return {legend:{bottom:2,left:'center',icon:'circle',itemWidth:8,itemHeight:8,selectedMode:false,textStyle:{color:'#c7d0d9',fontSize:10},data:L.map(x=>x.name),formatter:n=>`${n} ${L.find(x=>x.name===n).value}`},tooltip:{trigger:'item',confine:true,formatter:p=>`<strong>${p.treePathInfo.slice(1).map(x=>x.name).join(' / ')}</strong><br/>${p.value} alert instance${p.value===1?'':'s'}`},series:[{type:'sunburst',data:D,radius:['38%','86%'],center:['50%','46%'],nodeClick:'rootToNode',itemStyle:{borderColor:'#111827',borderWidth:3},levels:[{},{r0:'38%',r:'50%',label:{rotate:0,color:'#f3f4f6',fontSize:11,fontWeight:600}},{r0:'50%',r:'65%',label:{rotate:0,color:'#f3f4f6',fontSize:11,fontWeight:700,formatter:p=>p.name}},{r0:'65%',r:'86%',label:{show:true,rotate:0,color:'#fff',fontSize:12,fontWeight:700,formatter:p=>String(p.value)}}]}]};",
         "google": {
           "callback": "gmapReady",
           "key": ""
@@ -248,20 +486,20 @@
             "uid": "vmetrics"
           },
           "editorMode": "code",
-          "expr": "count by (namespace, domain) (ALERTS{alertstate=\"firing\", namespace=~\"${namespace:regex}\", domain=~\"${domain:regex}\", severity=~\"${severity:regex}\"})",
+          "expr": "label_replace(sum by (namespace, domain) ((alert_rule_target{namespace=~\"${namespace:regex}\", domain=~\"${domain:regex}\", severity=~\"${severity:regex}\"} * 1) unless max without (alertstate, alertgroup) (ALERTS{alertstate=~\"pending|firing\", namespace=~\"${namespace:regex}\", domain=~\"${domain:regex}\", severity=~\"${severity:regex}\"} * 1)), \"state\", \"ok\", \"\", \"\") or label_replace(sum by (namespace, domain) (ALERTS{alertstate=\"pending\", namespace=~\"${namespace:regex}\", domain=~\"${domain:regex}\", severity=~\"${severity:regex}\"}), \"state\", \"pending\", \"\", \"\") or label_replace(sum by (namespace, domain, severity) (ALERTS{alertstate=\"firing\", namespace=~\"${namespace:regex}\", domain=~\"${domain:regex}\", severity=~\"${severity:regex}\"}), \"state\", \"$1\", \"severity\", \"(.*)\")",
           "instant": true,
           "refId": "A"
         }
       ],
-      "title": "Firing Alerts by Namespace and Domain",
+      "title": "Alert Instances by Domain",
       "type": "volkovlabs-echarts-panel"
     },
     {
       "datasource": {
-        "type": "yesoreyeram-infinity-datasource",
-        "uid": "vmalert-api"
+        "type": "victoriametrics-metrics-datasource",
+        "uid": "vmetrics"
       },
-      "description": "Active alerts evaluated by vmalert.",
+      "description": "Alerts currently pending or firing according to vmalert's latest evaluation.",
       "fieldConfig": {
         "defaults": {
           "custom": {
@@ -323,37 +561,6 @@
                 "value": {
                   "type": "auto"
                 }
-              },
-              {
-                "id": "custom.tooltip",
-                "value": {
-                  "field": "Summary",
-                  "placement": "right"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Summary"
-            },
-            "properties": [
-              {
-                "id": "custom.hidden",
-                "value": true
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Active since"
-            },
-            "properties": [
-              {
-                "id": "unit",
-                "value": "dateTimeFromNow"
               }
             ]
           }
@@ -363,7 +570,7 @@
         "h": 10,
         "w": 24,
         "x": 0,
-        "y": 12
+        "y": 19
       },
       "options": {
         "cellHeight": "sm",
@@ -371,27 +578,65 @@
         "sortBy": [
           {
             "desc": false,
-            "displayName": "Alert"
+            "displayName": "Severity"
           }
         ]
       },
       "pluginVersion": "12.0.0",
       "targets": [
         {
+          "datasource": {
+            "type": "victoriametrics-metrics-datasource",
+            "uid": "vmetrics"
+          },
+          "editorMode": "code",
+          "expr": "label_join(ALERTS{alertstate=~\"pending|firing\", severity=~\"${severity:regex}\", namespace=~\"${namespace:regex}\", domain=~\"${domain:regex}\"}, \"alert_path\", \"/\", \"namespace\", \"domain\", \"alertname\")",
           "format": "table",
           "refId": "A",
-          "source": "url",
-          "type": "uql",
-          "uql": "parse-json\n| jsonata \"data.alerts[(labels.severity = '${severity:raw}' or '${severity:raw}' = '.*') and (labels.namespace = '${namespace:raw}' or '${namespace:raw}' = '.*') and (labels.domain = '${domain:raw}' or '${domain:raw}' = '.*')].{'Alert': labels.namespace & ':' & labels.domain & ':' & labels.alertname, 'Instance': labels.instance, 'Severity': labels.severity, 'Current value': value, 'Active since': activeAt, 'Summary': annotations.summary}\"\n| extend \"Active since\"=todatetime(\"Active since\")",
-          "url": "http://vmalert:8880/api/v1/alerts",
-          "url_options": {
-            "method": "GET",
-            "params": [],
-            "headers": []
+          "instant": true
+        }
+      ],
+      "title": "Active Alerts: Details",
+      "transformations": [
+        {
+          "id": "labelsToFields",
+          "options": {}
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "Time": true,
+              "alertgroup": true,
+              "alertname": true,
+              "condition": true,
+              "deployment": true,
+              "diskID": true,
+              "domain": true,
+              "exported_namespace": true,
+              "instance": true,
+              "job": true,
+              "kubernetes_namespace": true,
+              "namespace": true,
+              "pod": true,
+              "raidName": true,
+              "uid": true
+            },
+            "indexByName": {
+              "Value": 3,
+              "alert_path": 0,
+              "alertstate": 1,
+              "severity": 2
+            },
+            "renameByName": {
+              "Value": "Current value",
+              "alert_path": "Alert",
+              "alertstate": "State",
+              "severity": "Severity"
+            }
           }
         }
       ],
-      "title": "Active Alerts",
       "type": "table"
     },
     {
@@ -425,17 +670,17 @@
                       "firing": {
                         "color": "red",
                         "index": 0,
-                        "text": "firing"
+                        "text": "Firing"
                       },
                       "inactive": {
-                        "color": "gray",
+                        "color": "green",
                         "index": 2,
-                        "text": "inactive"
+                        "text": "OK"
                       },
                       "pending": {
                         "color": "orange",
                         "index": 1,
-                        "text": "pending"
+                        "text": "Pending"
                       }
                     },
                     "type": "value"
@@ -519,7 +764,7 @@
         "h": 8,
         "w": 24,
         "x": 0,
-        "y": 22
+        "y": 29
       },
       "options": {
         "cellHeight": "sm",
@@ -527,7 +772,7 @@
         "sortBy": [
           {
             "desc": false,
-            "displayName": "Rule"
+            "displayName": "Severity"
           }
         ]
       },
@@ -550,7 +795,7 @@
       "type": "table"
     }
   ],
-  "refresh": "30s",
+  "refresh": "1m",
   "schemaVersion": 41,
   "tags": [
     "alertmanager"
@@ -584,7 +829,7 @@
         "multi": false,
         "name": "namespace",
         "options": [],
-        "query": "infra",
+        "query": "infra,app",
         "type": "custom"
       },
       {
@@ -605,7 +850,7 @@
     ]
   },
   "time": {
-    "from": "now-6h",
+    "from": "now-24h",
     "to": "now"
   },
   "timezone": "browser",

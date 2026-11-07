@@ -1,0 +1,22 @@
+groups:
+  - name: k8s
+    interval: 30s
+    rules:
+      ### Deployment Unavailable
+      - record: alert_rule_target
+        expr: 0 * label_replace((kube_deployment_spec_replicas > 0), "kubernetes_namespace", "$1", "namespace", "(.+)") + 1
+        labels:
+          alertname: deployment-unavailable
+          severity: critical
+          namespace: app
+          domain: k8s
+      - alert: deployment-unavailable
+        expr: label_replace(((kube_deployment_spec_replicas > 0) unless on (namespace, deployment) (kube_deployment_status_replicas_available > 0)), "kubernetes_namespace", "$1", "namespace", "(.+)")
+        for: 10m
+        labels:
+          severity: critical
+          namespace: app
+          domain: k8s
+        annotations:
+          summary: "Deployment {{ $labels.kubernetes_namespace }}/{{ $labels.deployment }} has no available replicas"
+          description: "The deployment has desired replicas but none have been available for 10 minutes."

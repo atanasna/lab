@@ -7,6 +7,10 @@ route:
   group_interval: 5m
   repeat_interval: 4h
   receiver: 'default'
+  routes:
+    - matchers:
+        - severity="critical"
+      receiver: 'ntfy-critical'
 
 receivers:
   - name: 'default'
@@ -19,6 +23,10 @@ receivers:
     #   - to: 'alerts@example.com'
     #     from: 'alertmanager@example.com'
     #     smarthost: 'smtp.example.com:587'
+  - name: 'ntfy-critical'
+    webhook_configs:
+      - url: 'http://alertmanager-ntfy-relay:8080/webhook'
+        send_resolved: true
 
 inhibit_rules:
   - source_match:

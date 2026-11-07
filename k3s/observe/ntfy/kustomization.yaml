@@ -1,0 +1,13 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: observe
+
+resources:
+  - deployment.yaml
+  - service.yaml
+
+configMapGenerator:
+  - name: ntfy-config
+    files:
+      - server.yml=configs/server.yml
+      - relay.js=configs/relay.js

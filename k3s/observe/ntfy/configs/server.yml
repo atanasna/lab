@@ -1,0 +1,4 @@
+base-url: https://ntfy.thedrill.eu
+behind-proxy: true
+cache-file: /var/cache/ntfy/cache.db
+upstream-base-url: https://ntfy.sh

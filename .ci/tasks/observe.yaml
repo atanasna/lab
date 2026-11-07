@@ -26,6 +26,8 @@ tasks:
       - echo ""
       - task: exporter-node
       - echo ""
+      - task: kube-state-metrics
+      - echo ""
       - task: victorialogs
       - echo ""
       - task: victoriametrics
@@ -33,6 +35,8 @@ tasks:
       - task: grafana
       - echo ""
       - task: prometheus
+      - echo ""
+      - task: ntfy
       - echo ""
       - task: alertmanager
       - echo ""
@@ -83,6 +87,15 @@ tasks:
         vars:
           SERVICE: "{{.SERVICE}}"
 
+  ntfy:
+    vars:
+      SERVICE: ntfy
+    desc: Deploy {{.SERVICE}}
+    cmds:
+      - task: _generic
+        vars:
+          SERVICE: "{{.SERVICE}}"
+
   vmalert:
     vars:
       SERVICE: vmalert
@@ -104,6 +117,15 @@ tasks:
   exporter-node:
     vars:
       SERVICE: exporter-node
+    desc: Deploy {{.SERVICE}}
+    cmds:
+      - task: _generic
+        vars:
+          SERVICE: "{{.SERVICE}}"
+
+  kube-state-metrics:
+    vars:
+      SERVICE: kube-state-metrics
     desc: Deploy {{.SERVICE}}
     cmds:
       - task: _generic

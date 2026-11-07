@@ -46,6 +46,10 @@ scrape_configs:
         target_label: __metrics_path__
         replacement: /api/v1/nodes/${1}/proxy/metrics/cadvisor
 
+  - job_name: 'kube-state-metrics'
+    static_configs:
+      - targets: ['kube-state-metrics:8080']
+
   - job_name: 'k3s-nodes'
     kubernetes_sd_configs:
       - role: pod

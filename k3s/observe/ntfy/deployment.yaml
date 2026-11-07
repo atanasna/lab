@@ -1,0 +1,97 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ntfy
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: ntfy
+  template:
+    metadata:
+      labels:
+        app: ntfy
+    spec:
+      securityContext:
+        fsGroup: 1000
+      containers:
+        - name: ntfy
+          image: binwiederhier/ntfy:v2.28.0
+          args:
+            - serve
+          ports:
+            - name: http
+              containerPort: 80
+              protocol: TCP
+          resources:
+            requests:
+              memory: 64Mi
+            limits:
+              memory: 256Mi
+          volumeMounts:
+            - name: ntfy-config
+              mountPath: /etc/ntfy
+              readOnly: true
+            - name: observe-pvc
+              mountPath: /var/cache/ntfy
+              subPath: ntfy
+          livenessProbe:
+            httpGet:
+              path: /v1/health
+              port: http
+            initialDelaySeconds: 10
+            periodSeconds: 30
+            timeoutSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /v1/health
+              port: http
+            initialDelaySeconds: 5
+            periodSeconds: 30
+            timeoutSeconds: 10
+        - name: alertmanager-ntfy-relay
+          image: node:22-alpine
+          command:
+            - node
+          args:
+            - /app/relay.js
+          ports:
+            - name: relay
+              containerPort: 8080
+              protocol: TCP
+          env:
+            - name: NTFY_SERVER
+              value: http://127.0.0.1
+            - name: NTFY_TOPIC
+              value: alerts-critical
+          volumeMounts:
+            - name: ntfy-config
+              mountPath: /app/relay.js
+              subPath: relay.js
+              readOnly: true
+          resources:
+            requests:
+              memory: 16Mi
+            limits:
+              memory: 64Mi
+          livenessProbe:
+            tcpSocket:
+              port: relay
+            initialDelaySeconds: 10
+            periodSeconds: 30
+            timeoutSeconds: 10
+          readinessProbe:
+            tcpSocket:
+              port: relay
+            initialDelaySeconds: 5
+            periodSeconds: 30
+            timeoutSeconds: 10
+      volumes:
+        - name: ntfy-config
+          configMap:
+            name: ntfy-config
+        - name: observe-pvc
+          persistentVolumeClaim:
+            claimName: observe-pvc
