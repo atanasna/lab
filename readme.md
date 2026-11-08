@@ -39,7 +39,7 @@ curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="server --token=K10d58c287785a1f
 # Installation
 1. Apply namespaces `kubectl apply -f k3s/namespaces.yaml`
 1. Apply patches
-    1. Traefik set IP: `kubectl patch svc -n kube-system traefik -p '{"spec":{"loadBalancerIP":"10.7.0.70"}}' `
+    1. Traefik set IP: `kubectl patch svc -n kube-system traefik -p '{"spec":{"loadBalancerIP":"10.7.0.10"}}' `
     1. Decide where in the cluster you will attach the ext drive for bitcoin node data and set: `kubectl label nodes k3s01 bitcoin=true`
 1. Apply system controllers
     1. Metallb: `./k3s/system/metallb/up.sh`

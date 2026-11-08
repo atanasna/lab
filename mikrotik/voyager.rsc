@@ -79,11 +79,16 @@ add address=192.168.0.100/24 interface=external network=192.168.0.0
 /ip pool add name=internal ranges=10.7.0.192-10.7.0.254
 /ip dhcp-server add address-pool=internal interface=internal lease-time=60m name=internal
 # Network(Routers-switches-APs-networkServers) 1-29
+# Router 10.7.0.1
+# Traefik 10.7.0.10
+# PiHole 10.7.0.11
 # Servers 30-99
 /ip dhcp-server lease add comment=NAS address=10.7.0.30 mac-address=00:11:32:96:CE:41 server=internal
-/ip dhcp-server lease add comment=k3s01 address=10.7.0.71 mac-address=2C:CF:67:5C:C8:35 server=internal
-/ip dhcp-server lease add comment=k3s02 address=10.7.0.72 mac-address=D8:3A:DD:E4:09:18 server=internal
-/ip dhcp-server lease add comment=k3s03 address=10.7.0.73 mac-address=2C:CF:67:13:8B:11 server=internal
+/ip dhcp-server lease add comment=k3s01 address=10.7.0.31 mac-address=2C:CF:67:5C:C8:35 server=internal
+/ip dhcp-server lease add comment=k3s02 address=10.7.0.32 mac-address=D8:3A:DD:E4:09:18 server=internal
+/ip dhcp-server lease add comment=k3s03 address=10.7.0.33 mac-address=2C:CF:67:13:8B:11 server=internal
+# Mosquitto(mqtt) 10.7.0.40
+# Servers 30-99
 # Sensors 100-180
 /ip dhcp-server lease add comment=shelly-ht-f0-1 address=10.7.0.100 mac-address=08:3A:F2:D0:C6:A4 server=internal
 /ip dhcp-server lease add comment=shelly-ht-f1-1 address=10.7.0.101 mac-address=08:3A:F2:D0:C6:A4 server=internal
